@@ -93,12 +93,14 @@
                 </div>
             </div>
         </div>
+
+        <div style="margin-top: -5rem; margin-left: 3rem; padding: 1rem; display: flex; gap: 10px;" class="print-only">
+            <a href="/student" class="button" style="background: #9a031e;">Go Back</a>
+            <button class="button" style="background: #0f4c5c;" onclick="printPage()">Print Result</button>
+        </div>
     </div>
 
-    <div style="margin: 1rem; padding: 2rem; display: flex; gap: 10px;" class="print-only">
-        <a href="/student" class="button" style="background: #9a031e;">Go Back</a>
-        <button class="button" style="background: #0f4c5c;" onclick="printPage()">Print Result</button>
-    </div>
+
 
     <script>
         function printPage() {

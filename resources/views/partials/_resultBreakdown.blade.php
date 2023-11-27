@@ -1890,13 +1890,13 @@
             {{ $result[0]->G2 }}
         </p>
         <p class="text-center p-1 w-1/12 border h-max border-r-slate-900">
-            {{ $result[0]?->At1 }}
+            {{ $result[0]?->At2 }}
         </p>
         <p class="text-center p-1 w-1/12 border h-max border-r-slate-900 bg-yellow-200">
-            {{ $result[0]?->Tg1 }}
+            {{ $result[0]?->Tg2 }}
         </p>
         <p class="text-center p-1 w-2/12 border h-max border-r-slate-900">
-            {{ $result[0]?->Re1 }}
+            {{ $result[0]?->Re2 }}
         </p>
         <p class="text-right p-1 w-3/12 border h-max border-r-slate-900">
             {{ $subjects->Sa2 }}
