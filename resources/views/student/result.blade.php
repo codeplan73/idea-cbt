@@ -88,16 +88,21 @@
 
                             @include('partials._resultBreakdown')
                             @include('partials._resultSummary')
+
+                            <div style="margin-top: 1rem;  padding: 1rem; display: flex; gap: 10px;" class="print-only">
+                                <a href="/student" class="button" style="background: #9a031e;">Go Back</a>
+                                <button class="button" style="background: #0f4c5c;" onclick="printPage()">Print
+                                    Result</button>
+                            </div>
                         </div>
+
                     </table>
                 </div>
             </div>
+
         </div>
 
-        <div style="margin-top: -5rem; margin-left: 3rem; padding: 1rem; display: flex; gap: 10px;" class="print-only">
-            <a href="/student" class="button" style="background: #9a031e;">Go Back</a>
-            <button class="button" style="background: #0f4c5c;" onclick="printPage()">Print Result</button>
-        </div>
+
     </div>
 
 

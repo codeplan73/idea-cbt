@@ -225,6 +225,15 @@
                         <h6 class="text-white fw-bold">
                             {{ number_format(auth()->guard('student')->user()->Current_Balance,2) }}</h6>
                     </div>
+                    <div style="background: #03a4a1;"
+                        class="d-flex flex-row justify-content-between border px-2 py-1 my-1 rounded">
+                        <h6 class="text-white fw-bold">Student PIN:</h6>
+                        <h6 class="text-white fw-bold">
+                            @if (auth()->guard('student')->user()->Student_Pin != 0)
+                                {{ auth()->guard('student')->user()->Student_Pin }}
+                            @endif
+                        </h6>
+                    </div>
                 </div>
             </div>
         </div>
