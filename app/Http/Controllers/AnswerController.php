@@ -29,7 +29,7 @@ class AnswerController extends Controller
         }else {
             return redirect('/student')->with('noexam', 'Sorry no question set for your class currently');
         }
-    }
+    } 
 
     public function answersList()
     {
@@ -39,21 +39,25 @@ class AnswerController extends Controller
  
     public function create()
     {
-
         $student_class = Auth::guard('student')->user()->Student_Class;
+        $student_id = Auth::guard('student')->user()->Student_ID;
     
         $examCode = QuestionCode::where('class', $student_class)->first();
         $questionCode = $examCode->question_code;
 
         $question = Question::where('question_id', $questionCode)->where('class', $student_class)->first();
 
-        if($question){
+        $answer = Answer::where('student_id', $student_id)->first();
+
+        if(!$answer){
+             return redirect('/student');
+        }else{
+             if($question){
             return view('exam.create', ['question' => $question]);
-        }else {
-            return redirect('/student')->with('noexam', 'Sorry no question set for your class currently');
-        }
-        
-       
+            }else {
+                return redirect('/student')->with('noexam', 'Sorry no question set for your class currently');
+            }
+        }       
     }
 
     public function store(Request $request)
@@ -122,16 +126,8 @@ class AnswerController extends Controller
     public function adminUpdateAnswer(Request $request, Answer $answer)
     {
         // dd($request->all());
-        $answer->test1 = $request->test1;
-        $answer->test2 = $request->test2;
-        $answer->test3 = $request->test3;
-        $answer->exam = $request->exam;
-
-        $answer->test1_score = $request->test1_score;
-        $answer->test2_score = $request->test2_score;
-        $answer->test3_score = $request->test3_score;
-        $answer->exam_score = $request->exam_score;
-        $answer->total = $request->total;
+        $answer->exam_type = $request->exam_type;
+        $answer->score = $request->score;
         $answer->update();
 
         return redirect('/answers')->with('message', 'Student answer updated successfully');

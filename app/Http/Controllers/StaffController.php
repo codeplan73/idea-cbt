@@ -51,10 +51,9 @@ class StaffController extends Controller
             return back()->with('error', 'You can only set password and active status for Active and Inactive Student');
         }
 
-        // dd($data['Current_Status']);
         // Update password and plain_password for all students
         $affectedRows = Student::where('Student_Class', $data['class'])
-        ->whereNotIn('Current_Status', ['Graduated'])
+        ->whereNotIn('Current_Status', ['Graduated', 'Left'])
         ->update([
             'password' => $hashedPassword,
             'plain_password' => $data['password'],

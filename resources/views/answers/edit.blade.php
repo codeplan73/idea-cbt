@@ -19,6 +19,12 @@
                             @include('components.form-fields-answer', [
                                 'name' => 'name',
                                 'label' => 'Name',
+                                'value' => $answer->student_id,
+                                ['readonly' => true],
+                            ])
+                            @include('components.form-fields-answer', [
+                                'name' => 'name',
+                                'label' => 'Name',
                                 'value' => $answer->name,
                                 ['readonly' => true],
                             ])
@@ -40,58 +46,25 @@
                                 'value' => $answer->subject,
                                 ['readonly' => true],
                             ])
+
                             @include('components.form-fields-answer', [
-                                'name' => 'test1',
-                                'label' => 'Test-1',
-                                'value' => $answer->test1,
+                                'name' => 'question_type',
+                                'label' => 'Question Type',
+                                'value' => $answer->question_type,
+                                ['readonly' => true],
+                            ])
+
+                            @include('components.form-fields-answer', [
+                                'name' => 'exam_type',
+                                'label' => 'Exam Type',
+                                'value' => $answer->exam_type,
                                 ['readonly' => false],
                             ])
+
                             @include('components.form-fields-answer', [
-                                'name' => 'test2',
-                                'label' => 'Test-2',
-                                'value' => $answer->test2,
-                                ['readonly' => false],
-                            ])
-                            @include('components.form-fields-answer', [
-                                'name' => 'test3',
-                                'label' => 'Test-3',
-                                'value' => $answer->test3,
-                                ['readonly' => false],
-                            ])
-                            @include('components.form-fields-answer', [
-                                'name' => 'exam',
-                                'label' => 'Exam',
-                                'value' => $answer->exam,
-                                ['readonly' => false],
-                            ])
-                            @include('components.form-fields-answer', [
-                                'name' => 'test1_score',
-                                'label' => 'Test-1 Score',
-                                'value' => $answer->test1_score,
-                                ['readonly' => false],
-                            ])
-                            @include('components.form-fields-answer', [
-                                'name' => 'test2_score',
-                                'label' => 'Test-2 Score',
-                                'value' => $answer->test2_score,
-                                ['readonly' => false],
-                            ])
-                            @include('components.form-fields-answer', [
-                                'name' => 'test3_score',
-                                'label' => 'Test-3 Score',
-                                'value' => $answer->test3_score,
-                                ['readonly' => false],
-                            ])
-                            @include('components.form-fields-answer', [
-                                'name' => 'exam_score',
-                                'label' => 'Exam Score',
-                                'value' => $answer->exam_score,
-                                ['readonly' => false],
-                            ])
-                            @include('components.form-fields-answer', [
-                                'name' => 'total',
-                                'label' => 'Total Score',
-                                'value' => $answer->total,
+                                'name' => 'score',
+                                'label' => 'Score',
+                                'value' => $answer->score,
                                 ['readonly' => false],
                             ])
 

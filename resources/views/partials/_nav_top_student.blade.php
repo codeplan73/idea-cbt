@@ -15,7 +15,7 @@
                  <div class="avatar avatar-xl">
 
                      <img src="{{ Auth::user()->Student_Image ? 'data:image/jpeg;base64,' . base64_encode(Auth::guard('student')->user()->Student_Image) : asset('assets/img/no-image.jpg') }}"
-                         alt="" class="rounded-circle">
+                         alt="" class="rounded-circle" style="height: 50px; width: 50px" />
                  </div>
              </a>
              <div class="dropdown-menu dropdown-caret dropdown-caret dropdown-menu-end py-0"

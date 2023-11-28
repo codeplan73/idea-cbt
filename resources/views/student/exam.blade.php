@@ -17,7 +17,7 @@
                         <div class="card font-sans-serif">
                             <div class="card-body d-flex gap-3 flex-column flex-sm-row align-items-center"><img
                                     class="rounded-3" src="{{ asset('assets/logo/logo.png') }}" alt=""
-                                    width="112" />
+                                    width="140" />
                                 <table class="table table-borderless fs--1 fw-medium mb-0">
                                     <tbody>
                                         <tr>

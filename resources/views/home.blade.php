@@ -47,7 +47,7 @@
         </div>
     </div>
     <div class="row g-3 mb-3">
-        <div class="col-sm-4 col-md-3">
+        <div class="col">
             <div class="card overflow-hidden">
                 <div class="bg-holder bg-card"
                     style="background-image:url(../assets/img/icons/spot-illustrations/corner-2.png);">
@@ -60,7 +60,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-4 col-md-3">
+        <div class="col">
             <div class="card overflow-hidden">
                 <div class="bg-holder bg-card"
                     style="background-image:url(../assets/img/icons/spot-illustrations/corner-3.png);">
@@ -76,7 +76,7 @@
             </div>
         </div>
 
-        <div class="col-sm-4 col-md-3">
+        <div class="col">
             <div class="card overflow-hidden">
                 <div class="bg-holder bg-card"
                     style="background-image:url(../assets/img/icons/spot-illustrations/corner-4.png);">
@@ -91,9 +91,24 @@
                 </div>
             </div>
         </div>
+        <div class="col">
+            <div class="card overflow-hidden">
+                <div class="bg-holder bg-card"
+                    style="background-image:url(../assets/img/icons/spot-illustrations/corner-4.png);">
+                </div>
+                <!--/.bg-holder-->
+                <div class="card-body position-relative">
+                    <h6>Al-Amin Aviele</h6>
+                    <div class="display-4 fs-4 mb-2 fw-normal font-sans-serif"
+                        data-countup='{"endValue":43594,"prefix":"$"}'>
+                        {{ $elamin }}
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- total gender -->
-        <div class="col-sm-4 col-md-3">
+        <div class="col">
             <div class="card overflow-hidden">
                 <div class="bg-holder bg-card"
                     style="background-image:url(../assets/img/icons/spot-illustrations/corner-5.png);">
@@ -211,7 +226,7 @@
                                         <tr>
                                             <th class="text-900 sort">ID</th>
                                             <th class="text-900 sort">Name</th>
-                                            <th class="text-900 sort">Password</th>
+                                            {{-- <th class="text-900 sort">Password</th> --}}
                                             <th class="text-900 sort">Phone</th>
                                             <th class="text-900 sort">Role</th>
                                             <th class="text-900 sort">Email</th>
@@ -223,7 +238,7 @@
                                             <tr>
                                                 <td>{{ $staff->Staff_ID }}</td>
                                                 <td>{{ $staff->Fullname }}</td>
-                                                <td>{{ $staff->plain_password }}</td>
+                                                {{-- <td>{{ $staff->plain_password }}</td> --}}
                                                 <td>{{ $staff->Phone_No }}</td>
                                                 <td>{{ $staff->role }}</td>
                                                 <td>{{ $staff->Email }}</td>

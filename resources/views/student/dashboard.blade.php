@@ -227,7 +227,7 @@
                     </div>
                     <div style="background: #03a4a1;"
                         class="d-flex flex-row justify-content-between border px-2 py-1 my-1 rounded">
-                        <h6 class="text-white fw-bold">Student PIN:</h6>
+                        <h6 class="text-white fw-bold">Student Result PIN:</h6>
                         <h6 class="text-white fw-bold">
                             @if (auth()->guard('student')->user()->Student_Pin != 0)
                                 {{ auth()->guard('student')->user()->Student_Pin }}

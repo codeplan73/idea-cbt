@@ -219,7 +219,7 @@
                     selectedRadio.checked = true;
                 }
 
-                document.getElementById('questionNumber').value = 'Q-' + questionNumber;
+                document.getElementById('questionNumber').value = questionNumber;
 
                 document.getElementById('nextBtn').disabled = (questionNumber > totalQuestions);
                 document.getElementById('prevBtn').disabled = (questionNumber === 1);

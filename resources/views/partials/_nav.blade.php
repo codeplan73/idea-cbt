@@ -75,12 +75,12 @@
                                  <span class="nav-link-title">Exam Code</span>
                              </a>
                          </div>
-                         <div class="nav-item">
+                         {{-- <div class="nav-item">
                              <a class="nav-link " href="/manage-questions" data-placement="left">
                                  <i class="fa-solid fa-restroom nav-icon"></i>
                                  <span class="nav-link-title">Manage Questions</span>
                              </a>
-                         </div>
+                         </div> --}}
 
 
                          <a class="nav-link dropdown-indicator" href="#answer" role="button" data-bs-toggle="collapse"
