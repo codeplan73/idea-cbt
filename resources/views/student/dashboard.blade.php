@@ -234,6 +234,11 @@
                             @endif
                         </h6>
                     </div>
+                    <div style="background: #f2f4ef;"
+                        class="d-flex flex-row justify-content-between border px-2 py-1 my-1 rounded">
+                        <textarea class="form-control" id="" readonly cols="30" rows="2">{{ $genInfo->GenInfo }}</textarea>
+                        </h6>
+                    </div>
                 </div>
             </div>
         </div>

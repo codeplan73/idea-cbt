@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use App\Models\CurrentTerm;
+use App\Models\Branch;
 use App\Models\QuestionCode;
 use App\Models\Question;
 use App\Models\System;
@@ -13,7 +15,11 @@ class StudentController extends Controller
 {
 
     public function index(){
-        return view('student.dashboard');
+        $branch = CurrentTerm::pluck('Branch');
+        $genInfo = Branch::where('Branch_Name', $branch)->first();
+
+        // dd($genInfo->GenInfo);
+        return view('student.dashboard', ['genInfo' => $genInfo]);
     }
     
     /**
