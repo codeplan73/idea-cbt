@@ -7,15 +7,17 @@
                  alt="" width="40" /><span class="font-sans-serif text-primary">IDEA-CBT</span></div>
      </a>
 
-     <ul class="navbar-nav navbar-nav-icons ms-auto flex-row align-items-center">
+     <ul class="navbar-nav navbar-nav-icons ms-auto flex-row align-items-center mr-6"
+         style="margin-right: 1.2rem; margin-bottom: 1rem;">
 
          <li class="nav-item dropdown">
-             <a class="nav-link pe-0 ps-2" id="navbarDropdownUser" role="button" data-bs-toggle="dropdown"
+             <a class="nav-link pe-0 ps-2 mr-3" id="navbarDropdownUser" role="button" data-bs-toggle="dropdown"
                  aria-haspopup="true" aria-expanded="false">
                  <div class="avatar avatar-xl">
 
                      <img src="{{ Auth::user()->Student_Image ? 'data:image/jpeg;base64,' . base64_encode(Auth::guard('student')->user()->Student_Image) : asset('assets/img/no-image.jpg') }}"
-                         alt="" class="rounded-circle" style="height: 50px; width: 50px" />
+                         alt="" class="rounded-circle mr-4"
+                         style="height: 50px; width: 50px; margin-right: 1rem" />
                  </div>
              </a>
              <div class="dropdown-menu dropdown-caret dropdown-caret dropdown-menu-end py-0"

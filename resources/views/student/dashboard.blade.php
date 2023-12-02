@@ -225,7 +225,7 @@
                         <h6 class="text-white fw-bold">
                             {{ number_format(auth()->guard('student')->user()->Current_Balance,2) }}</h6>
                     </div>
-                    <div style="background: #03a4a1;"
+                    <div style="background: #03a439;"
                         class="d-flex flex-row justify-content-between border px-2 py-1 my-1 rounded">
                         <h6 class="text-white fw-bold">Student Result PIN:</h6>
                         <h6 class="text-white fw-bold">
@@ -234,10 +234,8 @@
                             @endif
                         </h6>
                     </div>
-                    <div style="background: #f2f4ef;"
-                        class="d-flex flex-row justify-content-between border px-2 py-1 my-1 rounded">
+                    <div style="background: #fff;" class="d-flex flex-row justify-content-between px-2 py-1 my-1 rounded">
                         <textarea class="form-control" id="" readonly cols="30" rows="2">{{ $genInfo->GenInfo }}</textarea>
-                        </h6>
                     </div>
                 </div>
             </div>

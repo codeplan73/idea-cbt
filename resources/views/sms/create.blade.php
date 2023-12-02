@@ -23,14 +23,6 @@
                         @csrf
                         <!-- Form -->
                         <div class="row mb-4">
-                            {{-- <div class="col-sm-6 mb-2 mb-sm-0">
-                                <div class="tom-select-custom">
-                                    <label for="subject" class="form-label">Subject </label>
-
-                                    <input type="text" class="form-control @error('subject') is-invalid @enderror"
-                                        name="subject" id="subject" placeholder="subject">
-                                </div>
-                            </div> --}}
 
                             <div class="col-md-12 mb-4 mb-sm-0">
                                 <div class="tom-select-custom">

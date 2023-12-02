@@ -28,7 +28,7 @@ class SMSController extends Controller
         // dd($request->all());
 
         // $senderId = config('services.KUDI_SMS_SENDER_ID');
-        $senderId = "IDEA";
+        $senderId = "HIRACOLLEGE";
         $numbers = Student::pluck('Phone_Number')->toArray();
         $message = $request->input('message');
 
