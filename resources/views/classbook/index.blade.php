@@ -19,7 +19,7 @@
                     <div class="row mb-3 g-3">
                         @unless ($books->isEmpty())
                             @foreach ($books as $book)
-                                <article class="col-md-6 col-xxl-4">
+                                <article class="col-md-3">
                                     <div class="card h-100 overflow-hidden">
                                         <div class="card-body p-0 d-flex flex-column justify-content-between">
                                             <div>
@@ -30,9 +30,9 @@
                                                             src="assets/img/notes/book.png" alt="" />
                                                     </a>
                                                 </div>
-                                                <div class="p-3">
-                                                    <h2 class="fs-0 fw-bold mb-2">
-                                                        Subject:
+                                                <div class="p-1">
+                                                    <h2 class="fs-0 fw-bold mb-1">
+
                                                         {{ $book->subject }}
                                                     </h2>
                                                     <h5 class="fs-0">

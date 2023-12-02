@@ -148,12 +148,12 @@
                                         <th class="text-900 sort">ID</th>
                                         <th class="text-900 sort">Name</th>
                                         <th class="text-900 sort">Class</th>
-                                        <th class="text-900 sort">Balance</th>
+                                        <th class="text-900 sort">Password</th>
                                         <th class="text-900 sort">Status</th>
                                         <th class="text-900 sort">Phone</th>
+                                        <th class="text-900 sort">Result PIN</th>
+                                        <th class="text-900 sort">Balance</th>
                                         @if (auth()->user()->role == 'admin')
-                                            <th class="text-900 sort">Result PIN</th>
-                                            <th class="text-900 sort">Password</th>
                                             <th class="text-900 sort">Action</th>
                                         @endif
                                     </tr>
@@ -164,12 +164,12 @@
                                             <td>{{ $student->Student_ID }}</td>
                                             <td>{{ $student->Fullnames }}</td>
                                             <td>{{ $student->Student_Class }}</td>
-                                            <td>{{ number_format($student->Current_Balance, 2) }}</td>
+                                            <td>{{ $student->plain_password }}</td>
                                             <td>{{ $student->Current_Status }}</td>
                                             <td>{{ $student->Phone_Number }}</td>
+                                            <td>{{ $student->Student_Pin }}</td>
+                                            <td>{{ number_format($student->Current_Balance, 2) }}</td>
                                             @if (auth()->user()->role == 'admin')
-                                                <td>{{ $student->Student_Pin }}</td>
-                                                <td>{{ $student->plain_password }}</td>
                                                 <td class="text-end">
                                                     <div style="display: flex; align-items:center;">
                                                         <a href="/manage-student/{{ $student->id }}/edit"

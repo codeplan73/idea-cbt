@@ -37,7 +37,7 @@
                         @method('POST')
                         <!-- Form -->
                         <div class="row mb-4">
-                            <div class="col-sm-4 mb-2 mb-sm-0">
+                            <div class="col-sm-6 mb-2 mb-sm-0">
                                 <div class="tom-select-custom">
                                     <label for="title" class="form-label">Current Term </label>
 
@@ -57,7 +57,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-sm-4 mb-2 mb-sm-0">
+                            <div class="col-sm-6 mb-2 mb-sm-0">
                                 <div class="tom-select-custom">
                                     <label for="title" class="form-label">Current Session </label>
 
@@ -81,7 +81,7 @@
 
                             <input type="hidden" name="ID" value="{{ $cterm->ID }}" id="">
 
-                            <div class="col-sm-4 mb-2 mb-sm-0">
+                            {{-- <div class="col-sm-4 mb-2 mb-sm-0">
                                 <div class="tom-select-custom">
                                     <label for="title" class="form-label">Branch </label>
 
@@ -100,7 +100,7 @@
                                         </span>
                                     @enderror
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="mt-4">
                                 @include('components.button', ['label' => 'Update Term'])

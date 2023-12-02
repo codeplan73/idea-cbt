@@ -19,7 +19,7 @@
                     <div class="row mb-3 g-3">
                         @unless ($notes->isEmpty())
                             @foreach ($notes as $note)
-                                <article class="col-md-6 col-xxl-4">
+                                <article class="col-md-3">
                                     <div class="card h-100 overflow-hidden">
                                         <div class="card-body p-0 d-flex flex-column justify-content-between">
                                             <div>
@@ -32,7 +32,7 @@
                                                 </div>
                                                 <div class="p-3">
                                                     <h2 class="fs-0 fw-bold mb-2">
-                                                        Subject:
+
                                                         {{ $note->subject }}
                                                     </h2>
                                                     <h5 class="fs-0">
