@@ -40,7 +40,7 @@ Route::get('/storage-link', function () {
 }); 
 
 Auth::routes();
-
+ 
 // Route::middleware(['auth:user'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -87,6 +87,7 @@ Route::middleware(['auth'])->group(function () {
 
     //manage answers
     Route::get('/answers', [AnswerController::class, 'answersList'])->name('answer.answersList');
+    Route::post('/search-answers', [AnswerController::class, 'search'])->name('answers.search');
    
     // delete answers with conditions
     Route::get('/answers-by-class', [DeleteAnswersController::class, 'answerByClass']);

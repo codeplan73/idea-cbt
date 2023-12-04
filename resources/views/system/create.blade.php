@@ -99,8 +99,8 @@
                                         <option value="SS3">SS3</option>
                                     </select>
                                 </div>
-
                             </div>
+
                             <div class="col-sm-4 mb-2 mb-sm-0">
                                 <div class="tom-select-custom">
                                     <label for="subject" class="form-label">Term</label>

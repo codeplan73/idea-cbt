@@ -22,6 +22,17 @@
             });
         </script>
     @endif
+    @if (session('message'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Not Found!',
+                    text: '{{ session('message') }}'
+                });
+            });
+        </script>
+    @endif
 
 
     <div class="row">
@@ -33,17 +44,46 @@
                 <div class="card-body">
                     <h5 class="mb-0">Search</h4>
                         <hr>
-                        <div class="row mb-5">
-                            <div class="col-md-6">
-                                <label for="name">Search by Exam-ID:</label>
-                                <input type="text" id="examId" class="form-control" placeholder="Enter Exam-ID">
-                            </div>
+                        <form action="/search-answers" method="post">
+                            @csrf
+                            <div class="row mb-5">
+                                <div class="col-md-6 tom-select-custom">
+                                    <label for="subject" class="form-label">Class</label>
+                                    <select class="js-select form-select" name="class">
+                                        <option value="">Select Class</option>
+                                        <option value="Creche">Crech</option>
+                                        <option value="Pre-KG">Pre KG</option>
+                                        <option value="KG1">KG1</option>
+                                        <option value="KG2">KG2</option>
+                                        <option value="KG3">KG3</option>
+                                        <option value="Pry1">Pry1</option>
+                                        <option value="Pry2">Pry2</option>
+                                        <option value="Pry3">Pry3</option>
+                                        <option value="Pry4">Pry4</option>
+                                        <option value="Pry5">Pry5</option>
+                                        <option value="Pry6">Pry6</option>
+                                        <option value="Pre-JSS">Pre JSS</option>
+                                        <option value="JSS1">JSS1</option>
+                                        <option value="JSS2">JSS2</option>
+                                        <option value="JSS3">JSS3</option>
+                                        <option value="SS1">SS1</option>
+                                        <option value="SS2">SS2</option>
+                                        <option value="SS3">SS3</option>
+                                    </select>
+                                </div>
 
-                            <div class="col-md-6">
-                                <label for="class">Search by Class:</label>
-                                <input type="text" id="class" class="form-control" placeholder="Enter Class">
+                                <div class="col-md-6">
+                                    <label for="class">Exam-ID:</label>
+                                    <input type="text" name="examId" required class="form-control"
+                                        placeholder="Enter Exam-ID">
+                                </div>
+                                <div class="absolute top-2 right-2">
+                                    <button type="submit" class="btn btn-info mt-2">
+                                        Search
+                                    </button>
+                                </div>
                             </div>
-                        </div>
+                        </form>
 
 
                         <table class="table mb-0 data-table fs--1" data-datatables="data-datatables">

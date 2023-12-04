@@ -6,7 +6,7 @@ use App\Models\System;
 use App\Models\Answer;
 use App\Models\Question;
 use App\Models\QuestionCode;
-use App\Models\Result;
+use App\Models\Result; 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,8 +33,19 @@ class AnswerController extends Controller
 
     public function answersList()
     {
-        $answers = Answer::all();
+        $answers = Answer::latest()->filter(request(['examId', 'class']))->get();
         return view('answers.index', ['answers' => $answers]);
+    }
+
+    public function search(Request $request)
+    {
+        $answers = Answer::where('class', $request['class'])->where('exam_id', $request['examId'])->get();
+        
+        if($answers){
+            return view('answers.index', ['answers' => $answers]);
+        }else{
+            return back()->with('message', 'Answer not found');
+        }
     }
  
     public function create()
