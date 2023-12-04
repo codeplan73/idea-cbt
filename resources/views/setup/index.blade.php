@@ -37,6 +37,7 @@
                             <tr>
                                 <th class="text-900 sort">Title</th>
                                 <th class="text-900 sort">Date</th>
+                                <th class="text-900 sort">Status</th>
                                 <th class="text-900 sort">Preview</th>
                                 <th class="text-900 sort">Action</th>
                             </tr>
@@ -46,6 +47,7 @@
                                 <tr>
                                     <td>{{ $setup->title }}</td>
                                     <td>{{ $setup->date }}</td>
+                                    <td>{{ $setup->status }}</td>
                                     <td>{{ $setup->homepage_pdf }}</td>
                                     <td class="text-end">
                                         @if (auth()->user()->role == 'staff' || auth()->user()->role == 'admin')

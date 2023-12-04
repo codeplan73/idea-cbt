@@ -1,19 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="row g-0">
-        <div class="col-lg-12 pe-lg-2">
-            <div class="card mb-3">
-                <div class="card-body">
-                    <div class="row flex-between-center">
-                        <div class="col-md">
-                            <h5 class="mb-md-0">Add Item</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     @if (session('message'))
         <script>
             document.addEventListener('DOMContentLoaded', function() {
@@ -37,7 +24,7 @@
                         @method('PUT')
                         <!-- Form -->
                         <div class="row mb-4">
-                            <div class="col-sm-6 mb-2 mb-sm-0">
+                            <div class="col-sm-4 mb-2 mb-sm-0">
                                 <div class="tom-select-custom">
                                     <label for="title" class="form-label">Title </label>
 
@@ -45,7 +32,18 @@
                                         name="title" value="{{ $setup->title }}" id="title" placeholder="title">
                                 </div>
                             </div>
-                            <div class="col-sm-6 mb-2 mb-sm-0">
+                            <div class="col-sm-4 mb-2 mb-sm-0">
+                                <div class="tom-select-custom">
+                                    <label for="date" class="form-label">Status </label>
+
+                                    <select class="form-control @error('status') is-invalid @enderror" name="status">
+                                        <option value="{{ $setup->status }}">{{ $setup->status }}</option>
+                                        <option value="Active">Active</option>
+                                        <option value="Inactive">Inactive</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 mb-2 mb-sm-0">
                                 <div class="tom-select-custom">
                                     <label for="date" class="form-label">Date </label>
 

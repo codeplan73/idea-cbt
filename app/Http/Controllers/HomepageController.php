@@ -9,7 +9,7 @@ class HomepageController extends Controller
 {
     public function index()
     {
-        $generalInfo = Setup::first();
+        $generalInfo = Setup::where('status', 'Active')->first();
         return view('welcome', ['generalInfo' => $generalInfo]);
     }
 }

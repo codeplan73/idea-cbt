@@ -20,27 +20,29 @@
 
     </section><!-- End Hero -->
 
-    <!-- ======= News Letter Section ======= -->
-    <section id="newsletter" class="about">
+    @if ($generalInfo)
+        <!-- ======= News Letter Section ======= -->
+        <section id="newsletter" class="about">
 
-        <div class="container" data-aos="fade-up">
-            <div class="row gx-4">
-                <div class="col-lg-6 d-flex flex-column justify-content-center">
-                    <h1 data-aos="fade-up text-center my-4 fw-bold"
-                        style="color: darkblue; text-align: center; margin-bottom: 2rem;">
-                        {{ $generalInfo->title }}</h1>
+            <div class="container" data-aos="fade-up">
+                <div class="row gx-4">
+                    <div class="col-lg-6 d-flex flex-column justify-content-center">
+                        <h1 data-aos="fade-up text-center my-4 fw-bold"
+                            style="color: darkblue; text-align: center; margin-bottom: 2rem;">
+                            {{ $generalInfo->title }}</h1>
+                    </div>
+
+                    <div class="col-lg-12 d-flex align-items-center" data-aos-delay="200">
+                        <iframe id="pdfViewer" src="{{ url('storage/' . $generalInfo->homepage_pdf) }}"
+                            style="width: 100%; height: 500px;" frameborder="0"></iframe>
+                    </div>
+
                 </div>
-
-                <div class="col-lg-12 d-flex align-items-center" data-aos-delay="200">
-                    <iframe id="pdfViewer" src="{{ url('storage/' . $generalInfo->homepage_pdf) }}"
-                        style="width: 100%; height: 500px;" frameborder="0"></iframe>
-                </div>
-
             </div>
-        </div>
 
-    </section>
-    <!-- End News Letter Section -->
+        </section>
+        <!-- End News Letter Section -->
+    @endif
 
     <!-- ======= About Section ======= -->
     <section id="about" class="about">

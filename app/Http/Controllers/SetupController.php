@@ -34,6 +34,7 @@ class SetupController extends Controller
     {
         $data = $request->validate([
             'title' => 'required',
+            'status' => 'required',
             'date' => 'required',
             'setup_pdf' => ['required', new PdfDocValidationRule],
         ]);
@@ -48,6 +49,7 @@ class SetupController extends Controller
         }
 
         $setup->title = $data['title'];
+        $setup->status = $data['status'];
         $setup->date = $data['date'];
         $setup->homepage_pdf = $setup_Pdf_Path;
                 
@@ -80,6 +82,7 @@ class SetupController extends Controller
     {
         $data = $request->validate([
             'title' => 'required',
+            'status' => 'required',
             'date' => 'required',
         ]);     
 
@@ -98,6 +101,7 @@ class SetupController extends Controller
         }
 
         $setup->title = $data['title'];
+        $setup->status = $data['status'];
         $setup->date = $data['date'];
         $setup->homepage_pdf = $setup_Pdf_Path;
         
