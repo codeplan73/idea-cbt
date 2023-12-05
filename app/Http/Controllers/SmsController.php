@@ -47,28 +47,28 @@ class SMSController extends Controller
 
     private function testing()
     {
-        //     $username = "hiracollege";
-        //     $numbers = +2349168189258;
-        //     $numbers = Student::pluck('Phone_Number')->toArray();
-        //     $message = $request->input('message');
+            $username = "hiracollege";
+            $numbers = +2349168189258;
+            $numbers = Student::pluck('Phone_Number')->toArray();
+            $message = $request->input('message');
 
 
-        //     // Create Guzzle client using the service
-        //     $client = $this->kudismsService->createClient();
+            // Create Guzzle client using the service
+            $client = $this->kudismsService->createClient();
 
-        //     // dd($client, $senderId);
+            // dd($client, $senderId);
 
-        //     $response = $client->post('sms', [
-        //         'json' => [
-        //             'recipients' => $numbers,
-        //             'username' => $username,
-        //             'message' => $message,
-        //         ],
-        //     ]);
+            $response = $client->post('sms', [
+                'json' => [
+                    'recipients' => $numbers,
+                    'username' => $username,
+                    'message' => $message,
+                ],
+            ]);
 
-        //     $result = json_decode($response->getBody(), true);
+            $result = json_decode($response->getBody(), true);
 
-        //     return response()->json($result);
+            return response()->json($result);
 
     }
 }

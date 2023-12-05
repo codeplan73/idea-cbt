@@ -40,6 +40,16 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {        
+        $question_status = 'closed';
+
+        $lastQuestion = Question::latest('question_id')->first();
+
+        if ($lastQuestion) {
+            $lastQuestionIdParts = explode("-", $lastQuestion->question_id);
+            $newQuestionId = (int) $lastQuestionIdParts[0] + 1;
+        } else {
+            $newQuestionId = 101;
+        }
         
         $data = $request->validate([
             'subject_teacher' => 'required',
@@ -56,16 +66,6 @@ class QuestionController extends Controller
             'question_pdf' => ['required', new PdfDocValidationRule],
         ]);
 
-        $question_status = 'closed';
-        $question = new Question;
-        $last_question_id = Question::latest('question_id')->first();
-
-        if ($last_question_id) {
-            $new_question_Id =  $last_question_id->question_id + 1 . $data['class'];
-        } else {
-            $new_question_Id = 101;
-        }
-
         if ($request->hasFile('question_pdf')) {
              $fileName = Str::slug($data['subject']) .'-' .$data['class'].'-'. $data['exam_type'].'-'. $data['term']. '.' . $request->file('question_pdf')->getClientOriginalExtension();
 
@@ -73,12 +73,15 @@ class QuestionController extends Controller
             $question_Pdf_Path = $question_pdf->storeAs('question_pdf', $fileName, 'public');
         }
 
+        $newQuestionId = $newQuestionId .'-'. $data['class'];
+
         $data['question_pdf'] = $question_Pdf_Path;
         $data['question_status'] = $question_status;
-        $data['question_id'] = $new_question_Id;
+        $data['question_id'] = $newQuestionId;
         
         for ($i = 1; $i <= 50; $i++) {
             $fieldName = 'q' . $i;
+            // $data[$fieldName] = $request->input($fieldName);
             $data[strtoupper($fieldName)] = $request->input($fieldName);
         }
 
