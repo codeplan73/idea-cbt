@@ -5,30 +5,34 @@
     <section id="hero" class="hero d-flex align-items-center">
 
         <div class="container">
-            <div class="row">
+            <div class="row" style="">
                 <div class="col-lg-6 d-flex flex-column justify-content-center">
                     <h1 data-aos="fade-up">We provide advanced solutions for enhancing your knowledge</h1>
                     <h2 data-aos="fade-up" data-aos-delay="400">We are a skilled team of developers creating user-friendly
                         platforms for Computer Based Test (CBT)</h2>
 
-                    <hr>
-
                 </div>
-                <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
+                <div style="padding: 12px 10px;" class="col-lg-6" data-aos="zoom-out" data-aos-delay="200">
                     <img src="{{ asset('assets/landing/img/studimg.jpg') }}" class="img-fluid" alt="">
                 </div>
             </div>
         </div>
-
     </section><!-- End Hero -->
 
+    <section class="anns">
+        <marquee behavior="scroll" direction="left">
+            {{ $latestTerm->announcement }}
+        </marquee>
+    </section>
+
     <!-- ======= About Section ======= -->
-    <section id="about" class="about">
+    <section id="about" class="about" style="padding: 20px 0px;">
 
         <div class="container" data-aos="fade-up">
-            <div class="row gx-3">
+            <div class="row gx-2">
 
-                <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
+                <div class="col-lg-6 mb-2 d-flex flex-column justify-content-center" data-aos="fade-up"
+                    data-aos-delay="200">
                     <div class="content">
                         <h2>OUR INSTITUTIONS:</h2>
 
@@ -50,24 +54,24 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
+                <div class="col-lg-6 mb-2 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
                     <img src="{{ asset('assets/landing/img/College2.jpeg') }}" class="img-fluid" alt="">
                 </div>
 
-                <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
+                <div class="col-lg-6 mb-2 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
                     <img src="{{ asset('assets/landing/img/Class1.png') }}" class="img-fluid" alt="">
                 </div>
 
-                <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
+                <div class="col-lg-6 mb-2 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
                     <img src="{{ asset('assets/landing/img/sport3.jpg') }}" class="img-fluid" alt="">
                 </div>
 
-                <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
-                    <img src="{{ asset('assets/landing/img/stud5.jpg') }}" class="img-fluid my-3" alt="">
+                <div class="col-lg-6 mb-2 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
+                    <img src="{{ asset('assets/landing/img/stud5.jpg') }}" class="img-fluid" alt="">
                 </div>
 
-                <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
-                    <img src="{{ asset('assets/landing/img/stud7.jpg') }}" class="img-fluid my-3" alt="">
+                <div class="col-lg-6 mb-2 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
+                    <img src="{{ asset('assets/landing/img/stud7.jpg') }}" class="img-fluid " alt="">
                 </div>
 
             </div>
@@ -109,6 +113,8 @@
 
             <div class="row gy-4">
 
+
+
                 <div class="col-lg-6">
 
                     <div class="row gy-4">
@@ -116,21 +122,22 @@
                             <div class="info-box">
                                 <i class="bi bi-geo-alt"></i>
                                 <h3>Address</h3>
-                                <p>Hira Comprehensive College, <br /> Iyakpi, South Ibie, Edo State</p>
+                                <p>El-Amin College of Modern Sciences <br>
+                                    No:5 Darus-Salam, Aviele Ubiane, Edo State</p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="info-box">
                                 <i class="bi bi-telephone"></i>
                                 <h3>Call Us</h3>
-                                <p>+234-803 6398 734<br>+234-813 1231 252</p>
+                                <p>+234-8036398734<br>+234-7064873912</p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="info-box">
                                 <i class="bi bi-envelope"></i>
                                 <h3>Email Us</h3>
-                                <p>aamin.hira@gmail.com<br>hiracollege2007@gmail.com</p>
+                                <p>aamin.hira@gmail.com<br>elamincollege2022@gmail.com</p>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -185,5 +192,28 @@
         </div>
 
     </section>
+
+    <style>
+        .anns {
+            margin-top: -130px;
+            background: rgb(77, 187, 77) !important;
+            color: #fff;
+            font-size: 24px;
+            font-weight: 800;
+            padding: 10px 80px;
+
+        }
+
+        @media screen and (max-width:760px) {
+            .anns {
+                margin-top: -40px;
+                background: rgb(77, 187, 77) !important;
+                color: #fff;
+                font-size: 18px;
+                font-weight: 800;
+                padding: 10px 20px;
+            }
+        }
+    </style>
     <!-- End Contact Section -->
 @endsection

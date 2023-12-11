@@ -15,4 +15,4 @@ class StudentMiddleware
 
         return redirect('/student-login'); // Redirect unauthorized students to the login page
     }
-}
+} 

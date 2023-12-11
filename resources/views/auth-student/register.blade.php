@@ -12,72 +12,75 @@
             <div class="card card-lg mb-5">
                 <h2 class="text-center my-3">Student Registration</h2>
                 <div class="card-body">
-                    <!-- Form -->
-                    <form method="POST" action="{{ route('student.register') }}">
-                        @csrf
-                        <label class="form-label" for="fullNameSrEmail">Full name</label>
-                        <div class="mb-4">
-                            <input type="text" name="Fullnames"
-                                class="form-control form-control-lg  @error('Fullnames') is-invalid @enderror"
-                                id="Fullnames" value="{{ old('Fullnames') }}" required>
-                            @error('Fullnames')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <!-- End Form -->
+                    <a href="/" class="bg-light mb-4 text-dark rounde btn fw-bold">
+                        << Go Back</a>
+                            <!-- Form -->
+                            <form method="POST" action="{{ route('student.register') }}">
+                                @csrf
+                                <label class="form-label" for="fullNameSrEmail">Full name</label>
+                                <div class="mb-4">
+                                    <input type="text" name="Fullnames"
+                                        class="form-control form-control-lg  @error('Fullnames') is-invalid @enderror"
+                                        id="Fullnames" value="{{ old('Fullnames') }}" required>
+                                    @error('Fullnames')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <!-- End Form -->
 
-                        <!-- Form -->
-                        <label class="form-label" for="fullNameSrEmail">Student-ID</label>
-                        <div class="mb-4">
-                            <input type="text"
-                                class="form-control form-control-lg  @error('Student_ID') is-invalid @enderror"
-                                name="Student_ID" value="{{ old('Student_ID') }}" required>
-                            @error('Student_ID')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
+                                <!-- Form -->
+                                <label class="form-label" for="fullNameSrEmail">Student-ID</label>
+                                <div class="mb-4">
+                                    <input type="text"
+                                        class="form-control form-control-lg  @error('Student_ID') is-invalid @enderror"
+                                        name="Student_ID" value="{{ old('Student_ID') }}" required>
+                                    @error('Student_ID')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
 
-                        <label class="form-label" for="fullNameSrEmail">Email</label>
-                        <div class="mb-4">
-                            <input type="email" class="form-control form-control-lg  @error('email') is-invalid @enderror"
-                                name="email" value="{{ old('email') }}" required>
-                            @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <!-- End Form -->
+                                <label class="form-label" for="fullNameSrEmail">Email</label>
+                                <div class="mb-4">
+                                    <input type="email"
+                                        class="form-control form-control-lg  @error('email') is-invalid @enderror"
+                                        name="email" value="{{ old('email') }}" required>
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <!-- End Form -->
 
-                        <div class="row gx-2">
-                            <div class="mb-3 col-sm-6">
-                                <label class="form-label" for="card-password">Password</label>
-                                <input name="password" class="form-control  @error('password') is-invalid @enderror"
-                                    type="password" autocomplete="on" id="card-password" />
+                                <div class="row gx-2">
+                                    <div class="mb-3 col-sm-6">
+                                        <label class="form-label" for="card-password">Password</label>
+                                        <input name="password" class="form-control  @error('password') is-invalid @enderror"
+                                            type="password" autocomplete="on" id="card-password" />
 
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="mb-3 col-sm-6">
-                                <label class="form-label" for="card-confirm-password">Confirm
-                                    Password</label>
-                                <input name="password_confirmation" class="form-control" type="password" autocomplete="on"
-                                    id="card-confirm-password" />
-                            </div>
-                        </div>
+                                        @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3 col-sm-6">
+                                        <label class="form-label" for="card-confirm-password">Confirm
+                                            Password</label>
+                                        <input name="password_confirmation" class="form-control" type="password"
+                                            autocomplete="on" id="card-confirm-password" />
+                                    </div>
+                                </div>
 
-                        <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-primary btn-lg">Create an account</button>
-                        </div>
-                    </form>
-                    <!-- End Form -->
+                                <div class="d-grid gap-2">
+                                    <button type="submit" class="btn btn-primary btn-lg">Create an account</button>
+                                </div>
+                            </form>
+                            <!-- End Form -->
                 </div>
             </div>
             <!-- End Card -->

@@ -17,5 +17,5 @@ class PdfDocValidationRule implements Rule
     public function message()
     {
         return 'The :attribute must be a valid PDF or DOC file.';
-    }
+    } 
 }

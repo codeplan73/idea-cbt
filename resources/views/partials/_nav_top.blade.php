@@ -4,18 +4,19 @@
          aria-label="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
      <a class="navbar-brand me-1 me-sm-3" href="/home">
          <div class="d-flex align-items-center"><img class="me-2" src="{{ asset('assets/logo/logo.png') }}"
-                 alt="" width="40" /><span class="font-sans-serif text-primary">IDEA-CBT</span></div>
+                 alt="" width="40" /><span class="font-sans-serif text-primary">ELAMIN-CBT</span></div>
      </a>
 
-     <ul class="navbar-nav navbar-nav-icons ms-auto flex-row align-items-center">
+     <ul class="navbar-nav navbar-nav-icons ms-auto flex-row align-items-center"
+         style="margin-right: 1.2rem; margin-bottom: 1rem;">
 
          <li class="nav-item dropdown">
              <a class="nav-link pe-0 ps-2" id="navbarDropdownUser" role="button" data-bs-toggle="dropdown"
                  aria-haspopup="true" aria-expanded="false">
                  <div class="avatar avatar-xl">
-                     <img src="
-                                        {{ Auth::user()->profile_image ? asset('storage/' . Auth::user()->profile_image) : asset('assets/img/no-image.jpg') }}"
-                         alt="" class="rounded-circle">
+                     <img src="{{ Auth::user()->Image ? 'data:image/jpeg;base64,' . base64_encode(Auth::user()->Image) : asset('assets/img/no-image.jpg') }}"
+                         alt="" class="rounded-circle mr-4"
+                         style="height: 50px; width: 50px; margin-right: 1rem" />
                  </div>
              </a>
              <div class="dropdown-menu dropdown-caret dropdown-caret dropdown-menu-end py-0"

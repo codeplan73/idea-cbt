@@ -11,6 +11,7 @@
             <!-- Card -->
             <div class="card card-lg mb-5">
                 <div class="card-body">
+
                     <!-- Form -->
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
@@ -50,6 +51,11 @@
                         </div>
                     </form>
                     <!-- End Form -->
+
+                    <div class="d-grid">
+                        <a href="/" class="bg-dark btn-xl mt-4 text-light rounde btn fw-bold">
+                            << Go Back</a>
+                    </div>
                 </div>
             </div>
             <!-- End Card -->

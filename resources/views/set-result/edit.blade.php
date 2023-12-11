@@ -36,7 +36,7 @@
                         @csrf
                         @method('POST')
                         <!-- Form -->
-                        <div class="row mb-4">
+                        <div class="row mb-4 gl-2">
                             <div class="col-sm-6 mb-2 mb-sm-0">
                                 <div class="tom-select-custom">
                                     <label for="title" class="form-label">Current Term </label>
@@ -81,26 +81,12 @@
 
                             <input type="hidden" name="ID" value="{{ $cterm->ID }}" id="">
 
-                            {{-- <div class="col-sm-4 mb-2 mb-sm-0">
+                            <div class="col-sm-12 mb-2 mb-sm-0">
                                 <div class="tom-select-custom">
-                                    <label for="title" class="form-label">Branch </label>
-
-                                    <select class="js-select form-select @error('Branch') is-invalid @enderror"
-                                        name="Branch">
-                                        <option value="{{ $cterm->Branch }}">{{ $cterm->Branch }}</option>
-                                        @foreach ($systems as $sys)
-                                            @if (!empty($sys->branch))
-                                                <option value="{{ $sys->branch }}">{{ $sys->branch }}</option>
-                                            @endif
-                                        @endforeach
-                                    </select>
-                                    @error('Branch')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    <label for="subject" class="form-label">Announcement</label>
+                                    <textarea type="text" class="form-control" name="announcement" id="announcement" placeholder="announcement">{{ $cterm->announcement }}</textarea>
                                 </div>
-                            </div> --}}
+                            </div>
 
                             <div class="mt-4">
                                 @include('components.button', ['label' => 'Update Term'])

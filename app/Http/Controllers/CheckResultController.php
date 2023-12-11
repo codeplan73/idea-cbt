@@ -28,7 +28,7 @@ class CheckResultController extends Controller
 
         if (!$user || $user->Student_Pin !== $pin || !$branch) {
             return back()->with('error', 'You entered an invalid PIN');
-        }
+        } 
 
         $latestTerm = CurrentTerm::latest()->first();
 
@@ -138,6 +138,7 @@ class CheckResultController extends Controller
         $id = $request->input('ID');
         $currentTerm = $request->input('Current_Term');
         $currentSession = $request->input('Current_Session');
+        $announcement = $request->input('announcement');
         // $branch = $request->input('Branch');
 
         // if ($id && $currentTerm && $currentSession && $branch) {
@@ -146,7 +147,7 @@ class CheckResultController extends Controller
                 ->update([
                     'Current_Term' => $currentTerm,
                     'Current_Session' => $currentSession,
-                    // 'Branch' => $branch,
+                    'announcement' => $announcement,
                 ]);
 
             if ($update > 0) {

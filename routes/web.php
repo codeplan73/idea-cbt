@@ -140,7 +140,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/set-result/{cterm}/edit', [CheckResultController::class, 'edit']);
     Route::post('/set-result', [CheckResultController::class, 'update'])->name('set-result-update');
 });
-
+ 
 
 
 // Student Registration Routes

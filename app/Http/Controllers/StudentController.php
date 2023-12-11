@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Auth;
 
 class StudentController extends Controller
 {
-
     public function index(){
         $branch = CurrentTerm::pluck('Branch');
         $genInfo = Branch::where('Branch_Name', $branch)->first();
@@ -169,7 +168,7 @@ class StudentController extends Controller
         $student = Student::where('Student_ID', $data['student_id'])->first();
 
         // Check if the student exists
-        if ($student) {
+        if ($student) { 
             // Update password and plain_password for the found student
             $student->update([
                 'password' => $hashedPassword,
@@ -196,6 +195,8 @@ class StudentController extends Controller
     public function logout()
     {
         Auth::guard('student')->logout();
+        // $request->session()->invalidate();
+        // $request->session()->regenerateToken();
 
         return redirect()->route('student.login');
     }

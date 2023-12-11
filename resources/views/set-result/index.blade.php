@@ -33,8 +33,8 @@
                             <tr>
                                 <th class="text-900 sort">Session</th>
                                 <th class="text-900 sort">Term</th>
-                                {{-- <th class="text-900 sort">Branch</th> --}}
                                 <th class="text-900 sort">Current Status</th>
+                                <th class="text-900 sort">Announcement</th>
                                 <th class="text-900 sort">Action</th>
                             </tr>
                         </thead>
@@ -43,8 +43,10 @@
                                 <tr>
                                     <td>{{ $cterm->Current_Session }}</td>
                                     <td>{{ $cterm->Current_Term }}</td>
-                                    {{-- <td>{{ $cterm->Branch }}</td> --}}
                                     <td>{{ $cterm->Current_Status }}</td>
+                                    <td>
+                                        <summary>{{ $cterm->announcement }}</summary>
+                                    </td>
                                     <td class="text-end">
                                         @if (auth()->user()->role == 'staff' || auth()->user()->role == 'admin')
                                             <div style="display: flex; align-items:center;">
