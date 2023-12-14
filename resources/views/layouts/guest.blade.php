@@ -27,6 +27,10 @@
     <link href="{{ asset('assets/landing/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/landing/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
+    <link href={{ asset('css/sweetalert2.css ') }} rel='stylesheet' type='text/css'>
+    <script src={{ asset('css/sweetalert2.all.js') }} type='text/javascript'></script>
+    <script src={{ asset('css/sweetalert2.js') }} type='text/javascript'></script>
+
     <!-- Template Main CSS File -->
     <link href="{{ asset('assets/landing/css/style.css') }}" rel="stylesheet">
 </head>
@@ -85,7 +89,7 @@
     <script src="{{ asset('assets/landing/vendor/glightbox/js/glightbox.min.js') }}"></script>
     <script src="{{ asset('assets/landing/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
     <script src="{{ asset('assets/landing/vendor/swiper/swiper-bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/landing/vendor/php-email-form/validate.js') }}"></script>
+    {{-- <script src="{{ asset('assets/landing/vendor/php-email-form/validate.js') }}"></script> --}}
 
     <!-- Template Main JS File -->
     <script src="{{ asset('assets/landing/js/main.js') }}"></script>

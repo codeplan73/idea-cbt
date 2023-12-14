@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Title -->
-    <title>Basic Sign Up | Front - Admin &amp; Dashboard Template</title>
+    <title>IDEA-COLLEGES</title>
 
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/logo/favicon.png') }}">

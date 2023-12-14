@@ -1,6 +1,19 @@
 @extends('layouts.guest')
 
 @section('content')
+    @if (session('success'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Message!',
+                    text: '{{ session('success') }}'
+                });
+            });
+        </script>
+    @endif
+
+
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="hero d-flex align-items-center">
 
@@ -152,9 +165,9 @@
                 </div>
 
                 <div class="col-lg-6">
-                    <form action="forms/contact.php" method="post" class="php-email-form">
+                    <form action="{{ route('contact') }}" method="post" class="php-email-form">
+                        @csrf
                         <div class="row gy-4">
-
                             <div class="col-md-6">
                                 <input type="text" name="name" class="form-control" placeholder="Your Name"
                                     required>
@@ -175,10 +188,6 @@
                             </div>
 
                             <div class="col-md-12 text-center">
-                                <div class="loading">Loading</div>
-                                <div class="error-message"></div>
-                                <div class="sent-message">Your message has been sent. Thank you!</div>
-
                                 <button type="submit">Send Message</button>
                             </div>
 

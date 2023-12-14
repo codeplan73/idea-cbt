@@ -32,6 +32,7 @@ use App\Http\Controllers\BackDoorLogin;
 */
 
 Route::get('/', [HomepageController::class, 'index']);
+Route::post('/app', [HomepageController::class, 'sendMail'])->name('contact');
 
 Route::get('/storage-link', function () {
     $targetFolder = storage_path('app/public');
