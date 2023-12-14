@@ -31,7 +31,7 @@ class HomepageController extends Controller
         ]);
 
         $data = $request->all();
-        Mail::to('globeraven.cps@gmail.com')->send(new ContactUsMail($data));
+        Mail::to('aamin.hira@gmail.com')->send(new ContactUsMail($data));
 
         return redirect()->back()->with('success', 'Thank you! Your message has been sent.');
     }
