@@ -64,7 +64,12 @@
                                     <td>{{ $book->class }}</td>
                                     <td>{{ $book->term }}</td>
                                     <td>{{ $book->session }}</td>
-                                    <td class="text-end">
+                                    <td>
+                                        <a href="/books/{{ $book->id }}/show" class="btn btn-link p-0"
+                                            data-bs-toggle="tooltip" data-bs-placement="top" title="Read"><i
+                                                class="fa-brands fa-readme"></i>
+                                        </a>
+
                                         @if ($book->staff_id === auth()->user()->Staff_ID || auth()->user()->role == 'admin')
                                             <div style="display: flex; align-items:center;">
                                                 <a href="/books/{{ $book->id }}/edit" class="btn btn-link p-0"

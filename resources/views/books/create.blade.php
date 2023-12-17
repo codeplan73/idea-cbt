@@ -7,7 +7,7 @@
                 <div class="card-body">
                     <div class="row flex-between-center">
                         <div class="col-md">
-                            <h5 class=mb-md-0">Add Book</h5>
+                            <h5 class="mb-md-0">Add Book</h5>
                         </div>
                     </div>
                 </div>

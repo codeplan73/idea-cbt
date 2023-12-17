@@ -85,6 +85,11 @@ class NoteController extends Controller
         return redirect('/note')->with('message', 'E-Lesson Note created successfully');
     }
 
+    public function show(Note $note)
+    {
+        return view('notes.show', ['note' => $note]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      */

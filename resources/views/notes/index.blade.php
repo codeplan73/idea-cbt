@@ -68,7 +68,12 @@
                                     <td>{{ $note->term }}</td>
                                     <td>{{ $note->session }}</td>
                                     <td>{{ $note->note_pdf }}</td>
-                                    <td class="text-end">
+                                    <td class="text-end d-flex gap-1 items-center">
+                                        <a href="/notes/{{ $note->id }}/show" class="btn btn-link p-0"
+                                            data-bs-toggle="tooltip" data-bs-placement="top" title="Read">
+                                            <i class="fa-brands fa-readme"></i>
+                                        </a>
+
                                         @if ($note->staff_id === auth()->user()->Staff_ID || auth()->user()->role == 'admin')
                                             <div style="display: flex; align-items:center;">
                                                 <a href="/notes/{{ $note->id }}/edit" class="btn btn-link p-0"

@@ -41,7 +41,7 @@ Route::get('/storage-link', function () {
 }); 
 
 Auth::routes();
- 
+  
 // Route::middleware(['auth:user'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -50,6 +50,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/note', [NoteController::class, 'index'])->name('note.index');
     Route::get('/note-create', [NoteController::class, 'create'])->name('note.create');
     Route::post('/note-create', [NoteController::class, 'store'])->name('note.store');
+    Route::get('/notes/{note}/show', [NoteController::class, 'show'])->name('note.show');
     Route::get('/notes/{note}/edit', [NoteController::class, 'edit'])->name('note.edit');
     Route::put('/notes/{note}', [NoteController::class, 'update'])->name('note.update');
     Route::delete('/notes/{note}', [NoteController::class, 'destroy'])->name('note.delete');
@@ -58,6 +59,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/book', [BookController::class, 'index'])->name('book.index');
     Route::get('/book-create', [BookController::class, 'create'])->name('book.create');
     Route::post('/book-create', [BookController::class, 'store'])->name('book.store');
+    Route::get('/books/{book}/show', [BookController::class, 'show'])->name('book.show');
     Route::get('/books/{book}/edit', [BookController::class, 'edit'])->name('book.edit');
     Route::put('/books/{book}', [BookController::class, 'update'])->name('book.update');
     Route::delete('/books/{book}', [BookController::class, 'destroy'])->name('book.delete');
@@ -105,6 +107,8 @@ Route::middleware(['auth'])->group(function () {
     // manage results
     Route::get('/results', [ResultController::class, 'index'])->name('result.index');
     Route::get('/results/{result}/edit', [ResultController::class, 'edit'])->name('result.edit');
+    Route::get('/class-results', [ResultController::class, 'createClassResult'])->name('result.createClassResult');
+    Route::post('/class-results', [ResultController::class, 'storeClassResult'])->name('result.storeClassResult');
     Route::put('/results/{result}', [ResultController::class, 'update'])->name('result.update');
     Route::delete('/results/{result}', [ResultController::class, 'destroy'])->name('result.destroy');
 

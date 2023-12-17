@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Result;
+use App\Models\System;
 use Illuminate\Http\Request;
 
 class ResultController extends Controller
@@ -15,13 +16,37 @@ class ResultController extends Controller
         $results = Result::all();
         return view('results.index', ['results' => $results]);
     }
-
+ 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
         return view('student.pin');
+    }
+
+
+    public function createClassResult(Request $request)
+    {
+        $systems = System::all();
+        return view('results.printForm', ['systems' => $systems]);
+    }
+
+    public function storeClassResult(Request $request)
+    {
+        $class = $request->class;
+        $results = Result::where('class', $class)->get();
+
+        // dd(count($results));
+        
+        if(count($results) == 0 ){
+            return  back()->with('message', 'No result for ' . $class. ' Yet');
+        }
+
+        return view('results.printClassResult', [
+            'results' => $results,
+            'class' => $class
+        ]);
     }
  
 
@@ -72,6 +97,8 @@ class ResultController extends Controller
 
         return redirect('/results')->with('message', 'Result Updated successfully');
     }
+
+
 
     /**
      * Remove the specified resource from storage.

@@ -122,12 +122,33 @@
                              </li>
                          </ul>
 
-                         <div class="nav-item">
-                             <a class="nav-link " href="/results" data-placement="left">
-                                 <i class="fa-solid fa-square-poll-vertical nav-icon"></i>
-                                 <span class="nav-link-title">Manage Result</span>
-                             </a>
-                         </div>
+                         <a class="nav-link dropdown-indicator" href="#result" role="button" data-bs-toggle="collapse"
+                             aria-expanded="false" aria-controls="result">
+                             <div class="d-flex align-items-center">
+                                 <span class="nav-link-icon">
+                                     <i class="fa-solid fa-square-poll-vertical nav-icon"></i></span>
+                                 <span class="nav-link-text ps-1">Manage Result</span>
+                             </div>
+                         </a>
+                         <ul class="nav collapse" id="result">
+                             <li class="nav-item">
+                                 <a class="nav-link" href="/results">
+                                     <div class="d-flex align-items-center">
+                                         <span class="nav-link-text">Check Result</span>
+                                     </div>
+                                 </a><!-- more inner pages-->
+                             </li>
+                             <li class="nav-item">
+                                 <a class="nav-link" href="/class-results">
+                                     <div class="d-flex align-items-center">
+                                         <span class="nav-link-text">Class Result</span>
+                                     </div>
+                                 </a><!-- more inner pages-->
+                             </li>
+                         </ul>
+
+
+
 
                          <div class="nav-item">
                              <a class="nav-link " href="/sms" data-placement="left">
@@ -149,7 +170,7 @@
                              <li class="nav-item">
                                  <a class="nav-link" href="/set-staff-password">
                                      <div class="d-flex align-items-center">
-                                         <span class="nav-link-text ps-1">Staff Password</span>
+                                         <span class="nav-link-text">Staff Password</span>
                                      </div>
                                  </a><!-- more inner pages-->
                              </li>
