@@ -1,47 +1,72 @@
 <?php
 
 namespace App\Http\Controllers;
-
-// require_once app_path('africastalking/vendor/africastalking/africastalking/AfricasTalking');
-
 use Illuminate\Http\Request;
 use App\Models\Student;
-
+use App\Models\System;
 use Africastalking\SDK\AfricasTalking;
+use Illuminate\Support\Facades\Http;
 
 class SMSController extends Controller
 {
     public function index()
     {
-        return view('sms.create');
+        $systems = System::all();
+        return view('sms.create', ['systems' => $systems]);
     }
 
     public function sendBulkSMS(Request $request)
     {
-        $username = config('services.africastalking.username');
-        $apiKey = config('services.africastalking.api_key');
-        $senderId = config('services.africastalking.sender_id');
+        // $response = Http::post('https://api.africastalking.com/version1/messaging', [
+        //     'username' => 'hiracollege',
+        //     'to' => '+2349168189258',
+        //     'message' => 'Hello World!',
+        //     'from' => 'hira',
+        // ], [
+        //     'headers' => [
+        //         'Accept' => 'application/json',
+        //         'Content-Type' => 'application/x-www-form-urlencoded',
+        //         'apiKey' => '4b8ef4a5a94788a3c88721c41222ee8abefe2365754cf6e19c6fec0040704c7d',
+        //     ],
+        // ]);
 
-        // $AT = new \Africastalking\SDK\AfricasTalking($username, $apiKey);
-        
-        $AT = new AfricasTalking($username, $apiKey);
-        $sms = $AT->sms();
+        // $responseData = $response->json();
 
-        $phoneNumber = +2349168189258;
-        $message = $request->input('message');
+        // dd($responseData);
 
-        $result = $sms->send([
-            'to'      => $phoneNumber,
-            'message' => $message,
-            'from'    => $senderId,
-        ]);
 
-        if ($result['status'] == 'success') {
-            return response()->json(['message' => 'SMS sent successfully']);
-        } else {
-            return response()->json(['message' => 'Failed to send SMS'], 500);
+
+        // Set your app credentials
+        $username   = "hiracollege";
+        $apiKey     = "4b8ef4a5a94788a3c88721c41222ee8abefe2365754cf6e19c6fec0040704c7d";
+
+        // Initialize the SDK
+        $AT         = new AfricasTalking($username, $apiKey);
+
+        // Get the SMS service
+        $sms        = $AT->sms();
+
+        // Set the numbers you want to send to in international format
+        $recipients = "+2349168189258";
+
+        // Set your message
+        $message    = "This is a testing message from IDEA-Colleges";
+
+        // Set your shortCode or senderId
+        // $from       = "hiracollege";
+
+        try {
+            // Thats it, hit send and we'll take care of the rest
+            $result = $sms->send([
+                'to'      => $recipients,
+                'message' => $message,
+                // 'from'    => $from
+            ]);
+
+            dd($result);
+        } catch (Exception $e) {
+            echo "Error: ".$e->getMessage();
         }
-
     }
 
 

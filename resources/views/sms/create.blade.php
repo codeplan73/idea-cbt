@@ -23,6 +23,26 @@
                         @csrf
                         <!-- Form -->
                         <div class="row mb-4">
+                            <div class="col-sm-6 mb-2 mb-sm-0">
+                                <div class="tom-select-custom">
+                                    <label for="class" class="form-label">Class</label>
+
+                                    <select class="js-select form-select @error('class') is-invalid @enderror"
+                                        name="class">
+                                        @foreach ($systems as $sys)
+                                            @if (!empty($sys->class))
+                                                <option value="{{ $sys->class }}">{{ $sys->class }}
+                                                </option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                    @error('class')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
 
                             <div class="col-md-12 mb-4 mb-sm-0">
                                 <div class="tom-select-custom">

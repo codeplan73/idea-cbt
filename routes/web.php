@@ -134,7 +134,7 @@ Route::middleware(['auth'])->group(function () {
 
     // sms section
     Route::get('/sms', [SMSController::class, 'index'])->name('sms.index');
-    Route::post('/send-bulk-sms', [SMSController::class, 'sendBulkSMS'])->name('sms.sendBulkSMS');
+    Route::post('/sms', [SMSController::class, 'sendBulkSMS'])->name('sms.sendBulkSMS');
 
     // set result
     Route::get('/set-result', [CheckResultController::class, 'showSetResult']);

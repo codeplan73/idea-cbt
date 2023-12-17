@@ -23,33 +23,33 @@
                                 {{-- <th class="text-900 sort">Q - ID</th> --}}
                                 <th class="text-900 sort">ID</th>
                                 <th class="text-900 sort">Name</th>
-                                <th class="text-900 sort">Class</th>
+                                {{-- <th class="text-900 sort">Class</th>
                                 <th class="text-900 sort">Term</th>
-                                <th class="text-900 sort">Session</th>
-                                <th class="text-900 sort">English</th>
-                                <th class="text-900 sort">Maths</th>
-                                <th class="text-900 sort">Civic</th>
-                                <th class="text-900 sort">Mark</th>
-                                <th class="text-900 sort">Econs</th>
+                                <th class="text-900 sort">Session</th> --}}
+                                <th class="text-900 sort">Eng</th>
+                                <th class="text-900 sort">Mat</th>
+                                <th class="text-900 sort">Civ</th>
+                                <th class="text-900 sort">Mak</th>
+                                <th class="text-900 sort">Eco</th>
                                 <th class="text-900 sort">Bio</th>
-                                <th class="text-900 sort">Chem</th>
+                                <th class="text-900 sort">Che</th>
                                 <th class="text-900 sort">IRK</th>
-                                <th class="text-900 sort">Gen.Stud</th>
-                                <th class="text-900 sort">Bus.Stud</th>
-                                <th class="text-900 sort">Gram</th>
-                                <th class="text-900 sort">Comp</th>
-                                <th class="text-900 sort">C.Art</th>
-                                <th class="text-900 sort">Science</th>
-                                <th class="text-900 sort">Agric</th>
-                                <th class="text-900 sort">Arabic</th>
-                                <th class="text-900 sort">Hadith</th>
-                                <th class="text-900 sort">Tefseer</th>
-                                <th class="text-900 sort">Taoheed</th>
-                                <th class="text-900 sort">Tarikh</th>
-                                <th class="text-900 sort">Qawaid</th>
-                                <th class="text-900 sort">Fiqh</th>
-                                <th class="text-900 sort">Adab</th>
-                                <th class="text-900 sort">Balaga</th>
+                                <th class="text-900 sort">G.St</th>
+                                <th class="text-900 sort">B.St</th>
+                                <th class="text-900 sort">Gra</th>
+                                <th class="text-900 sort">Com</th>
+                                <th class="text-900 sort">Art</th>
+                                <th class="text-900 sort">Sci</th>
+                                <th class="text-900 sort">Agr</th>
+                                <th class="text-900 sort">Ara</th>
+                                <th class="text-900 sort">Had</th>
+                                <th class="text-900 sort">Tef</th>
+                                <th class="text-900 sort">Tao</th>
+                                <th class="text-900 sort">Tar</th>
+                                <th class="text-900 sort">Qaw</th>
+                                <th class="text-900 sort">Fiq</th>
+                                <th class="text-900 sort">Ada</th>
+                                <th class="text-900 sort">Bal</th>
                                 <th class="text-900 sort">Action</th>
                             </tr>
                         </thead>
@@ -58,9 +58,9 @@
                                 <tr>
                                     <td>{{ $result->student_id }}</td>
                                     <td>{{ $result->Name }}</td>
-                                    <td>{{ $result->Class }}</td>
+                                    {{-- <td>{{ $result->Class }}</td>
                                     <td>{{ $result->Term }}</td>
-                                    <td>{{ $result->session }}</td>
+                                    <td>{{ $result->session }}</td> --}}
                                     <td>{{ $result->English }}</td>
                                     <td>{{ $result->Maths }}</td>
                                     <td>{{ $result->Civic }}</td>
