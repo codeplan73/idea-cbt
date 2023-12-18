@@ -6,6 +6,8 @@ use App\Models\Student;
 use App\Models\System;
 use Africastalking\SDK\AfricasTalking;
 use Illuminate\Support\Facades\Http;
+use GuzzleHttp\Client;
+
 
 class SMSController extends Controller
 {
@@ -14,86 +16,94 @@ class SMSController extends Controller
         $systems = System::all();
         return view('sms.create', ['systems' => $systems]);
     }
-
+   
     public function sendBulkSMS(Request $request)
     {
-        // $response = Http::post('https://api.africastalking.com/version1/messaging', [
-        //     'username' => 'hiracollege',
-        //     'to' => '+2349168189258',
-        //     'message' => 'Hello World!',
-        //     'from' => 'hira',
-        // ], [
-        //     'headers' => [
-        //         'Accept' => 'application/json',
-        //         'Content-Type' => 'application/x-www-form-urlencoded',
-        //         'apiKey' => '4b8ef4a5a94788a3c88721c41222ee8abefe2365754cf6e19c6fec0040704c7d',
-        //     ],
-        // ]);
-
-        // $responseData = $response->json();
-
-        // dd($responseData);
-
-
-
-        // Set your app credentials
         $username   = "hiracollege";
         $apiKey     = "4b8ef4a5a94788a3c88721c41222ee8abefe2365754cf6e19c6fec0040704c7d";
-
-        // Initialize the SDK
         $AT         = new AfricasTalking($username, $apiKey);
-
-        // Get the SMS service
         $sms        = $AT->sms();
 
-        // Set the numbers you want to send to in international format
-        $recipients = "+2349168189258";
+        $data = $request->validate([
+            'class' => 'required',
+            'status' => 'required',
+            'message' => 'required'
+        ]);
 
-        // Set your message
-        $message    = "This is a testing message from IDEA-Colleges";
+        // $recipients = +2349168189258;
+        $recipients = Student::where('Student_Class', $data['class'])
+            ->where('Current_Status', $data['status'])
+            ->pluck('Phone_Number')
+            ->toArray();
 
         // Set your shortCode or senderId
-        // $from       = "hiracollege";
+        $from = "hiracollege";
 
-        try {
-            // Thats it, hit send and we'll take care of the rest
-            $result = $sms->send([
-                'to'      => $recipients,
-                'message' => $message,
-                // 'from'    => $from
-            ]);
+        // Check DND status before sending messages
+        $dndFilteredRecipients = [];
 
-            dd($result);
-        } catch (Exception $e) {
-            echo "Error: ".$e->getMessage();
+        foreach ($recipients as $recipient) {
+            $dndStatus = $this->checkDNDStatus($recipient, $username, $apiKey);
+
+
+            if (!$dndStatus) {
+                $dndFilteredRecipients[] = $recipient;
+            } else {
+                // Handle DND status (optional)
+                // You may want to log or handle recipients on DND separately
+            }
+        }
+
+        if (count($dndFilteredRecipients) > 0) {
+            try {
+                $result = $sms->send([
+                    'to'      => $dndFilteredRecipients,
+                    'message' => $data['message'],
+                    // 'from'    => $from
+                ]);
+
+                if ($result['status'] === 'success') {
+
+                    $responseMessage = $result['data']->SMSMessageData->Message;
+                    return back()->with('message', $responseMessage);
+
+                } else {
+                    return back()->with('error', 'Failed to send SMS: ' . $result['message']);
+                }
+
+            } catch (Exception $e) {
+                return back()->with('error', 'Error: ' . $e->getMessage());
+            }
+
+        } else {
+            return back()->with('error', 'No valid phone numbers found for ' . $data['class']);
         }
     }
 
 
-    private function testing()
+    private function checkDNDStatus($phoneNumber, $username, $apiKey)
     {
-            $username = "hiracollege";
-            $numbers = +2349168189258;
-            $numbers = Student::pluck('Phone_Number')->toArray();
-            $message = $request->input('message');
+        $client = new Client();
 
+        $url = "https://api.africastalking.com/version1/subscription?username={$username}&phoneNumber={$phoneNumber}";
 
-            // Create Guzzle client using the service
-            $client = $this->kudismsService->createClient();
-
-            // dd($client, $senderId);
-
-            $response = $client->post('sms', [
-                'json' => [
-                    'recipients' => $numbers,
-                    'username' => $username,
-                    'message' => $message,
+        try {
+            $response = $client->request('GET', $url, [
+                'headers' => [
+                    'Accept' => 'application/json',
+                    'apiKey' => $apiKey,
                 ],
             ]);
 
-            $result = json_decode($response->getBody(), true);
+            $data = json_decode($response->getBody(), true);
 
-            return response()->json($result);
-
+            // Check if DND status is active
+            return isset($data['response']) && $data['response']['status'] === 'active';
+        } catch (\Exception $e) {
+            // Handle the exception (e.g., log it)
+            return false; // Assume DND status is not active on error
+        }
     }
+
+
 }

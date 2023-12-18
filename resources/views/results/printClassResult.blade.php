@@ -1,7 +1,23 @@
-@extends('layouts.app')
+@extends('layouts.app_print')
+
+<style>
+    .button {
+        padding: 10px 10px;
+        border-radius: 5px;
+        color: #fff;
+    }
+
+    @media print {
+
+        /* Hide the buttons when printing */
+        .print-only {
+            display: none;
+        }
+    }
+</style>
 
 @section('content')
-    <div class="card mb-3">
+    <div class="card mt-4 mb-3 print-only">
         <div class="card-body">
             <div class="row flex-between-center">
                 <div class="col-md">
@@ -16,10 +32,11 @@
     </div>
 
 
-    <div class="row">
+    <div class="row my-4">
         <div class="col-lg-12">
             <div class="card mb-3">
                 <div class="card-body">
+                    {{-- <table class="table mb-0 data-table fs--1" data-datatables="data-datatables"> --}}
                     <table class="table mb-0 data-table fs--1" data-datatables="data-datatables">
                         <thead class="bg-200">
                             <tr>
@@ -122,4 +139,21 @@
             </div>
         </div>
     </div>
+
+    <div style="margin-top: 1rem;  padding: 1rem; display: flex; gap: 10px;" class="print-only1">
+        <button class="button" style="background: #0f4c5c;" onclick="printPage()">Print
+            Result</button>
+    </div>
+
+    <script>
+        function printPage() {
+            // Exclude the button section from print
+            document.querySelector('.print-only').style.display = 'none';
+            document.querySelector('.print-only1').style.display = 'none';
+            window.print();
+            // Restore the button section after printing
+            document.querySelector('.print-only').style.display = 'flex';
+            document.querySelector('.print-only1').style.display = 'flex';
+        }
+    </script>
 @endsection

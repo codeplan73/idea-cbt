@@ -6,8 +6,20 @@
             document.addEventListener('DOMContentLoaded', function() {
                 Swal.fire({
                     icon: 'success',
-                    title: 'E-Note Dublicate!',
+                    title: 'SMS Sent!',
                     text: '{{ session('message') }}'
+                });
+            });
+        </script>
+    @endif
+
+    @if (session('error'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'No Number',
+                    text: '{{ session('error') }}'
                 });
             });
         </script>
@@ -32,6 +44,26 @@
                                         @foreach ($systems as $sys)
                                             @if (!empty($sys->class))
                                                 <option value="{{ $sys->class }}">{{ $sys->class }}
+                                                </option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                    @error('class')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-sm-6 mb-2 mb-sm-0">
+                                <div class="tom-select-custom">
+                                    <label for="class" class="form-label">Status</label>
+
+                                    <select class="js-select form-select @error('class') is-invalid @enderror"
+                                        name="status">
+                                        @foreach ($systems as $sys)
+                                            @if (!empty($sys->student_status))
+                                                <option value="{{ $sys->student_status }}">{{ $sys->student_status }}
                                                 </option>
                                             @endif
                                         @endforeach
