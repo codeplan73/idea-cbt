@@ -11,7 +11,7 @@
 
 
                     <div class="row mb-4">
-                        <div class="col-md-6 mb-sm-0">
+                        <div class="col mb-sm-0">
                             <div class="tom-select-custom">
                                 <div class="">
                                     <label for="subject" class="form-label">Subject </label>
@@ -19,33 +19,33 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 mb-sm-0">
+                        <div class="col mb-sm-0">
                             <div class="tom-select-custom">
                                 <label for="subject" class="form-label">Class</label>
                                 <p>{{ $note->class }}</p>
                             </div>
                         </div>
-                        <div class="col-sm-6 mb-sm-0">
+                        <div class="col mb-sm-0">
                             <div class="tom-select-custom">
                                 <label for="subject" class="form-label">Term</label>
                                 <p>{{ $note->term }}</p>
                             </div>
                         </div>
-                        <div class="col-sm-6 mb-sm-0">
+                        {{-- <div class="col-sm-6 mb-sm-0">
                             <div class="tom-select-custom">
                                 <label for="subject" class="form-label">Session</label>
                                 <p>{{ $note->session }}</p>
                             </div>
-                        </div>
-                        <div class="col-sm-6 mb-sm-0">
+                        </div> --}}
+                        {{-- <div class="col-sm-6 mb-sm-0">
                             <div class="tom-select-custom">
                                 <label for="subject" class="form-label">week</label>
                                 <p>{{ $note->week }}</p>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="col-12">
-                            <embed src="{{ url('storage/' . $note->note_pdf) }}" width="100%" height="400px" />
+                            <embed src="{{ url('storage/' . $note->note_pdf) }}" width="100%" height="500px" />
                         </div>
                     </div>
                 </div>

@@ -8,8 +8,10 @@
                     <h5 class="mb-2 mb-md-0">E-Note Management</h5>
                 </div>
                 <div class="col-auto">
-                    <a href="/note-create" class="btn btn-primary" role="button">Add E-Note
-                    </a>
+                    @if (auth()->user()->role == 'admin')
+                        <a href="/note-create" class="btn btn-primary" role="button">Add E-Note
+                        </a>
+                    @endif
                 </div>
             </div>
         </div>
