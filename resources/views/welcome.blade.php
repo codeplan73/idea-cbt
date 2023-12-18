@@ -13,7 +13,6 @@
         </script>
     @endif
 
-
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="hero d-flex align-items-center">
 
@@ -42,10 +41,9 @@
     <section id="about" class="about" style="padding: 20px 0px;">
 
         <div class="container" data-aos="fade-up">
-            <div class="row gx-2">
+            <div class="row gx-4 gy-4">
 
-                <div class="col-lg-6 mb-2 d-flex flex-column justify-content-center" data-aos="fade-up"
-                    data-aos-delay="200">
+                <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
                     <div class="content">
                         <h2>OUR INSTITUTIONS:</h2>
 
@@ -67,24 +65,24 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6 mb-2 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
+                <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
                     <img src="{{ asset('assets/landing/img/College2.jpeg') }}" class="img-fluid" alt="">
                 </div>
 
-                <div class="col-lg-6 mb-2 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
+                <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
                     <img src="{{ asset('assets/landing/img/Class1.png') }}" class="img-fluid" alt="">
                 </div>
 
-                <div class="col-lg-6 mb-2 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
+                <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
                     <img src="{{ asset('assets/landing/img/sport3.jpg') }}" class="img-fluid" alt="">
                 </div>
 
-                <div class="col-lg-6 mb-2 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
+                <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
                     <img src="{{ asset('assets/landing/img/stud5.jpg') }}" class="img-fluid" alt="">
                 </div>
 
-                <div class="col-lg-6 mb-2 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
-                    <img src="{{ asset('assets/landing/img/stud7.jpg') }}" class="img-fluid " alt="">
+                <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
+                    <img src="{{ asset('assets/landing/img/stud7.jpg') }}" class="img-fluid" alt="">
                 </div>
 
             </div>
@@ -126,8 +124,6 @@
 
             <div class="row gy-4">
 
-
-
                 <div class="col-lg-6">
 
                     <div class="row gy-4">
@@ -135,22 +131,21 @@
                             <div class="info-box">
                                 <i class="bi bi-geo-alt"></i>
                                 <h3>Address</h3>
-                                <p>El-Amin College of Modern Sciences <br>
-                                    No:5 Darus-Salam, Aviele Ubiane, Edo State</p>
+                                <p>Hira Comprehensive College, <br /> Iyakpi, South Ibie, Edo State</p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="info-box">
                                 <i class="bi bi-telephone"></i>
                                 <h3>Call Us</h3>
-                                <p>+234-8036398734<br>+234-7064873912</p>
+                                <p>+234-803 6398 734<br>+234-813 1231 252</p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="info-box">
                                 <i class="bi bi-envelope"></i>
                                 <h3>Email Us</h3>
-                                <p>aamin.hira@gmail.com<br>elamincollege2022@gmail.com</p>
+                                <p>aamin.hira@gmail.com<br>hiracollege2007@gmail.com</p>
                             </div>
                         </div>
                         <div class="col-md-6">
