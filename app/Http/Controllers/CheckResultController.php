@@ -139,7 +139,7 @@ class CheckResultController extends Controller
         $currentTerm = $request->input('Current_Term');
         $currentSession = $request->input('Current_Session');
         $announcement = $request->input('announcement');
-        // $branch = $request->input('Branch');
+        $branch = $request->input('Branch');
 
         // if ($id && $currentTerm && $currentSession && $branch) {
         if ($id && $currentTerm && $currentSession) {
@@ -148,6 +148,7 @@ class CheckResultController extends Controller
                     'Current_Term' => $currentTerm,
                     'Current_Session' => $currentSession,
                     'announcement' => $announcement,
+                    // 'Branch' => $branch,
                 ]);
 
             if ($update > 0) {

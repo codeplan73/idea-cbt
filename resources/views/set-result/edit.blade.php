@@ -37,7 +37,7 @@
                         @method('POST')
                         <!-- Form -->
                         <div class="row mb-4 gl-2">
-                            <div class="col-sm-6 mb-2 mb-sm-0">
+                            <div class="col-sm-4 mb-2 mb-sm-0">
                                 <div class="tom-select-custom">
                                     <label for="title" class="form-label">Current Term </label>
 
@@ -57,13 +57,34 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-sm-6 mb-2 mb-sm-0">
+                            <div class="col-sm-4 mb-2 mb-sm-0">
+                                <div class="tom-select-custom">
+                                    <label for="branch" class="form-label">Branch</label>
+
+                                    <select class="js-select form-select @error('branch') is-invalid @enderror"
+                                        name="branch">
+                                        <option value="{{ $cterm->branch }}">{{ $cterm->branch }}</option>
+                                        @foreach ($systems as $sys)
+                                            @if (!empty($sys->branch))
+                                                <option value="{{ $sys->branch }}">{{ $sys->branch }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                    @error('branch')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-sm-4 mb-2 mb-sm-0">
                                 <div class="tom-select-custom">
                                     <label for="title" class="form-label">Current Session </label>
 
                                     <select class="js-select form-select @error('Current_Session') is-invalid @enderror"
                                         name="Current_Session">
-                                        <option value="{{ $cterm->Current_Session }}">{{ $cterm->Current_Session }}</option>
+                                        <option value="{{ $cterm->Current_Session }}">{{ $cterm->Current_Session }}
+                                        </option>
                                         @foreach ($systems as $sys)
                                             @if (!empty($sys->session))
                                                 <option value="{{ $sys->session }}">{{ $sys->session }}

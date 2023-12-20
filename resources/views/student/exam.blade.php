@@ -1,5 +1,13 @@
 @extends('layouts.app_student')
 
+<script>
+    // Disable going back using browser navigation
+    history.pushState(null, null, document.URL);
+    window.addEventListener('popstate', function() {
+        history.pushState(null, null, document.URL);
+    });
+</script>
+
 @section('content')
     <div class="content">
         <div class="card mb-3">

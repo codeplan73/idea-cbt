@@ -42,8 +42,26 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="col-sm-6">
+                                <div class="tom-select-custom">
+                                    <label for="subject" class="form-label">Branch</label>
+                                    <select class="js-select form-select @error('branch') is-invalid @enderror"
+                                        name="branch">
+                                        @foreach ($systems as $sys)
+                                            @if (!empty($sys->branch))
+                                                <option value="{{ $sys->branch }}">{{ $sys->branch }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                    @error('branch')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
                             <div>
-                                @include('components.button', ['label' => 'Submit'])
+                                @include('components.button', ['label' => 'Search'])
                             </div>
                         </div>
 

@@ -16,6 +16,11 @@ class SMSController extends Controller
         $systems = System::all();
         return view('sms.create', ['systems' => $systems]);
     }
+
+    public function create()
+    {
+        return view('sms.create-individual');
+    }
    
     public function sendBulkSMS(Request $request)
     {
@@ -23,6 +28,7 @@ class SMSController extends Controller
         $apiKey     = "4b8ef4a5a94788a3c88721c41222ee8abefe2365754cf6e19c6fec0040704c7d";
         $AT         = new AfricasTalking($username, $apiKey);
         $sms        = $AT->sms();
+        $from = "hiracollege";
 
         $data = $request->validate([
             'class' => 'required',
@@ -36,8 +42,6 @@ class SMSController extends Controller
             ->pluck('Phone_Number')
             ->toArray();
 
-        // Set your shortCode or senderId
-        $from = "hiracollege";
 
         // Check DND status before sending messages
         $dndFilteredRecipients = [];
@@ -80,6 +84,40 @@ class SMSController extends Controller
         }
     }
 
+    public function sendSingleSms(Request $request)
+    {
+        $username   = "hiracollege";
+        $apiKey     = "4b8ef4a5a94788a3c88721c41222ee8abefe2365754cf6e19c6fec0040704c7d";
+        $AT         = new AfricasTalking($username, $apiKey);
+        $sms        = $AT->sms();
+        $from = "hiracollege";
+
+        $data = $request->validate([
+            'phone_number' => 'required',
+            'message' => 'required'
+        ]);
+
+        try {
+                $result = $sms->send([
+                    'to'      => $data['phone_number'],
+                    'message' => $data['message'],
+                    // 'from'    => $from
+                ]);
+
+                if ($result['status'] === 'success') {
+
+                    $responseMessage = $result['data']->SMSMessageData->Message;
+                    return back()->with('message', $responseMessage);
+
+                } else {
+                    return back()->with('error', 'Failed to send SMS: ' . $result['message']);
+                }
+
+            } catch (Exception $e) {
+                return back()->with('error', 'Error: ' . $e->getMessage());
+            }
+    }
+
 
     private function checkDNDStatus($phoneNumber, $username, $apiKey)
     {
@@ -104,6 +142,4 @@ class SMSController extends Controller
             return false; // Assume DND status is not active on error
         }
     }
-
-
 }

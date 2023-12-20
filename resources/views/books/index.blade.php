@@ -8,8 +8,10 @@
                     <h5 class="mb-2 mb-md-0">E-Book Management</h5>
                 </div>
                 <div class="col-auto">
-                    <a href="/book-create" class="btn btn-primary" role="button">Add E-Book
-                    </a>
+                    @if (auth()->user()->role == 'admin')
+                        <a href="/book-create" class="btn btn-primary" role="button">Add E-Book
+                        </a>
+                    @endif
                 </div>
             </div>
         </div>

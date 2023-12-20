@@ -35,12 +35,11 @@ class ResultController extends Controller
     public function storeClassResult(Request $request)
     {
         $class = $request->class;
-        $results = Result::where('class', $class)->get();
-
-        // dd(count($results));
+        $branch = $request->branch;
+        $results = Result::where('class', $class)->where('Branch', $branch)->get();
         
         if(count($results) == 0 ){
-            return  back()->with('message', 'No result for ' . $class. ' Yet');
+            return  back()->with('message', 'No result for '.$branch. ' - ' . $class. ' Yet');
         }
 
         return view('results.printClassResult', [
@@ -70,35 +69,39 @@ class ResultController extends Controller
 
         $result->English = $request->English;
         $result->Maths = $request->Maths;
-        $result->Civic = $request->Civic;
-        $result->Marketing = $request->Marketing;
-        $result->Economics = $request->Economics;
-        $result->Biology = $request->Biology;
-        $result->Chemistry = $request->Chemistry;
-        $result->Islamic_Stud = $request->Islamic_Stud;
-        $result->Gen_Stud = $request->Gen_Stud;
-        $result->Business_Stud = $request->Business_Stud;
-        $result->Grammer = $request->Grammer;
-        $result->Computer = $request->Computer;
+        $result->Grammar = $request->Grammar;
+        $result->Phonics = $request->Phonics;
+        $result->Science = $request->Science;
         $result->C_Arts = $request->C_Arts;
-        $result->Basic_Sc = $request->Basic_Sc;
-        $result->Agric_Sc = $request->Agric_Sc;
+        $result->V_Stud = $request->V_Stud;
+        $result->N_Value = $request->N_Value;
+        $result->Literature = $request->Literature;
+        $result->Business = $request->Business;
+        $result->IRK = $request->IRK;
+        $result->Computer = $request->Computer;
         $result->Arabic = $request->Arabic;
-        $result->Hadith = $request->Hadith;
-        $result->Tefseer = $request->Tefseer;
-        $result->Taoheed = $request->Taoheed;
-        $result->Tarikh = $request->Tarikh;
         $result->Qawaid = $request->Qawaid;
+        $result->Hadith = $request->Hadith;
+        $result->Taoheed = $request->Taoheed;
         $result->Fiqh = $request->Fiqh;
+        $result->Tarikh = $request->Tarikh;
+        $result->Ulum = $request->Ulum;
+        $result->Tefseer = $request->Tefseer;
         $result->Adab = $request->Adab;
         $result->Balaga = $request->Balaga;
+        $result->Economics = $request->Economics;
+        $result->Marketing = $request->Marketing;
+        $result->Civic = $request->Civic;
+        $result->Biology = $request->Biology;
+        $result->Physics = $request->Physics;
+        $result->Agric = $request->Agric;
+        $result->Chemistry = $request->Chemistry;
+        $result->Kitaabah = $request->Kitaabah;
 
         $result->update();
 
         return redirect('/results')->with('message', 'Result Updated successfully');
     }
-
-
 
     /**
      * Remove the specified resource from storage.

@@ -75,13 +75,6 @@
                                  <span class="nav-link-title">Exam Code</span>
                              </a>
                          </div>
-                         {{-- <div class="nav-item">
-                             <a class="nav-link " href="/manage-questions" data-placement="left">
-                                 <i class="fa-solid fa-restroom nav-icon"></i>
-                                 <span class="nav-link-title">Manage Questions</span>
-                             </a>
-                         </div> --}}
-
 
                          <a class="nav-link dropdown-indicator" href="#answer" role="button" data-bs-toggle="collapse"
                              aria-expanded="false" aria-controls="answer">
@@ -148,14 +141,30 @@
                          </ul>
 
 
-
-
-                         <div class="nav-item">
-                             <a class="nav-link " href="/sms" data-placement="left">
-                                 <span class="fas fa-envelope-open pr-4"></span>
-                                 <span class="nav-link-title">Send SMS</span>
-                             </a>
-                         </div>
+                         <a class="nav-link dropdown-indicator" href="#sms" role="button"
+                             data-bs-toggle="collapse" aria-expanded="false" aria-controls="sms">
+                             <div class="d-flex align-items-center">
+                                 <span class="nav-link-icon">
+                                     <i class="fa-solid fa-envelope-open nav-icon"></i></span>
+                                 <span class="nav-link-text ps-1">Send SMS</span>
+                             </div>
+                         </a>
+                         <ul class="nav collapse" id="sms">
+                             <li class="nav-item">
+                                 <a class="nav-link" href="/sms">
+                                     <div class="d-flex align-items-center">
+                                         <span class="nav-link-text">Class</span>
+                                     </div>
+                                 </a><!-- more inner pages-->
+                             </li>
+                             <li class="nav-item">
+                                 <a class="nav-link" href="/sms-individual">
+                                     <div class="d-flex align-items-center">
+                                         <span class="nav-link-text">Individual</span>
+                                     </div>
+                                 </a><!-- more inner pages-->
+                             </li>
+                         </ul>
 
                          <a class="nav-link dropdown-indicator" href="#password" role="button"
                              data-bs-toggle="collapse" aria-expanded="false" aria-controls="password">

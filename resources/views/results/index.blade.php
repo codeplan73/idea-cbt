@@ -28,28 +28,34 @@
                                 <th class="text-900 sort">Session</th>
                                 <th class="text-900 sort">English</th>
                                 <th class="text-900 sort">Maths</th>
-                                <th class="text-900 sort">Civic</th>
-                                <th class="text-900 sort">Mark</th>
-                                <th class="text-900 sort">Econs</th>
-                                <th class="text-900 sort">Bio</th>
-                                <th class="text-900 sort">Chem</th>
-                                <th class="text-900 sort">IRK</th>
-                                <th class="text-900 sort">Gen.Stud</th>
-                                <th class="text-900 sort">Bus.Stud</th>
                                 <th class="text-900 sort">Gram</th>
-                                <th class="text-900 sort">Comp</th>
-                                <th class="text-900 sort">C.Art</th>
+                                <th class="text-900 sort">Phonics</th>
                                 <th class="text-900 sort">Science</th>
-                                <th class="text-900 sort">Agric</th>
+                                <th class="text-900 sort">C.Art</th>
+                                <th class="text-900 sort">V.Stud</th>
+                                <th class="text-900 sort">N.Value</th>
+                                <th class="text-900 sort">Literature</th>
+                                <th class="text-900 sort">Buss</th>
+                                <th class="text-900 sort">IRK</th>
+                                <th class="text-900 sort">Comp</th>
                                 <th class="text-900 sort">Arabic</th>
-                                <th class="text-900 sort">Hadith</th>
-                                <th class="text-900 sort">Tefseer</th>
-                                <th class="text-900 sort">Taoheed</th>
-                                <th class="text-900 sort">Tarikh</th>
                                 <th class="text-900 sort">Qawaid</th>
+                                <th class="text-900 sort">Hadith</th>
+                                <th class="text-900 sort">Taoheed</th>
                                 <th class="text-900 sort">Fiqh</th>
+                                <th class="text-900 sort">Tarikh</th>
+                                <th class="text-900 sort">Ulum</th>
+                                <th class="text-900 sort">Tefseer</th>
                                 <th class="text-900 sort">Adab</th>
                                 <th class="text-900 sort">Balaga</th>
+                                <th class="text-900 sort">Econs</th>
+                                <th class="text-900 sort">Mark</th>
+                                <th class="text-900 sort">Civic</th>
+                                <th class="text-900 sort">Bio</th>
+                                <th class="text-900 sort">Physics</th>
+                                <th class="text-900 sort">Agric</th>
+                                <th class="text-900 sort">Chem</th>
+                                <th class="text-900 sort">Kitaabah</th>
                                 <th class="text-900 sort">Action</th>
                             </tr>
                         </thead>
@@ -63,28 +69,34 @@
                                     <td>{{ $result->session }}</td>
                                     <td>{{ $result->English }}</td>
                                     <td>{{ $result->Maths }}</td>
-                                    <td>{{ $result->Civic }}</td>
-                                    <td>{{ $result->Marketing }}</td>
-                                    <td>{{ $result->Economics }}</td>
-                                    <td>{{ $result->Biology }}</td>
-                                    <td>{{ $result->Chemistry }}</td>
-                                    <td>{{ $result->Islamic_Stud }}</td>
-                                    <td>{{ $result->Gen_Stud }}</td>
-                                    <td>{{ $result->Business_Stud }}</td>
-                                    <td>{{ $result->Grammer }}</td>
-                                    <td>{{ $result->Computer }}</td>
+                                    <td>{{ $result->Grammar }}</td>
+                                    <td>{{ $result->Phonics }}</td>
+                                    <td>{{ $result->Science }}</td>
                                     <td>{{ $result->C_Arts }}</td>
-                                    <td>{{ $result->Basic_Sc }}</td>
-                                    <td>{{ $result->Agric_Sc }}</td>
+                                    <td>{{ $result->V_Stud }}</td>
+                                    <td>{{ $result->N_Value }}</td>
+                                    <td>{{ $result->Literature }}</td>
+                                    <td>{{ $result->Business }}</td>
+                                    <td>{{ $result->IRK }}</td>
+                                    <td>{{ $result->Computer }}</td>
                                     <td>{{ $result->Arabic }}</td>
-                                    <td>{{ $result->Hadith }}</td>
-                                    <td>{{ $result->Tefseer }}</td>
-                                    <td>{{ $result->Taoheed }}</td>
-                                    <td>{{ $result->Tarikh }}</td>
                                     <td>{{ $result->Qawaid }}</td>
+                                    <td>{{ $result->Hadith }}</td>
+                                    <td>{{ $result->Taoheed }}</td>
                                     <td>{{ $result->Fiqh }}</td>
+                                    <td>{{ $result->Tarikh }}</td>
+                                    <td>{{ $result->Ulum }}</td>
+                                    <td>{{ $result->Tefseer }}</td>
                                     <td>{{ $result->Adab }}</td>
                                     <td>{{ $result->Balaga }}</td>
+                                    <td>{{ $result->Economics }}</td>
+                                    <td>{{ $result->Marketing }}</td>
+                                    <td>{{ $result->Civic }}</td>
+                                    <td>{{ $result->Biology }}</td>
+                                    <td>{{ $result->Physics }}</td>
+                                    <td>{{ $result->Agric }}</td>
+                                    <td>{{ $result->Chemistry }}</td>
+                                    <td>{{ $result->Kitaabah }}</td>
                                     <td class="text-end">
                                         @if (auth()->user()->role === 'admin')
                                             <div style="display: flex; align-items:center;">

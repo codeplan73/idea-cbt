@@ -50,6 +50,9 @@ class AnswerController extends Controller
  
     public function create()
     {
+        session(['exam_start_time' => now()]);
+        // dd('Show exam page');
+
         $student_class = Auth::guard('student')->user()->Student_Class;
         $student_id = Auth::guard('student')->user()->Student_ID;
     
@@ -158,6 +161,8 @@ class AnswerController extends Controller
         $selectedOptions = $request->selectedOptions;
         $answersObj = $request->answersObj;
         $allottedMark = $request->allottedMark;
+        $allottedMark = $request->allottedMark;
+        $request['branch'] =  $answer->branch;
 
         $total_score = $this->calculateTotalScore($selectedOptions, $answersObj, $allottedMark);
 
@@ -208,7 +213,7 @@ class AnswerController extends Controller
         // Student is submitting for the first time, create a new record
         if (!$result) {
             $result = new Result;
-        
+            
             // $result->stud_id = $student->id;
             $result->student_id = $student->Student_ID;
             $result->Name = $student->Fullnames;
@@ -216,6 +221,7 @@ class AnswerController extends Controller
             $result->session = $request->session;
             $result->Class = $request->class;
             $result->Term = $request->term;
+            $result->Branch = $request->branch;
         }
 
         $result->{$request->subject} += $total_score;

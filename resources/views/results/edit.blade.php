@@ -55,54 +55,19 @@
                                 'value' => $result->Maths,
                             ])
                             @include('components.form-fields-result-option', [
-                                'name' => 'Civic',
-                                'label' => 'Civic',
-                                'value' => $result->Civic,
+                                'name' => 'Grammar',
+                                'label' => 'Grammar',
+                                'value' => $result->Grammar,
                             ])
                             @include('components.form-fields-result-option', [
-                                'name' => 'Marketing',
-                                'label' => 'Marketing',
-                                'value' => $result->Marketing,
+                                'name' => 'Phonics',
+                                'label' => 'Phonics',
+                                'value' => $result->Phonics,
                             ])
                             @include('components.form-fields-result-option', [
-                                'name' => 'Economics',
-                                'label' => 'Economics',
-                                'value' => $result->Economics,
-                            ])
-                            @include('components.form-fields-result-option', [
-                                'name' => 'Biology',
-                                'label' => 'Biology',
-                                'value' => $result->Biology,
-                            ])
-                            @include('components.form-fields-result-option', [
-                                'name' => 'Chemistry',
-                                'label' => 'Chemistry',
-                                'value' => $result->Chemistry,
-                            ])
-                            @include('components.form-fields-result-option', [
-                                'name' => 'Islamic_Stud',
-                                'label' => 'Islamic_Stud',
-                                'value' => $result->Islamic_Stud,
-                            ])
-                            @include('components.form-fields-result-option', [
-                                'name' => 'Gen_Stud',
-                                'label' => 'Gen_Stud',
-                                'value' => $result->Gen_Stud,
-                            ])
-                            @include('components.form-fields-result-option', [
-                                'name' => 'Business_Stud',
-                                'label' => 'Business_Stud',
-                                'value' => $result->Business_Stud,
-                            ])
-                            @include('components.form-fields-result-option', [
-                                'name' => 'Grammer',
-                                'label' => 'Grammer',
-                                'value' => $result->Grammer,
-                            ])
-                            @include('components.form-fields-result-option', [
-                                'name' => 'Computer',
-                                'label' => 'Computer',
-                                'value' => $result->Computer,
+                                'name' => 'Science',
+                                'label' => 'Science',
+                                'value' => $result->Science,
                             ])
                             @include('components.form-fields-result-option', [
                                 'name' => 'C_Arts',
@@ -110,14 +75,34 @@
                                 'value' => $result->C_Arts,
                             ])
                             @include('components.form-fields-result-option', [
-                                'name' => 'Basic_Sc',
-                                'label' => 'Basic_Sc',
-                                'value' => $result->Basic_Sc,
+                                'name' => 'V_Stud',
+                                'label' => 'V_Stud',
+                                'value' => $result->V_Stud,
                             ])
                             @include('components.form-fields-result-option', [
-                                'name' => 'Agric_Sc',
-                                'label' => 'Agric_Sc',
-                                'value' => $result->Agric_Sc,
+                                'name' => 'N_Value',
+                                'label' => 'N_Value',
+                                'value' => $result->N_Value,
+                            ])
+                            @include('components.form-fields-result-option', [
+                                'name' => 'Literature',
+                                'label' => 'Literature',
+                                'value' => $result->Literature,
+                            ])
+                            @include('components.form-fields-result-option', [
+                                'name' => 'Business',
+                                'label' => 'Business',
+                                'value' => $result->Business,
+                            ])
+                            @include('components.form-fields-result-option', [
+                                'name' => 'IRK',
+                                'label' => 'IRK',
+                                'value' => $result->IRK,
+                            ])
+                            @include('components.form-fields-result-option', [
+                                'name' => 'Computer',
+                                'label' => 'Computer',
+                                'value' => $result->Computer,
                             ])
                             @include('components.form-fields-result-option', [
                                 'name' => 'Arabic',
@@ -125,14 +110,14 @@
                                 'value' => $result->Arabic,
                             ])
                             @include('components.form-fields-result-option', [
+                                'name' => 'Qawaid',
+                                'label' => 'Qawaid',
+                                'value' => $result->Qawaid,
+                            ])
+                            @include('components.form-fields-result-option', [
                                 'name' => 'Hadith',
                                 'label' => 'Hadith',
                                 'value' => $result->Hadith,
-                            ])
-                            @include('components.form-fields-result-option', [
-                                'name' => 'Tefseer',
-                                'label' => 'Tefseer',
-                                'value' => $result->Tefseer,
                             ])
                             @include('components.form-fields-result-option', [
                                 'name' => 'Taoheed',
@@ -140,19 +125,24 @@
                                 'value' => $result->Taoheed,
                             ])
                             @include('components.form-fields-result-option', [
+                                'name' => 'Fiqh',
+                                'label' => 'Fiqh',
+                                'value' => $result->Fiqh,
+                            ])
+                            @include('components.form-fields-result-option', [
                                 'name' => 'Tarikh',
                                 'label' => 'Tarikh',
                                 'value' => $result->Tarikh,
                             ])
                             @include('components.form-fields-result-option', [
-                                'name' => 'Qawaid',
-                                'label' => 'Qawaid',
-                                'value' => $result->Qawaid,
+                                'name' => 'Ulum',
+                                'label' => 'Ulum',
+                                'value' => $result->Ulum,
                             ])
                             @include('components.form-fields-result-option', [
-                                'name' => 'Fiqh',
-                                'label' => 'Fiqh',
-                                'value' => $result->Fiqh,
+                                'name' => 'Tefseer',
+                                'label' => 'Tefseer',
+                                'value' => $result->Tefseer,
                             ])
                             @include('components.form-fields-result-option', [
                                 'name' => 'Adab',
@@ -164,8 +154,48 @@
                                 'label' => 'Balaga',
                                 'value' => $result->Balaga,
                             ])
+                            @include('components.form-fields-result-option', [
+                                'name' => 'Economics',
+                                'label' => 'Economics',
+                                'value' => $result->Economics,
+                            ])
+                            @include('components.form-fields-result-option', [
+                                'name' => 'Marketing',
+                                'label' => 'Marketing',
+                                'value' => $result->Marketing,
+                            ])
+                            @include('components.form-fields-result-option', [
+                                'name' => 'Civic',
+                                'label' => 'Civic',
+                                'value' => $result->Civic,
+                            ])
+                            @include('components.form-fields-result-option', [
+                                'name' => 'Biology',
+                                'label' => 'Biology',
+                                'value' => $result->Biology,
+                            ])
+                            @include('components.form-fields-result-option', [
+                                'name' => 'Physics',
+                                'label' => 'Physics',
+                                'value' => $result->Physics,
+                            ])
+                            @include('components.form-fields-result-option', [
+                                'name' => 'Agric',
+                                'label' => 'Agric',
+                                'value' => $result->Agric,
+                            ])
+                            @include('components.form-fields-result-option', [
+                                'name' => 'Chemistry',
+                                'label' => 'Chemistry',
+                                'value' => $result->Chemistry,
+                            ])
+                            @include('components.form-fields-result-option', [
+                                'name' => 'Kitaabah',
+                                'label' => 'Kitaabah',
+                                'value' => $result->Kitaabah,
+                            ])
 
-                            @include('components.button', ['label' => 'Submit'])
+                            @include('components.button', ['label' => 'Update'])
                         </div>
                     </form>
                 </div>
