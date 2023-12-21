@@ -6,7 +6,7 @@
             document.addEventListener('DOMContentLoaded', function() {
                 Swal.fire({
                     icon: 'success',
-                    title: 'SMS Sent!',
+                    title: 'SMS!',
                     text: '{{ session('message') }}'
                 });
             });
@@ -18,7 +18,7 @@
             document.addEventListener('DOMContentLoaded', function() {
                 Swal.fire({
                     icon: 'error',
-                    title: 'No Number',
+                    title: 'Number',
                     text: '{{ session('error') }}'
                 });
             });

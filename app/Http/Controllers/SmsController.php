@@ -241,4 +241,11 @@ class SMSController extends Controller
             return false; // Assume DND status is not active on error
         }
     }
+
+    public function destroy(Messages $message, Request $request)
+    {
+        $message->delete();
+
+        return back()->with('message', 'Message deleted successfully');
+    }
 }

@@ -143,6 +143,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/sms-individual', [SMSController::class, 'sendSingleSms'])->name('sms.sendSingleSms');
     Route::get('/sms-owning', [SMSController::class, 'showOwningForm'])->name('sms.showOwningForm');
     Route::post('/sms-owning', [SMSController::class, 'sendOwningForm'])->name('sms.sendOwningForm');
+    Route::delete('/sms/{message}', [SMSController::class, 'destroy'])->name('sms.destroy');
 
     // set result
     Route::get('/set-result', [CheckResultController::class, 'showSetResult']);
