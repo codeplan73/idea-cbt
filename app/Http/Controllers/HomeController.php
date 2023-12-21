@@ -33,8 +33,16 @@ class HomeController extends Controller
         $ogbido = Student::where('Branch', 'Hira Ogbido')->where('Current_Status', 'Active')->count();
         $kogi = Student::where('Branch', 'Hira Kogi')->where('Current_Status', 'Active')->count();
         $elamin = Student::where('Branch', 'Alamin Aviele')->where('Current_Status', 'Active')->count();
-        $staffs = User::where('Staff_Status', 'Active')->get();
-        $students = Student::whereIn('Current_Status', ['Active', 'Inactive'])->get();
+        
+        $staffs = User::
+            where('Staff_Status', 'Active')
+            ->select('id', 'Staff_ID', 'Fullname', 'Phone_No', 'role', 'Email')
+            ->get();
+
+        $students = Student::
+            whereIn('Current_Status', ['Active', 'Inactive'])
+            ->select('id', 'Student_ID', 'Fullnames', 'Plain_Password', 'Current_Status', 'Student_Pin', 'Current_Balance', 'Student_Class', 'Phone_Number')
+            ->get();
         
         return view('home', [
             'iyakpi' => $iyakpi,

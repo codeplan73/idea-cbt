@@ -127,14 +127,14 @@
                              <li class="nav-item">
                                  <a class="nav-link" href="/results">
                                      <div class="d-flex align-items-center">
-                                         <span class="nav-link-text">Check Result</span>
+                                         <span class="nav-link-text">Check CBT Result</span>
                                      </div>
                                  </a><!-- more inner pages-->
                              </li>
                              <li class="nav-item">
                                  <a class="nav-link" href="/class-results">
                                      <div class="d-flex align-items-center">
-                                         <span class="nav-link-text">Class Result</span>
+                                         <span class="nav-link-text">Class CBT Result</span>
                                      </div>
                                  </a><!-- more inner pages-->
                              </li>

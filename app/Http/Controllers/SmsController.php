@@ -18,7 +18,11 @@ class SMSController extends Controller
 
     public function create()
     {
-        return view('sms.create-individual');
+        $students = Student::
+            where('Current_Status', 'Active')
+            ->select('Student_ID', 'Fullnames', 'Student_Class', 'Phone_Number', 'Current_Balance')
+            ->get();
+        return view('sms.create-individual', ['students' => $students]);
     }
 
     public function showOwningForm()
@@ -125,7 +129,6 @@ class SMSController extends Controller
             }
     }
 
-
     public function sendOwningForm(Request $request)
     {
         $username   = "hiracollege";
@@ -146,38 +149,42 @@ class SMSController extends Controller
             ->where('Current_Status', $data['status'])
             ->where('Branch', $data['branch'])
             ->where('Current_Balance', '>=', $data['current_balance'])
-            ->select('Student_ID', 'Fullnames', 'Phone_Number', 'Current_Balance')
+            ->select('Student_ID', 'Fullnames', 'Student_Pin', 'Phone_Number', 'Current_Balance')
             ->get()
             ->toArray();
 
-        $dndFilteredRecipients = array_column($recipients, 'Phone_Number');
+        if($recipients){
+            $dndFilteredRecipients = array_column($recipients, 'Phone_Number');
         
-        try {
-            foreach ($recipients as $recipient) {
+            try {
+                foreach ($recipients as $recipient) {
 
-               $formattedBalance = number_format($recipient['Current_Balance'], 2);
-               $message = "Student-ID: {$recipient['Student_ID']}, Fullnames: {$recipient['Fullnames']}, Current-Balance: {$formattedBalance}\n\n{$data['message']}";
+                $formattedBalance = number_format($recipient['Current_Balance'], 2);
+                $message = "Student-ID: {$recipient['Student_ID']}, Fullnames: {$recipient['Fullnames']},  Result-PIN: {$recipient['Student_Pin']}, Current-Balance: {$formattedBalance}\n\n{$data['message']}";
 
-                $result = $sms->send([
-                    'to'      => [$recipient['Phone_Number']],
-                    'message' => $message,
-                    // 'from'    => $from
-                ]);
+                    $result = $sms->send([
+                        'to'      => [$recipient['Phone_Number']],
+                        'message' => $message,
+                        // 'from'    => $from
+                    ]);
 
-                if ($result['status'] !== 'success') {
-                    return back()->with('error', 'Failed to send SMS: ' . $result['message']);
+                    if ($result['status'] !== 'success') {
+                        return back()->with('error', 'Failed to send SMS: ' . $result['message']);
+                    }
                 }
+
+                $responseMessage = $result['data']->SMSMessageData->Message;
+                return back()->with('message', $responseMessage);
+
+            } catch (Exception $e) {
+                return back()->with('error', 'Error: ' . $e->getMessage());
             }
-
-            $responseMessage = $result['data']->SMSMessageData->Message;
-            return back()->with('message', $responseMessage);
-
-        } catch (Exception $e) {
-            return back()->with('error', 'Error: ' . $e->getMessage());
+        }else{
+             return back()->with('error', 'No student is owning such amount');
         }
+
+        
     }
-
-
 
     private function checkDNDStatus($phoneNumber, $username, $apiKey)
     {

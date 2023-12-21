@@ -226,7 +226,6 @@
                                         <tr>
                                             <th class="text-900 sort">ID</th>
                                             <th class="text-900 sort">Name</th>
-                                            {{-- <th class="text-900 sort">Password</th> --}}
                                             <th class="text-900 sort">Phone</th>
                                             <th class="text-900 sort">Role</th>
                                             <th class="text-900 sort">Email</th>
@@ -238,7 +237,6 @@
                                             <tr>
                                                 <td>{{ $staff->Staff_ID }}</td>
                                                 <td>{{ $staff->Fullname }}</td>
-                                                {{-- <td>{{ $staff->plain_password }}</td> --}}
                                                 <td>{{ $staff->Phone_No }}</td>
                                                 <td>{{ $staff->role }}</td>
                                                 <td>{{ $staff->Email }}</td>
