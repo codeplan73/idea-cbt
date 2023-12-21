@@ -28,7 +28,7 @@
         <div class="col-lg-12 pe-lg-2">
             <div class="card mb-3">
                 <div class="card-header bg-body-tertiary">
-                    <h6 class="mb-0">Send Bulk Message</h6>
+                    <h5 class="mb-0">Send School Fees Messages</h5>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('sms.sendOwningForm') }}" method="post">
@@ -127,7 +127,7 @@
                             </div>
 
                             <div>
-                                <button type="submit" class="btn btn-info mt-4">Send General Messges</button>
+                                <button type="submit" class="btn btn-info mt-4">Send School Fees Messges</button>
                             </div>
                         </div>
                     </form>

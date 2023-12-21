@@ -57,7 +57,8 @@
                                 </div>
 
                                 <div>
-                                    <button type="submit" class="btn btn-block btn-info mt-4">Send Messge</button>
+                                    <button type="submit" class="btn btn-block btn-info mt-4">Send Individual
+                                        Messge</button>
                                 </div>
                             </form>
                         </div>

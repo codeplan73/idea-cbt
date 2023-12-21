@@ -134,7 +134,7 @@
                              <li class="nav-item">
                                  <a class="nav-link" href="/class-results">
                                      <div class="d-flex align-items-center">
-                                         <span class="nav-link-text">Class CBT Result</span>
+                                         <span class="nav-link-text">Print CBT Result</span>
                                      </div>
                                  </a><!-- more inner pages-->
                              </li>
@@ -153,7 +153,7 @@
                              <li class="nav-item">
                                  <a class="nav-link" href="/sms">
                                      <div class="d-flex align-items-center">
-                                         <span class="nav-link-text">Class SMS</span>
+                                         <span class="nav-link-text">General SMS</span>
                                      </div>
                                  </a><!-- more inner pages-->
                              </li>

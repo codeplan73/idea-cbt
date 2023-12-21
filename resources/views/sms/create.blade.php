@@ -28,7 +28,7 @@
         <div class="col-lg-12 pe-lg-2">
             <div class="card mb-3">
                 <div class="card-header bg-body-tertiary">
-                    <h6 class="mb-0">Send Bulk Message</h6>
+                    <h6 class="mb-0">Send General Messages</h6>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('sms.sendBulkSMS') }}" method="post">
