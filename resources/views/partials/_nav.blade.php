@@ -153,14 +153,21 @@
                              <li class="nav-item">
                                  <a class="nav-link" href="/sms">
                                      <div class="d-flex align-items-center">
-                                         <span class="nav-link-text">Class</span>
+                                         <span class="nav-link-text">Class SMS</span>
+                                     </div>
+                                 </a><!-- more inner pages-->
+                             </li>
+                             <li class="nav-item">
+                                 <a class="nav-link" href="/sms-owning">
+                                     <div class="d-flex align-items-center">
+                                         <span class="nav-link-text">School Fees SMS</span>
                                      </div>
                                  </a><!-- more inner pages-->
                              </li>
                              <li class="nav-item">
                                  <a class="nav-link" href="/sms-individual">
                                      <div class="d-flex align-items-center">
-                                         <span class="nav-link-text">Individual</span>
+                                         <span class="nav-link-text">Individual SMS</span>
                                      </div>
                                  </a><!-- more inner pages-->
                              </li>

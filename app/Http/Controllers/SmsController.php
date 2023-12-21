@@ -8,7 +8,6 @@ use Africastalking\SDK\AfricasTalking;
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
 
-
 class SMSController extends Controller
 {
     public function index()
@@ -21,6 +20,12 @@ class SMSController extends Controller
     {
         return view('sms.create-individual');
     }
+
+    public function showOwningForm()
+    {
+        $systems = System::all();
+        return view('sms.create-owning', ['systems' => $systems]);
+    }
    
     public function sendBulkSMS(Request $request)
     {
@@ -32,6 +37,7 @@ class SMSController extends Controller
 
         $data = $request->validate([
             'class' => 'required',
+            'branch' => 'required',
             'status' => 'required',
             'message' => 'required'
         ]);
@@ -39,6 +45,7 @@ class SMSController extends Controller
         // $recipients = +2349168189258;
         $recipients = Student::where('Student_Class', $data['class'])
             ->where('Current_Status', $data['status'])
+            ->where('Branch', $data['branch'])
             ->pluck('Phone_Number')
             ->toArray();
 
@@ -117,6 +124,59 @@ class SMSController extends Controller
                 return back()->with('error', 'Error: ' . $e->getMessage());
             }
     }
+
+
+    public function sendOwningForm(Request $request)
+    {
+        $username   = "hiracollege";
+        $apiKey     = "4b8ef4a5a94788a3c88721c41222ee8abefe2365754cf6e19c6fec0040704c7d";
+        $AT         = new AfricasTalking($username, $apiKey);
+        $sms        = $AT->sms();
+        $from = "hiracollege";
+
+        $data = $request->validate([
+            'class' => 'required',
+            'branch' => 'required',
+            'status' => 'required',
+            'current_balance' => 'required',
+            'message' => 'required'
+        ]);
+
+        $recipients = Student::where('Student_Class', $data['class'])
+            ->where('Current_Status', $data['status'])
+            ->where('Branch', $data['branch'])
+            ->where('Current_Balance', '>=', $data['current_balance'])
+            ->select('Student_ID', 'Fullnames', 'Phone_Number', 'Current_Balance')
+            ->get()
+            ->toArray();
+
+        $dndFilteredRecipients = array_column($recipients, 'Phone_Number');
+        
+        try {
+            foreach ($recipients as $recipient) {
+
+               $formattedBalance = number_format($recipient['Current_Balance'], 2);
+               $message = "Student-ID: {$recipient['Student_ID']}, Fullnames: {$recipient['Fullnames']}, Current-Balance: {$formattedBalance}\n\n{$data['message']}";
+
+                $result = $sms->send([
+                    'to'      => [$recipient['Phone_Number']],
+                    'message' => $message,
+                    // 'from'    => $from
+                ]);
+
+                if ($result['status'] !== 'success') {
+                    return back()->with('error', 'Failed to send SMS: ' . $result['message']);
+                }
+            }
+
+            $responseMessage = $result['data']->SMSMessageData->Message;
+            return back()->with('message', $responseMessage);
+
+        } catch (Exception $e) {
+            return back()->with('error', 'Error: ' . $e->getMessage());
+        }
+    }
+
 
 
     private function checkDNDStatus($phoneNumber, $username, $apiKey)

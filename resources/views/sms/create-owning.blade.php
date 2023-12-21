@@ -31,11 +31,11 @@
                     <h6 class="mb-0">Send Bulk Message</h6>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('sms.sendBulkSMS') }}" method="post">
+                    <form action="{{ route('sms.sendOwningForm') }}" method="post">
                         @csrf
                         <!-- Form -->
                         <div class="row mb-4">
-                            <div class="col-sm-4 mb-2 mb-sm-0">
+                            <div class="col-sm-3 mb-2 mb-sm-0">
                                 <div class="tom-select-custom">
                                     <label for="branch" class="form-label">Branch</label>
 
@@ -55,7 +55,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-sm-4 mb-2 mb-sm-0">
+                            <div class="col-sm-3 mb-2 mb-sm-0">
                                 <div class="tom-select-custom">
                                     <label for="class" class="form-label">Class</label>
 
@@ -75,7 +75,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-sm-4 mb-2 mb-sm-0">
+                            <div class="col-sm-3 mb-2 mb-sm-0">
                                 <div class="tom-select-custom">
                                     <label for="class" class="form-label">Status</label>
 
@@ -96,12 +96,33 @@
                                 </div>
                             </div>
 
+                            <div class="col-sm-3 mb-2 mb-sm-0">
+                                <div class="tom-select-custom">
+                                    <label for="current_balance" class="form-label">Current Balance </label>
+                                    <input type="number"
+                                        class="form-control @error('current_balance') is-invalid @enderror"
+                                        name="current_balance" value="{{ old('current_balance') }}" id="current_balance"
+                                        placeholder="Current Balance">
+                                    @error('current_balance')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
                             <div class="col-md-12 mb-4 mb-sm-0">
                                 <div class="tom-select-custom">
                                     <label for="date" class="form-label">Message </label>
 
-                                    <textarea type="text" class="form-control @error('date') is-invalid @enderror" name="message" placeholder="Message"
-                                        rows="6"></textarea>
+                                    <textarea type="text" class="form-control @error('message') is-invalid @enderror" name="message"
+                                        placeholder="Message" rows="6">{{ old('message') }}</textarea>
+
+                                    @error('message')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 

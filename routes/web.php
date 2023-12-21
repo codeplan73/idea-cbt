@@ -141,6 +141,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/sms', [SMSController::class, 'sendBulkSMS'])->name('sms.sendBulkSMS');
     Route::get('/sms-individual', [SMSController::class, 'create'])->name('sms.index.create');
     Route::post('/sms-individual', [SMSController::class, 'sendSingleSms'])->name('sms.sendSingleSms');
+    Route::get('/sms-owning', [SMSController::class, 'showOwningForm'])->name('sms.showOwningForm');
+    Route::post('/sms-owning', [SMSController::class, 'sendOwningForm'])->name('sms.sendOwningForm');
 
     // set result
     Route::get('/set-result', [CheckResultController::class, 'showSetResult']);
