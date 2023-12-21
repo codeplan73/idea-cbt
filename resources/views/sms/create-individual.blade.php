@@ -61,6 +61,41 @@
                                         Messge</button>
                                 </div>
                             </form>
+
+                            <hr>
+                            <div class="mt-4">
+                                <table class="table mb-0 data-table fs--1" data-datatables="data-datatables">
+                                    <thead class="bg-200">
+                                        <tr>
+                                            {{-- <th class="text-900 sort">Type</th> --}}
+                                            <th class="text-900 sort">Message</th>
+                                            <th class="text-900 sort">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($messages as $message)
+                                            <tr>
+                                                {{-- <td>{{ $message->type }}</td> --}}
+                                                <td>{{ $message->message }}</td>
+                                                <td class="text-end">
+
+                                                    <div style="display: flex; align-items:center;">
+
+                                                        <form action="/sms/{{ $message->id }}" method="post">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button class="btn btn-link p-0 ms-2" data-bs-toggle="tooltip"
+                                                                data-bs-placement="top" title="Delete"><span
+                                                                    class="text-500 fas fa-trash-alt"></span></button>
+                                                        </form>
+                                                    </div>
+
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
 
                         <hr>

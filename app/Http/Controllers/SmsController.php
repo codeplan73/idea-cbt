@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\System;
+use App\Models\Messages;
 use Africastalking\SDK\AfricasTalking;
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
@@ -12,23 +13,36 @@ class SMSController extends Controller
 {
     public function index()
     {
+        $messages = Messages::where('type', 'bulk')->latest()->limit(10)->get();
         $systems = System::all();
-        return view('sms.create', ['systems' => $systems]);
+        return view('sms.create', [
+            'systems' => $systems, 
+            'messages' => $messages
+        ]);
     }
 
     public function create()
     {
+        $messages = Messages::where('type', 'individual')->latest()->limit(10)->get();
         $students = Student::
             where('Current_Status', 'Active')
             ->select('Student_ID', 'Fullnames', 'Student_Class', 'Phone_Number', 'Current_Balance')
             ->get();
-        return view('sms.create-individual', ['students' => $students]);
+    
+        return view('sms.create-individual', [
+            'students' => $students,
+            'messages' => $messages
+        ]);
     }
 
     public function showOwningForm()
     {
+        $messages = Messages::where('type', 'fees')->latest()->limit(10)->get();
         $systems = System::all();
-        return view('sms.create-owning', ['systems' => $systems]);
+        return view('sms.create-owning', [
+            'systems' => $systems,
+            'messages' => $messages
+        ]);
     }
    
     public function sendBulkSMS(Request $request)
@@ -79,6 +93,11 @@ class SMSController extends Controller
 
                 if ($result['status'] === 'success') {
 
+                    Messages::create([
+                        'type' => 'bulk',
+                        'message' => $data['message'],
+                    ]);
+
                     $responseMessage = $result['data']->SMSMessageData->Message;
                     return back()->with('message', $responseMessage);
 
@@ -109,25 +128,31 @@ class SMSController extends Controller
         ]);
 
         try {
-                $result = $sms->send([
-                    'to'      => $data['phone_number'],
+            $result = $sms->send([
+                'to'      => $data['phone_number'],
+                'message' => $data['message'],
+                // 'from'    => $from
+            ]);
+
+            if ($result['status'] === 'success') {
+
+                Messages::create([
+                    'type' => 'individual',
                     'message' => $data['message'],
-                    // 'from'    => $from
                 ]);
 
-                if ($result['status'] === 'success') {
+                $responseMessage = $result['data']->SMSMessageData->Message;
+                return back()->with('message', $responseMessage);
 
-                    $responseMessage = $result['data']->SMSMessageData->Message;
-                    return back()->with('message', $responseMessage);
-
-                } else {
-                    return back()->with('error', 'Failed to send SMS: ' . $result['message']);
-                }
-
-            } catch (Exception $e) {
-                return back()->with('error', 'Error: ' . $e->getMessage());
+            } else {
+                return back()->with('error', 'Failed to send SMS: ' . $result['message']);
             }
+
+        } catch (Exception $e) {
+            return back()->with('error', 'Error: ' . $e->getMessage());
+        }
     }
+
 
     public function sendOwningForm(Request $request)
     {
@@ -142,7 +167,7 @@ class SMSController extends Controller
             'branch' => 'required',
             'status' => 'required',
             'current_balance' => 'required',
-            'message' => 'required'
+            'message' => 'required',
         ]);
 
         $recipients = Student::where('Student_Class', $data['class'])
@@ -153,17 +178,19 @@ class SMSController extends Controller
             ->get()
             ->toArray();
 
-        if($recipients){
+        // dd($recipients);
+
+        if ($recipients) {
             $dndFilteredRecipients = array_column($recipients, 'Phone_Number');
-        
+
             try {
                 foreach ($recipients as $recipient) {
 
-                $formattedBalance = number_format($recipient['Current_Balance'], 2);
-                $message = "Student-ID: {$recipient['Student_ID']}, Fullnames: {$recipient['Fullnames']},  Result-PIN: {$recipient['Student_Pin']}, Current-Balance: {$formattedBalance}\n\n{$data['message']}";
+                    $formattedBalance = number_format($recipient['Current_Balance'], 2);
+                    $message = "Student-ID: {$recipient['Student_ID']}, Fullnames: {$recipient['Fullnames']},  Result-PIN: {$recipient['Student_Pin']}, Current-Balance: {$formattedBalance}\n\n{$data['message']}";
 
                     $result = $sms->send([
-                        'to'      => [$recipient['Phone_Number']],
+                        'to' => [$recipient['Phone_Number']],
                         'message' => $message,
                         // 'from'    => $from
                     ]);
@@ -173,17 +200,22 @@ class SMSController extends Controller
                     }
                 }
 
-                $responseMessage = $result['data']->SMSMessageData->Message;
-                return back()->with('message', $responseMessage);
+                // Ensure $result is defined before accessing its properties
+                $responseMessage = isset($result['data']->SMSMessageData->Message) ? $result['data']->SMSMessageData->Message : 'SMS sent successfully to all recipients.';
+
+                Messages::create([
+                    'type' => 'fees',
+                    'message' => $data['message'],
+                ]);
+
+                return back()->with('message', 'SMS sent successfully to all');
 
             } catch (Exception $e) {
                 return back()->with('error', 'Error: ' . $e->getMessage());
             }
-        }else{
-             return back()->with('error', 'No student is owning such amount');
+        } else {
+            return back()->with('error', 'No student owes such amount.');
         }
-
-        
     }
 
     private function checkDNDStatus($phoneNumber, $username, $apiKey)
