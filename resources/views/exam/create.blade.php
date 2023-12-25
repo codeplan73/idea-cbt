@@ -1,35 +1,15 @@
 @extends('layouts.app_student')
 
+
 <script>
-    var examStartTime = @json(session('exam_start_time'));
+    window.addEventListener('beforeunload', function(e) {
+        // Call the submitForm() function before unloading the page
+        submitForm();
 
-    console.log(examStartTime);
-
-    // // Function to calculate remaining time
-    // function calculateRemainingTime() {
-    //     var currentTime = new Date();
-    //     var elapsedTimeInSeconds = Math.floor((currentTime - new Date(examStartTime)) / 1000);
-
-    //     // Set your exam duration in seconds (e.g., 60 minutes * 60 seconds)
-    //     var examDurationInSeconds = 60 * 60;
-
-    //     // Calculate remaining time
-    //     var remainingTimeInSeconds = Math.max(examDurationInSeconds - elapsedTimeInSeconds, 0);
-
-    //     // TODO: Use the remaining time as needed (update a timer display, handle submission, etc.)
-    //     console.log('Remaining Time: ' + remainingTimeInSeconds + ' seconds');
-    // }
-
-    // // Call the function when the page loads
-    // window.onload = calculateRemainingTime;
-
-    // Disable going back using browser navigation
-    history.pushState(null, null, document.URL);
-    window.addEventListener('popstate', function() {
-        history.pushState(null, null, document.URL);
+        // Set a message to prompt the user about leaving the page
+        e.returnValue = 'Are you sure you want to leave? Your progress may be lost.';
     });
 </script>
-
 
 @section('content')
     {{-- @if (session('message'))
@@ -43,6 +23,9 @@
             });
         </script>
     @endif --}}
+
+
+
 
     @if ($question->question_type == 'Objective')
         <div class="content">

@@ -37,6 +37,7 @@
                                 <th class="text-900 sort">T.Mark</th>
                                 <th class="text-900 sort">A.Mark</th>
                                 <th class="text-900 sort">Time</th>
+                                <th class="text-900 sort">E.Time</th>
                                 <th class="text-900 sort">Action</th>
                             </tr>
                         </thead>
@@ -54,6 +55,7 @@
                                     <td>{{ $question->total_mark }}</td>
                                     <td>{{ $question->alloted_mark }}</td>
                                     <td>{{ $question->time_minutes . ' Minutes' }} </td>
+                                    <td>{{ $question->end_time }} </td>
                                     <td class="text-end">
                                         @if (auth()->user()->role == 'staff' || auth()->user()->role == 'admin')
                                             <div style="display: flex; align-items:center;">

@@ -181,7 +181,23 @@
                                     @enderror
                                 </div>
                             </div>
+
+                            <div class="col-sm-6 col-md-3 mb-4 mb-sm-0">
+                                <div class="tom-select-custom">
+                                    <label for="end_time" class="form-label">End Time</label>
+                                    <input type="time" class="form-control @error('end_time') is-invalid @enderror"
+                                        name="end_time" id="minutes" required>
+
+                                    @error('end_time')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
+
+
 
                         <hr>
                         <div id="questionFields" class="row mb-4 gx-5 gy-3">

@@ -63,6 +63,7 @@ class QuestionController extends Controller
             'class' => 'required',
             'subject' => 'required',
             'time_minutes' => 'required',
+            'end_time' => 'required',
             'question_pdf' => ['required', new PdfDocValidationRule],
         ]);
 
@@ -131,6 +132,7 @@ class QuestionController extends Controller
             'alloted_mark' => 'required',
             'total_mark' => 'required',
             'time_minutes' => 'required',
+            'end_time' => 'required',
         ]);
 
         if ($request->hasFile('question_pdf')) {
