@@ -1,31 +1,18 @@
 @extends('layouts.app_student')
 
-
-<script>
-    window.addEventListener('beforeunload', function(e) {
-        // Call the submitForm() function before unloading the page
-        submitForm();
-
-        // Set a message to prompt the user about leaving the page
-        e.returnValue = 'Are you sure you want to leave? Your progress may be lost.';
-    });
-</script>
-
 @section('content')
-    {{-- @if (session('message'))
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                Swal.fire({
-                    icon: 'warning',
-                    title: 'Exam Page!',
-                    text: '{{ session('message') }}'
-                });
-            });
-        </script>
-    @endif --}}
+    <script>
+        // Disable going back and forward using browser navigation
+        history.pushState(null, null, document.URL);
 
+        window.addEventListener('popstate', function() {
+            history.pushState(null, null, document.URL);
+        });
 
-
+        window.onbeforeunload = function() {
+            return;
+        };
+    </script>
 
     @if ($question->question_type == 'Objective')
         <div class="content">
@@ -79,7 +66,11 @@
 
                                         <input type="hidden" name="selectedOptions" id="selectedOptionsInput">
                                         <input type="hidden" name="answersObj" id="answersInput">
+
                                         <input type="hidden" name="allottedMark" value="{{ $question->alloted_mark }}">
+                                        <input type="hidden" id="endTime" name="end_time"
+                                            value="{{ $question->end_time }}">
+
                                         <input type="hidden" name="exam_type" value="{{ $question->exam_type }}">
 
                                         <input type="hidden" name="subject" value="{{ $question->subject }}">
@@ -93,10 +84,14 @@
                                             <button type="submit" class="btn btn-info" id="submitButton">
                                                 Submit
                                             </button>
-                                            <div class="d-flex flex-between-center">
-                                                <h5>Time Left: </h5>
-                                                <h5 id="timerB" class="text-center fw-bold"></h5>
-                                            </div>
+                                            @if (!empty($question->end_time))
+                                                <div class="d-flex flex-between-center">
+                                                    <h5>Stop-Time: </h5>
+                                                    <h5 id="timerB" class="text-center fw-bold">
+                                                        {{ $question->end_time }}
+                                                    </h5>
+                                                </div>
+                                            @endif
                                         </div>
                                         <div id="answerContainer">
                                             <input type="hidden" value="{{ $question->alloted_mark }}" id="mark">
@@ -240,19 +235,32 @@
             }
 
             populateOptions(currentQuestion);
+            var optionsContainer = document.getElementById('optionContainer');
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             // Countdown timer logic
-            var timeLeft = {{ $question->time_minutes }} * 60;
-            const timerElement = document.getElementById('timer');
-            const timerElement1 = document.getElementById('timerB');
+            // var timeLeft = {{ $question->time_minutes }} * 60;
+            var timeLeft = sessionStorage.getItem('timerValue') || {{ $question->time_minutes }} * 60;
 
-            var optionsContainer = document.getElementById('optionContainer');
+            const timerElement = document.getElementById('timer');
+            // const timerElement1 = document.getElementById('timerB');
 
             function updateTimer() {
                 const minutes = Math.floor(timeLeft / 60);
                 const seconds = timeLeft % 60;
                 timerElement.textContent = ` ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-                timerElement1.textContent = ` ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 
                 if (timeLeft === 0) {
                     // optionsContainer.style.display = 'none';
@@ -265,11 +273,30 @@
                     submitForm();
                 } else {
                     timeLeft--;
+                    sessionStorage.setItem('timerValue', timeLeft); // Store the updated timer value
                 }
             }
-
-
             const timerInterval = setInterval(updateTimer, 1000);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             function submitForm() {
                 // Update the hidden input field with the selected options
@@ -315,6 +342,47 @@
                 clearInterval(timerInterval); // Stop the timer when the user manually submits the form
                 submitForm(); // Submit the form manually
             });
+
+
+
+            function submitWithTime() {
+                let endTime = document.getElementById('endTime').value;
+
+                var currentTime = new Date();
+
+                // Format the time (optional)
+                var hours = currentTime.getHours();
+                var minutes = currentTime.getMinutes();
+                var seconds = currentTime.getSeconds();
+
+                // Add leading zero if needed
+                hours = (hours < 10) ? "0" + hours : hours;
+                minutes = (minutes < 10) ? "0" + minutes : minutes;
+                seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+                // Display the current time
+                var submitTime = hours + ":" + minutes + ":" + seconds;
+                // console.log(`Current time: ${submitTime} and endTime is ${endTime}`);
+
+                if (endTime.trim() !== "") {
+
+                    if (submitTime >= endTime) {
+
+
+                        Swal.fire({
+                            icon: 'info',
+                            title: 'Time Up!',
+                            text: 'Your time has elapsed and the form will be submitted'
+                        });
+
+                        submitForm();
+                    }
+                }
+            }
+
+            // submitWithTime();
+
+            const checkInterval = setInterval(submitWithTime, 1000);
         });
     </script>
 

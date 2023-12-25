@@ -27,7 +27,7 @@
             document.addEventListener('DOMContentLoaded', function() {
                 Swal.fire({
                     icon: 'error',
-                    title: 'Not Found!',
+                    title: 'Deleted!',
                     text: '{{ session('message') }}'
                 });
             });

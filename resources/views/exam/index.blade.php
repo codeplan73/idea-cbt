@@ -1,27 +1,18 @@
 @extends('layouts.app_student')
 
-<script>
-    // Disable going back using browser navigation
-    history.pushState(null, null, document.URL);
-    window.addEventListener('popstate', function() {
-        history.pushState(null, null, document.URL);
-    });
-
-    document.addEventListener('contextmenu', function(e) {
-        // Prevent the default context menu from appearing
-        e.preventDefault();
-    });
-
-
-    // window.addEventListener('beforeunload', function(e) {
-    //     // Cancel the event
-    //     e.preventDefault();
-    //     // Chrome requires the following line
-    //     e.returnValue = '';
-    // });
-</script>
-
 @section('content')
+    <script>
+        // Disable going back and forward using browser navigation
+        history.pushState(null, null, document.URL);
+
+        window.addEventListener('popstate', function() {
+            history.pushState(null, null, document.URL);
+        });
+
+        window.onbeforeunload = function() {
+            return;
+        };
+    </script>
     <div class="content">
         @if (session('message'))
             <script>

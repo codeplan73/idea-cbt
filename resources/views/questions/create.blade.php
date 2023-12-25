@@ -186,7 +186,7 @@
                                 <div class="tom-select-custom">
                                     <label for="end_time" class="form-label">End Time</label>
                                     <input type="time" class="form-control @error('end_time') is-invalid @enderror"
-                                        name="end_time" id="minutes" required>
+                                        name="end_time" id="minutes">
 
                                     @error('end_time')
                                         <span class="invalid-feedback" role="alert">

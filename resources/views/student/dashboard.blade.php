@@ -91,23 +91,17 @@
                 });
             </script>
         @endif
-        {{-- @if (session('exammessage'))
+        @if (session('timeup'))
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
                     Swal.fire({
-                        icon: 'info',
-                        title: 'Congratulations!',
-                        text: '{{ session('exammessage') }}',
-                        confirmButtonText: 'OK',
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            // Log the user out
-                            window.location.href = '/student-logout'; // Replace with your logout URL
-                        }
+                        icon: 'warning',
+                        title: 'Exam Closed!',
+                        text: '{{ session('timeup') }}'
                     });
                 });
             </script>
-        @endif --}}
+        @endif
 
         <div class="card mb-3">
             <div class="card-body d-flex flex-wrap flex-between-center">

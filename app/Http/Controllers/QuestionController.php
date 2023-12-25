@@ -50,6 +50,7 @@ class QuestionController extends Controller
         } else {
             $newQuestionId = 101;
         }
+
         
         $data = $request->validate([
             'subject_teacher' => 'required',
@@ -63,9 +64,13 @@ class QuestionController extends Controller
             'class' => 'required',
             'subject' => 'required',
             'time_minutes' => 'required',
-            'end_time' => 'required',
+            // 'end_time' => 'required',
             'question_pdf' => ['required', new PdfDocValidationRule],
         ]);
+
+        $data['end_time'] = $request['end_time'];
+
+        // dd($data);
 
         if ($request->hasFile('question_pdf')) {
              $fileName = Str::slug($data['subject']) .'-' .$data['class'].'-'. $data['exam_type'].'-'. $data['term']. '.' . $request->file('question_pdf')->getClientOriginalExtension();
@@ -86,6 +91,7 @@ class QuestionController extends Controller
             $data[strtoupper($fieldName)] = $request->input($fieldName);
         }
 
+       
         Question::create($data);
 
         return redirect('/question')->with('message', 'Question created successfully');
@@ -120,6 +126,8 @@ class QuestionController extends Controller
 
     public function update(Request $request, Question $question)
     {
+
+        
         $data = $request->validate([
             'subject_teacher' => 'required',
             'total_question' => 'required',
@@ -132,8 +140,10 @@ class QuestionController extends Controller
             'alloted_mark' => 'required',
             'total_mark' => 'required',
             'time_minutes' => 'required',
-            'end_time' => 'required',
         ]);
+
+        $data['end_time'] = $request->end_time;
+        
 
         if ($request->hasFile('question_pdf')) {
             if ($question->question_pdf && Storage::disk('public')->exists($question->question_pdf)) {

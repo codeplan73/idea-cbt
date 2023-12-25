@@ -7,6 +7,7 @@ use App\Models\Answer;
 use App\Models\Question;
 use App\Models\QuestionCode;
 use App\Models\Result; 
+use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,6 +18,8 @@ class AnswerController extends Controller
      */
     public function index()
     {
+        // dd('show exam take exam');
+
         $student_class = Auth::guard('student')->user()->Student_Class;
     
         $examCode = QuestionCode::where('class', $student_class)->first();
@@ -30,6 +33,55 @@ class AnswerController extends Controller
             return redirect('/student')->with('noexam', 'Sorry no question set for your class currently');
         }
     } 
+
+   
+ 
+    public function create()
+    {
+        $currentTime = Carbon::now();
+
+        $examEndTime = $currentTime->format('H:i:s');
+
+        $student_class = Auth::guard('student')->user()->Student_Class;
+        $student_id = Auth::guard('student')->user()->Student_ID;
+    
+        $examCode = QuestionCode::where('class', $student_class)->first();
+        $questionCode = $examCode->question_code;
+
+        $question = Question::where('question_id', $questionCode)->where('class', $student_class)->first();
+
+        $answer = Answer::where('student_id', $student_id)->first();
+
+        if(!$answer){
+             return redirect('/student');
+        }else{
+            // if($examEndTime >= $question->end_time)
+            // {
+            //     if($question){
+            //         return view('exam.create', ['question' => $question]);
+            //     }else {
+            //         return redirect('/student')->with('noexam', 'Sorry no question set for your class currently');
+            //     }
+            // }else{
+            //     // return redirect('/student')->with('noexam', 'Sorry you are late for this Exam/Test');
+            //     return redirect('/student')->with('timeup', 'Sorry you are late for this Exam/Test');
+            // }
+
+
+            if($question){
+                return view('exam.create', ['question' => $question]);
+                // if($examEndTime >= $question->end_time){
+                //     return view('exam.create', ['question' => $question]);
+                // }elseif($question->end_time == null){
+                //     return view('exam.create', ['question' => $question]);
+                // }else{
+                //     return redirect('/student')->with('timeup', 'Sorry you are late for this Exam/Test');
+                // }
+            }else {
+                return redirect('/student')->with('noexam', 'Sorry no question set for your class currently');
+            }
+        }       
+    }
 
     public function answersList()
     {
@@ -46,32 +98,6 @@ class AnswerController extends Controller
         }else{
             return back()->with('message', 'Answer not found');
         }
-    }
- 
-    public function create()
-    {
-        session(['exam_start_time' => now()]);
-        // dd('Show exam page');
-
-        $student_class = Auth::guard('student')->user()->Student_Class;
-        $student_id = Auth::guard('student')->user()->Student_ID;
-    
-        $examCode = QuestionCode::where('class', $student_class)->first();
-        $questionCode = $examCode->question_code;
-
-        $question = Question::where('question_id', $questionCode)->where('class', $student_class)->first();
-
-        $answer = Answer::where('student_id', $student_id)->first();
-
-        if(!$answer){
-             return redirect('/student');
-        }else{
-             if($question){
-            return view('exam.create', ['question' => $question]);
-            }else {
-                return redirect('/student')->with('noexam', 'Sorry no question set for your class currently');
-            }
-        }       
     }
 
     public function store(Request $request)
