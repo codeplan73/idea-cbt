@@ -164,7 +164,7 @@
                                             <td>{{ $student->Student_ID }}</td>
                                             <td>{{ $student->Fullnames }}</td>
                                             <td>{{ $student->Student_Class }}</td>
-                                            <td>{{ $student->plain_password }}</td>
+                                            <td>{{ $student->Plain_Password }}</td>
                                             <td>{{ $student->Current_Status }}</td>
                                             <td>{{ $student->Phone_Number }}</td>
                                             <td>{{ $student->Student_Pin }}</td>
