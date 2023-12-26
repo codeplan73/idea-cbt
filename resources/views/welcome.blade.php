@@ -131,21 +131,21 @@
                             <div class="info-box">
                                 <i class="bi bi-geo-alt"></i>
                                 <h3>Address</h3>
-                                <p>Hira Comprehensive College, <br /> Iyakpi, South Ibie, Edo State</p>
+                                <p>El-Amin College of Modern Sciences, <br /> No:5 Darus-Salam, Aviele Ubiane, Edo State</p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="info-box">
                                 <i class="bi bi-telephone"></i>
                                 <h3>Call Us</h3>
-                                <p>+234-803 6398 734<br>+234-813 1231 252</p>
+                                <p>+234-8036398734<br>++234-7064873912</p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="info-box">
                                 <i class="bi bi-envelope"></i>
                                 <h3>Email Us</h3>
-                                <p>aamin.hira@gmail.com<br>hiracollege2007@gmail.com</p>
+                                <p>aamin.hira@gmail.com<br>elamincollege2022@gmail.com</p>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -188,7 +188,6 @@
 
                         </div>
                     </form>
-
                 </div>
 
             </div>
