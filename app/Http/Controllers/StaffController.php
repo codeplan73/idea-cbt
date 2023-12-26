@@ -37,7 +37,7 @@ class StaffController extends Controller
             'Current_Status' => $data['Current_Status'],
         ]);
 
-        return redirect('/home')->with('message', 'Students Password Updated Successfully');
+        return redirect('/home')->with('message', 'Students Status Activated Successfully');
             
     }
 
@@ -52,6 +52,7 @@ class StaffController extends Controller
         // dd('update password');
 
         $data = $request->validate([
+            'Current_Status' => ['required'],
             'class' => ['required'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
@@ -59,14 +60,15 @@ class StaffController extends Controller
         // Hash the common password
         $hashedPassword = bcrypt($data['password']);
 
-        // if($data['Current_Status'] =='Left' || $data['Current_Status'] == 'Graduated'){
-        //     return back()->with('error', 'You can only set password and active status for Active and Inactive Student');
-        // }
+        if($data['Current_Status'] =='Left' || $data['Current_Status'] == 'Graduated'){
+            return back()->with('error', 'You can only set password and active status for Active and Inactive Student');
+        }
 
         // Update password and plain_password for all students
         $affectedRows = Student::where('Student_Class', $data['class'])
         ->whereNotIn('Current_Status', ['Graduated', 'Left'])
         ->update([
+            'Current_Status' => $data['Current_Status'],
             'password' => $hashedPassword,
             'plain_password' => $data['password'],
         ]);
