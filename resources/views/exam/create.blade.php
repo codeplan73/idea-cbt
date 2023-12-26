@@ -242,20 +242,10 @@
 
 
 
-
-
-
-
-
-
-
-
             // Countdown timer logic
-            // var timeLeft = {{ $question->time_minutes }} * 60;
             var timeLeft = sessionStorage.getItem('timerValue') || {{ $question->time_minutes }} * 60;
 
             const timerElement = document.getElementById('timer');
-            // const timerElement1 = document.getElementById('timerB');
 
             function updateTimer() {
                 const minutes = Math.floor(timeLeft / 60);
@@ -270,6 +260,7 @@
                         var questionNumber = currentQuestion;
                         selectedOptions[questionNumber] = selectedOption;
                     }
+                    sessionStorage.clear();
                     submitForm();
                 } else {
                     timeLeft--;
@@ -282,23 +273,8 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             function submitForm() {
+                sessionStorage.clear();
                 // Update the hidden input field with the selected options
                 document.getElementById('answersInput').value = JSON.stringify(correctAnswers);
                 document.getElementById('selectedOptionsInput').value = JSON.stringify(selectedOptions);
@@ -343,8 +319,6 @@
                 submitForm(); // Submit the form manually
             });
 
-
-
             function submitWithTime() {
                 let endTime = document.getElementById('endTime').value;
 
@@ -379,8 +353,6 @@
                     }
                 }
             }
-
-            // submitWithTime();
 
             const checkInterval = setInterval(submitWithTime, 1000);
         });
