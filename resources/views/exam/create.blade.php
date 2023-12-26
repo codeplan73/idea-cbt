@@ -20,10 +20,10 @@
                 <div class="col-lg-12 col-md-12 order-md-first order-sm-last">
                     <div class="card h-100">
                         <div class="card-header bg-body-tertiary d-flex flex-between-center py-2">
-                            <h6 class="mb-0">Exam Question Board</h6>
+                            <h6 class="mb-0">Exam Questions</h6>
                             <div class="d-flex flex-between-center">
-                                <h6>Time Left: </h6>
-                                <h6 id="timer" class="text-center fw-bold"></h6>
+                                <h5>Time Left: </h5>
+                                <h5 id="timer" class="text-center fw-bold"></h5>
                             </div>
                         </div>
                         <div class="card-body">

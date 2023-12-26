@@ -128,9 +128,15 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/setup/{setup}', [SetupController::class, 'update'])->name('setup.update');
     Route::delete('/setup/{setup}', [SetupController::class, 'destroy'])->name('setup.destroy');
 
-    // manage staff
-    Route::get('/set-password', [StaffController::class, 'create'])->name('staff.create');
-    Route::post('/password', [StaffController::class, 'updatePassword'])->name('staff.updatePassword');
+    // manage staff and student
+    Route::get('/status', [StaffController::class, 'create'])->name('staff.create');
+    Route::post('/status', [StaffController::class, 'updateStatus'])->name('staff.updateStatus');
+
+    Route::get('/password', [StaffController::class, 'password'])->name('staff.password');
+    Route::post('/password', [StaffController::class, 'updateStudentPassword'])->name('staff.updateStudentPassword');
+
+   
+
     Route::get('/set-staff-password', [StaffController::class, 'createStaffPassword'])->name('staff.set-staff-password');
     Route::post('/staff-password', [StaffController::class, 'updateStaffPassword'])->name('staff.updateStaffPassword');
     Route::get('/staff/{staff}/edit', [StaffController::class, 'edit'])->name('staff.edit');

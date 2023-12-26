@@ -186,14 +186,21 @@
                              <li class="nav-item">
                                  <a class="nav-link" href="/set-staff-password">
                                      <div class="d-flex align-items-center">
-                                         <span class="nav-link-text">Staff Password</span>
+                                         <span class="nav-link-text"> Set Staff Password</span>
                                      </div>
                                  </a><!-- more inner pages-->
                              </li>
                              <li class="nav-item">
-                                 <a class="nav-link" href="/set-password">
+                                 <a class="nav-link" href="/password">
                                      <div class="d-flex align-items-center">
-                                         <span class="nav-link-text">Student Password</span>
+                                         <span class="nav-link-text">Set Student Password</span>
+                                     </div>
+                                 </a><!-- more inner pages-->
+                             </li>
+                             <li class="nav-item">
+                                 <a class="nav-link" href="/status">
+                                     <div class="d-flex align-items-center">
+                                         <span class="nav-link-text">Set Class Status</span>
                                      </div>
                                  </a><!-- more inner pages-->
                              </li>
