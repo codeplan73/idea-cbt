@@ -21,7 +21,7 @@
                          class="toggle-line"></span></span></button>
          </div><a class="navbar-brand" href="/home">
              <div class="d-flex align-items-center py-3"><img class="me-2" src="{{ asset('assets/logo/logo.png') }}"
-                     alt="" width="40" /><span class="font-sans-serif text-primary">El-Amin CBT</span></div>
+                     alt="" width="40" /><span class="font-sans-serif text-primary">IDEA CBT</span></div>
          </a>
      </div>
 
