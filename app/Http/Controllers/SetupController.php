@@ -8,7 +8,7 @@ use App\Rules\PdfDocValidationRule;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-class SetupController extends Controller
+class SetupController extends Controller 
 {
     /**
      * Display a listing of the resource.

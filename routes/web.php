@@ -119,7 +119,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/manage-student/{student}/edit', [ StudentController::class, 'edit'])->name('manage.edit');
     Route::put('/manage-student/{student}', [ StudentController::class, 'update'])->name('manage.update');
     Route::delete('/manage-student/{student}', [ StudentController::class, 'destroy'])->name('manage.delete');
- 
+  
     // homepage section
     Route::get('/setup', [SetupController::class, 'index'])->name('setup.index');
     Route::get('/setup-create', [SetupController::class, 'create'])->name('setup.create');
@@ -160,10 +160,10 @@ Route::middleware(['auth'])->group(function () {
 
 
 // Student Registration Routes
-Route::get('/student-register', [StudentController::class, 'showRegistrationForm'])->name('student.register');
+Route::get('/student-register', [StudentController::class, 'showRegistrationForm'])->name('student.showRegister');
 Route::post('/student-register', [StudentController::class, 'register'])->name('student.register');
 
-Route::get('/student-login', [StudentController::class, 'showLoginForm'])->name('student.login');
+Route::get('/student-login', [StudentController::class, 'showLoginForm'])->name('student.showLogin');
 Route::post('/student-login', [StudentController::class, 'login'])->name('student.login');
 
 Route::middleware(['auth:student'])->group(function () {
