@@ -55,7 +55,7 @@
                                         {{-- @if (auth()->user()->role == 'staff' || auth()->user()->role == 'admin') --}}
                                         <div style="display: flex; align-items:center; gap:5px;">
                                             <a href="/videos/{{ $video->id }}/show" class="p-0 btn btn-link"
-                                                data-bs-toggle="tooltip" data-bs-placement="top" title="Read">
+                                                data-bs-toggle="tooltip" data-bs-placement="top" title="View">
                                                 <span class="text-500 fas fa-book"></span>
                                             </a>
                                             <a href="/videos/{{ $video->id }}/edit" class="p-0 btn btn-link"

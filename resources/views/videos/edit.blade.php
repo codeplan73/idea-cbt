@@ -10,24 +10,23 @@
             </div>
         </div>
     </div>
-    @if (session('message'))
+    @if (session('error'))
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 Swal.fire({
-                    icon: 'success',
-                    title: 'Good job!',
-                    text: '{{ session('message') }}'
+                    icon: 'info',
+                    title: 'Alert!',
+                    text: '{{ session('error') }}'
                 });
             });
         </script>
     @endif
 
 
-
-
     <div class="card-body">
         <form action="/videos/{{ $video->id }}" method="post" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <!-- Form -->
             <div class="mb-4 row gx-3 gy-3">
                 <div class="mb-2 col-sm-12 mb-sm-0">
@@ -120,8 +119,6 @@
                         @enderror
                     </div>
                 </div>
-
-
 
                 <div class="mb-2 col-sm-6 mb-sm-0">
                     <div class="tom-select-custom">

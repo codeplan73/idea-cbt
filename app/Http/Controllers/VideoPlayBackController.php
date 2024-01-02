@@ -93,7 +93,7 @@ class VideoPlayBackController extends Controller
      */
     public function update(Request $request, VideoPlayBack $videoPlayBack)
     {
-        //
+        dd($request->all());
     }
 
     /**
