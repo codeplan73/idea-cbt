@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\VideoPlayBack;
 use Illuminate\Http\Request;
 
+use App\Rules\VideoValidationRule;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+
 class VideoPlayBackController extends Controller
 {
     /**
@@ -21,7 +25,7 @@ class VideoPlayBackController extends Controller
      */
     public function create()
     {
-        //
+        return view('videos.create');
     }
 
     /**
@@ -29,7 +33,31 @@ class VideoPlayBackController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'title' => 'required',
+            'start_date' => 'required',
+            'start_time' => 'required',
+            'video_file' => ['required', new VideoValidationRule],
+        ]); 
+
+        $videoPlayBack = new VideoPlayBack;
+
+        if ($request->hasFile('video_file')) {
+            $fileName = Str::slug($data['title']) . '.' . $request->file('video_file')->getClientOriginalExtension();
+
+            $video_file = $request->file('video_file');
+            $video_file_Path = $video_file->storeAs('video_file', $fileName, 'public');
+        }
+
+        $videoPlayBack->title = $data['title'];
+        $videoPlayBack->start_date = $data['start_date'];
+        $videoPlayBack->start_time = $data['start_time'];
+        $videoPlayBack->video = $video_file_Path;
+
+        $videoPlayBack->save();
+
+        return redirect('/videos')->with('message', 'Video Lesson Created Successfully');
+
     }
 
     /**

@@ -157,6 +157,8 @@ Route::middleware(['auth'])->group(function () {
 
     // Video lessons
     Route::get('/videos', [VideoPlayBackController::class, 'index'])->name('videos.index');
+    Route::get('/video-create', [VideoPlayBackController::class, 'create'])->name('videos.create');
+    Route::post('/videos', [VideoPlayBackController::class, 'store'])->name('videos.store');
 });
  
 
