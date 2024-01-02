@@ -5,11 +5,9 @@
         <div class="col-lg-12 pe-lg-2">
             <div class="mb-3 card">
                 <div class="card-header bg-body-tertiary">
-                    <h6 class="mb-0">Video Lesson Details</h6>
+                    <h5 class="mb-2">Video Lesson Details</h5>
                 </div>
                 <div class="card-body">
-
-
                     <div class="mb-4 row">
                         <div class="col mb-sm-0">
                             <div class="tom-select-custom">
@@ -33,10 +31,8 @@
                         </div>
 
                         <div class="col-12">
-                            {{-- <embed src="{{ url('storage/' . $video->video) }}" width="100%" height="500px" /> --}}
-
                             <video width="100%" height="500px" controls>
-                                <source src="{{ url('storage/' . $video->video) }}" type="video/mp4">
+                                <source src="{{ url('storage/' . $video->video) }}" type="video/{{ $video->file_type }}">
                                 Your browser does not support the video tag.
                             </video>
                         </div>

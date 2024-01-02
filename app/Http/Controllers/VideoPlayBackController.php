@@ -50,6 +50,8 @@ class VideoPlayBackController extends Controller
         if ($request->hasFile('video_file')) {
             $fileName = Str::slug($data['topic']) .'-'. $data['subject'] .'-'. $data['class']. '.' . $request->file('video_file')->getClientOriginalExtension();
 
+            $fileType = $request->file('video_file')->getClientOriginalExtension();
+
             $video_file = $request->file('video_file');
             $video_file_Path = $video_file->storeAs('video_file', $fileName, 'public');
         }
@@ -61,6 +63,7 @@ class VideoPlayBackController extends Controller
         $videoPlayBack->term = $data['term'];
         $videoPlayBack->start_date = $data['start_date'];
         $videoPlayBack->start_time = $data['start_time'];
+        $videoPlayBack->file_type = $fileType;
         $videoPlayBack->video = $video_file_Path;
 
         $videoPlayBack->save();
