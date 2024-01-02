@@ -13,10 +13,14 @@ return new class extends Migration
     {
         Schema::create('video_play_backs', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('video');
+            $table->string('topic');
+            $table->string('subject');
+            $table->string('week');
+            $table->string('class');
+            $table->string('term');
             $table->date('start_date');
             $table->time('start_time');
+            $table->string('video');
             $table->timestamps();
         });
     }

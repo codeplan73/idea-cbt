@@ -3,7 +3,7 @@
 @section('content')
     <div class="row g-0">
         <div class="col-lg-12 pe-lg-2">
-            <div class="card mb-3">
+            <div class="mb-3 card">
                 <div class="card-body">
                     <div class="row flex-between-center">
                         <div class="col-md">
@@ -16,7 +16,7 @@
     </div>
     <div class="row g-0">
         <div class="col-lg-12 pe-lg-2">
-            <div class="card mb-3">
+            <div class="mb-3 card">
                 <div class="card-header bg-body-tertiary">
                     <h6 class="mb-0">Note information</h6>
                 </div>
@@ -25,7 +25,7 @@
                         @csrf
                         <!-- Form -->
 
-                        <div class="row mb-4">
+                        <div class="mb-4 row">
                             <div class="col-md-6 mb-sm-0">
                                 <div class="tom-select-custom">
                                     <div class="">
@@ -63,9 +63,8 @@
                                         </span>
                                     @enderror
                                 </div>
-
-
                             </div>
+
                             <div class="col-sm-6 mb-sm-0">
                                 <div class="tom-select-custom">
                                     <label for="subject" class="form-label">Term</label>
