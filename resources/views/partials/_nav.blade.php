@@ -20,14 +20,14 @@
                  data-bs-placement="left" title="Toggle Navigation"><span class="navbar-toggle-icon"><span
                          class="toggle-line"></span></span></button>
          </div><a class="navbar-brand" href="/home">
-             <div class="d-flex align-items-center py-3"><img class="me-2" src="{{ asset('assets/logo/logo.png') }}"
+             <div class="py-3 d-flex align-items-center"><img class="me-2" src="{{ asset('assets/logo/logo.png') }}"
                      alt="" width="40" /><span class="font-sans-serif text-primary">IDEA CBT</span></div>
          </a>
      </div>
 
      <div class="collapse navbar-collapse" id="navbarVerticalCollapse">
          <div class="navbar-vertical-content scrollbar">
-             <ul class="navbar-nav flex-column mb-3" id="navbarVerticalNav">
+             <ul class="mb-3 navbar-nav flex-column" id="navbarVerticalNav">
                  <li class="nav-item">
                      <!-- parent pages--><a class="nav-link" href="/home" aria-expanded="true"
                          aria-controls="dashboard">
@@ -54,6 +54,12 @@
                          <a class="nav-link " href="/book" data-placement="left">
                              <i class="fa-solid fa-book nav-icon"></i>
                              <span class="nav-link-title">Set E-Book</span>
+                         </a>
+                     </div>
+                     <div class="nav-item">
+                         <a class="nav-link " href="/videos" data-placement="left">
+                             <i class="fa-solid fa-video nav-icon"></i>
+                             <span class="nav-link-title">Video Lesson</span>
                          </a>
                      </div>
                      @if (auth()->user()->role === 'admin')
@@ -115,8 +121,8 @@
                              </li>
                          </ul>
 
-                         <a class="nav-link dropdown-indicator" href="#result" role="button" data-bs-toggle="collapse"
-                             aria-expanded="false" aria-controls="result">
+                         <a class="nav-link dropdown-indicator" href="#result" role="button"
+                             data-bs-toggle="collapse" aria-expanded="false" aria-controls="result">
                              <div class="d-flex align-items-center">
                                  <span class="nav-link-icon">
                                      <i class="fa-solid fa-square-poll-vertical nav-icon"></i></span>

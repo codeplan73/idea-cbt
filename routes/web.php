@@ -19,6 +19,7 @@ use App\Http\Controllers\CheckResultController;
 use App\Http\Controllers\DeleteAnswersController;
 use App\Http\Controllers\SMSController;
 use App\Http\Controllers\BackDoorLogin;
+use App\Http\Controllers\VideoPlayBackController;
 
 /*
 |--------------------------------------------------------------------------
@@ -135,8 +136,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/password', [StaffController::class, 'password'])->name('staff.password');
     Route::post('/password', [StaffController::class, 'updateStudentPassword'])->name('staff.updateStudentPassword');
 
-   
-
     Route::get('/set-staff-password', [StaffController::class, 'createStaffPassword'])->name('staff.set-staff-password');
     Route::post('/staff-password', [StaffController::class, 'updateStaffPassword'])->name('staff.updateStaffPassword');
     Route::get('/staff/{staff}/edit', [StaffController::class, 'edit'])->name('staff.edit');
@@ -155,6 +154,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/set-result', [CheckResultController::class, 'showSetResult']);
     Route::get('/set-result/{cterm}/edit', [CheckResultController::class, 'edit']);
     Route::post('/set-result', [CheckResultController::class, 'update'])->name('set-result-update');
+
+    // Video lessons
+    Route::get('/videos', [VideoPlayBackController::class, 'index'])->name('videos.index');
 });
  
 
