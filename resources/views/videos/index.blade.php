@@ -52,21 +52,25 @@
                                     <td>{{ $video->class }}</td>
                                     <td>{{ $video->video }}</td>
                                     <td class="text-end">
-                                        @if (auth()->user()->role == 'staff' || auth()->user()->role == 'admin')
-                                            <div style="display: flex; align-items:center;">
-                                                <a href="/videos/{{ $video->id }}/edit" class="p-0 btn btn-link"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
-                                                    <span class="text-500 fas fa-edit"></span>
-                                                </a>
-                                                <form action="/videos/{{ $video->id }}" method="post">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button class="p-0 btn btn-link ms-2" data-bs-toggle="tooltip"
-                                                        data-bs-placement="top" title="Delete"><span
-                                                            class="text-500 fas fa-trash-alt"></span></button>
-                                                </form>
-                                            </div>
-                                        @endif
+                                        {{-- @if (auth()->user()->role == 'staff' || auth()->user()->role == 'admin') --}}
+                                        <div style="display: flex; align-items:center; gap:5px;">
+                                            <a href="/videos/{{ $video->id }}/show" class="p-0 btn btn-link"
+                                                data-bs-toggle="tooltip" data-bs-placement="top" title="Read">
+                                                <span class="text-500 fas fa-book"></span>
+                                            </a>
+                                            <a href="/videos/{{ $video->id }}/edit" class="p-0 btn btn-link"
+                                                data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+                                                <span class="text-500 fas fa-edit"></span>
+                                            </a>
+                                            <form action="/videos/{{ $video->id }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="p-0 btn btn-link" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" title="Delete"><span
+                                                        class="text-500 fas fa-trash-alt"></span></button>
+                                            </form>
+                                        </div>
+                                        {{-- @endif --}}
                                     </td>
                                 </tr>
                             @endforeach

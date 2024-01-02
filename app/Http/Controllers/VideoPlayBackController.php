@@ -71,17 +71,21 @@ class VideoPlayBackController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(VideoPlayBack $videoPlayBack)
+    public function show(VideoPlayBack $video)
     {
-        //
+        return view('videos.show', ['video' => $video]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(VideoPlayBack $videoPlayBack)
+    public function edit(VideoPlayBack $video)
     {
-        //
+        $systems = System::all();
+        return view('videos.edit', [
+            'systems' => $systems,
+            'video' => $video,
+        ]);
     }
 
     /**

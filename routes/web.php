@@ -159,6 +159,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/videos', [VideoPlayBackController::class, 'index'])->name('videos.index');
     Route::get('/video-create', [VideoPlayBackController::class, 'create'])->name('videos.create');
     Route::post('/videos', [VideoPlayBackController::class, 'store'])->name('videos.store');
+    Route::get('/videos/{video}/show', [VideoPlayBackController::class, 'show'])->name('videos.show');
+    Route::get('/videos/{video}/edit', [VideoPlayBackController::class, 'edit'])->name('videos.edit');
+    Route::put('/videos/{video}', [VideoPlayBackController::class, 'update'])->name('videos.update');
 });
  
 
