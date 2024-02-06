@@ -22,8 +22,10 @@
                         <div class="card-header bg-body-tertiary d-flex flex-between-center py-2">
                             <h6 class="mb-0">Exam Questions</h6>
                             <div class="d-flex flex-between-center">
-                                <h5>Time Left: </h5>
-                                <h5 id="timer" class="text-center fw-bold"></h5>
+                                <h5>Stop-Time: </h5>
+                                <h5 id="timerB" class="text-center fw-bold">
+                                    {{ $question->end_time }}
+                                </h5>
                             </div>
                         </div>
                         <div class="card-body">
@@ -86,10 +88,13 @@
                                             </button>
                                             @if (!empty($question->end_time))
                                                 <div class="d-flex flex-between-center">
-                                                    <h5>Stop-Time: </h5>
+                                                    {{-- <h5>Stop-Time: </h5>
                                                     <h5 id="timerB" class="text-center fw-bold">
                                                         {{ $question->end_time }}
-                                                    </h5>
+                                                    </h5> --}}
+
+                                                    <h5>Time Left: </h5>
+                                                    <h5 id="timer" class="text-center fw-bold"></h5>
                                                 </div>
                                             @endif
                                         </div>
@@ -165,8 +170,10 @@
                         <div class="card-header bg-body-tertiary d-flex flex-between-center py-2">
                             <h6 class="mb-0">Exam Question Board</h6>
                             <div class="d-flex flex-between-center">
-                                <h6>Time Left: </h6>
-                                <h6 id="timer-theory" class="text-center fw-bold"></h6>
+                                <h5>Stop-Time: </h5>
+                                <h5 id="timerB" class="text-center fw-bold">
+                                    {{ $question->end_time }}
+                                </h5>
                             </div>
                         </div>
                         <div class="card-body">
@@ -178,10 +185,14 @@
                                     </div>
                                     <div class="d-flex flex-between-center pt-3 align-items-center">
                                         <a class="btn btn-outline-warning mt-4" href="/student-logout">Close Exam</a>
-                                        <div class="d-flex flex-between-center align-items-center">
-                                            <h5>Time: </h5>
-                                            <button type="button" id="timerT"
-                                                class="btn btn-outline-warning mt-4"></button>
+                                        <div class="d-flex flex-between-center align-items-center mt-4"
+                                            style="border:1px solid orange; color:orange; padding: 5px; border-radius: 5px; margin-top: 20px;">
+                                            <h5 class="text-warning">Time: </h5>
+                                            <h5 id="timer-theory" class="text-center text-warning"></h5>
+
+                                            {{-- <h6>Time Left: </h6> --}}
+                                            {{-- <button type="button" id="timer-theory"
+                                                class="btn btn-outline-warning mt-4"></button> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -237,11 +248,6 @@
             populateOptions(currentQuestion);
             var optionsContainer = document.getElementById('optionContainer');
 
-
-
-
-
-
             // Countdown timer logic
             var timeLeft = sessionStorage.getItem('timerValue') || {{ $question->time_minutes }} * 60;
 
@@ -268,9 +274,6 @@
                 }
             }
             const timerInterval = setInterval(updateTimer, 1000);
-
-
-
 
 
             function submitForm() {
@@ -360,24 +363,26 @@
 
     <script>
         // JavaScript logic for countdown timer
-        let timeLeft = {{ $question->time_minutes }} * 60; // Convert minutes to seconds
+        var timeLeft = sessionStorage.getItem('timerValue') || {{ $question->time_minutes }} * 60;
+
         const timerElement = document.getElementById('timer-theory');
-        const timerElement2 = document.getElementById('timerT');
+        // const timerElement2 = document.getElementById('timerT');
 
         function updateTimer() {
             const minutes = Math.floor(timeLeft / 60);
             const seconds = timeLeft % 60;
             timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-            timerElement2.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            // timerElement2.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 
             if (timeLeft === 0) {
                 window.location.href = "/student-logout";
+                sessionStorage.clear();
                 window.history.forward();
             } else {
                 timeLeft--;
+                sessionStorage.setItem('timerValue', timeLeft);
             }
         }
-
         const timerInterval = setInterval(updateTimer, 1000);
     </script>
 

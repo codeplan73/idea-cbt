@@ -51,6 +51,34 @@
     <script src="{{ asset('node_modules/pdfjs-dist/build/pdf.js') }}"></script>
 
     <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // Disable right-click on the entire document
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+            });
+
+            // Disable copy event
+            document.addEventListener('copy', function(e) {
+                e.preventDefault();
+                alert('Copying is disabled on this webpage.');
+            });
+
+            // Disable keyboard shortcuts for copy, paste, and save
+            document.addEventListener('keydown', function(e) {
+                // Check for CTRL+C, CTRL+V, CTRL+S (and command key for Mac)
+                if ((e.ctrlKey || e.metaKey) && (e.key === 'c' || e.key === 'v' || e.key === 's')) {
+                    e.preventDefault();
+                    alert(`Shortcut for ${e.key.toUpperCase()} is disabled.`);
+                }
+                // Optional: Disable CTRL+P for printing
+                if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+                    e.preventDefault();
+                    alert('Printing is disabled on this webpage.');
+                }
+            });
+        });
+
+
         // Function to render PDF using PDF.js
         function renderPDF(url, canvasContainer) {
             pdfjsLib.getDocument(url).promise.then(pdf => {

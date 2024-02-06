@@ -216,7 +216,7 @@
                              data-bs-toggle="collapse" aria-expanded="false" aria-controls="system">
                              <div class="d-flex align-items-center">
                                  <span class="nav-link-icon"><i class="fa-brands fa-ubuntu"></i></span><span
-                                     class="nav-link-text ps-1">System</span>
+                                     class="nav-link-text ps-1">System Settings</span>
                              </div>
                          </a>
                          <ul class="nav collapse" id="system">
@@ -230,14 +230,14 @@
                              <li class="nav-item">
                                  <a class="nav-link" href="/setup">
                                      <div class="d-flex align-items-center">
-                                         <span class="nav-link-text ps-1">General Info</span>
+                                         <span class="nav-link-text ps-1">Bulletin Settings</span>
                                      </div>
                                  </a><!-- more inner pages-->
                              </li>
                              <li class="nav-item">
                                  <a class="nav-link" href="/set-result">
                                      <div class="d-flex align-items-center">
-                                         <span class="nav-link-text ps-1">Set Result</span>
+                                         <span class="nav-link-text ps-1">Result Settings</span>
                                      </div>
                                  </a><!-- more inner pages-->
                              </li>

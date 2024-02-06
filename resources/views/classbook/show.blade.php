@@ -29,8 +29,12 @@
                                     <div class="col-12 mb-2 p-3">
 
                                         <div class="col-12 mb-2">
-                                            <iframe id="pdfViewer" src="{{ url('storage/' . $book->book_pdf) }}"
+                                            {{-- <iframe id="pdfViewer" src="{{ url('storage/' . $book->book_pdf) }}"
+                                                style="width: 100%; height: 500px;" frameborder="0"></iframe> --}}
+
+                                            <iframe id="pdfViewer" src="{{ url('storage/' . $book->book_pdf) }}#toolbar=1"
                                                 style="width: 100%; height: 500px;" frameborder="0"></iframe>
+
                                         </div>
 
                                     </div>
