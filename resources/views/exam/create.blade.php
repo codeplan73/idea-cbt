@@ -20,12 +20,12 @@
                 <div class="col-lg-12 col-md-12 order-md-first order-sm-last">
                     <div class="card h-100">
                         <div class="card-header bg-body-tertiary d-flex flex-between-center py-2">
-                            <h6 class="mb-0">Exam Questions</h6>
-                            <div class="d-flex flex-between-center">
-                                <h5>Stop-Time: </h5>
-                                <h5 id="timerB" class="text-center fw-bold">
-                                    {{ $question->end_time }}
-                                </h5>
+                            <h6 class="mb-0">Objective</h6>
+                            <div class="d-flex flex-between-center gap-1">
+                                <h6>Stop-Time: </h6>
+                                <h6 id="timerB" class="text-center fw-bold">
+                                    {{ ' ' . $question->end_time }}
+                                </h6>
                             </div>
                         </div>
                         <div class="card-body">
@@ -87,14 +87,14 @@
                                                 Submit
                                             </button>
                                             @if (!empty($question->end_time))
-                                                <div class="d-flex flex-between-center">
+                                                <div class="d-flex flex-between-center gap-1">
                                                     {{-- <h5>Stop-Time: </h5>
                                                     <h5 id="timerB" class="text-center fw-bold">
                                                         {{ $question->end_time }}
                                                     </h5> --}}
 
                                                     <h5>Time Left: </h5>
-                                                    <h5 id="timer" class="text-center fw-bold"></h5>
+                                                    <h5 id="timer" class="text-center fw-bold "></h5>
                                                 </div>
                                             @endif
                                         </div>
@@ -168,12 +168,12 @@
                 <div class="col-lg-12 col-md-12 order-md-first order-sm-last">
                     <div class="card h-100">
                         <div class="card-header bg-body-tertiary d-flex flex-between-center py-2">
-                            <h6 class="mb-0">Exam Question Board</h6>
-                            <div class="d-flex flex-between-center">
-                                <h5>Stop-Time: </h5>
-                                <h5 id="timerB" class="text-center fw-bold">
-                                    {{ $question->end_time }}
-                                </h5>
+                            <h6 class="mb-0">Theory</h6>
+                            <div class="d-flex flex-between-center gap-1">
+                                <h6>Stop-Time: </h5>
+                                    <h6 id="timerB" class="text-center fw-bold">
+                                        {{ $question->end_time }}
+                                    </h6>
                             </div>
                         </div>
                         <div class="card-body">
@@ -184,7 +184,7 @@
                                             style="width: 100%; height: 425px;" frameborder="0"></iframe>
                                     </div>
                                     <div class="d-flex flex-between-center pt-3 align-items-center">
-                                        <a class="btn btn-outline-warning mt-4" href="/student-logout">Close Exam</a>
+                                        <a class="btn btn-outline-warning mt-4" href="/student-logout">Close</a>
                                         <div class="d-flex flex-between-center align-items-center mt-4"
                                             style="border:1px solid orange; color:orange; padding: 5px; border-radius: 5px; margin-top: 20px;">
                                             <h5 class="text-warning">Time: </h5>

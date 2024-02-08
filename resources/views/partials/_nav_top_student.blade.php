@@ -4,7 +4,7 @@
          aria-label="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
      <a class="navbar-brand me-1 me-sm-3" href="/student">
          <div class="d-flex align-items-center"><img class="me-2" src="{{ asset('assets/logo/logo.png') }}"
-                 alt="" width="40" /><span class="font-sans-serif text-primary">IDEA CBT</span></div>
+                 alt="" width="40" /><span class="font-sans-serif text-primary">Hira CBT</span></div>
      </a>
 
      <ul class="navbar-nav navbar-nav-icons ms-auto flex-row align-items-center mr-6"
