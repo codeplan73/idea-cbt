@@ -26,7 +26,6 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card mb-3">
-
                 <div class="card-body">
                     <table class="table mb-0 data-table fs--1" data-datatables="data-datatables">
                         <thead class="bg-200">
@@ -44,7 +43,7 @@
                                 <tr>
                                     <td>{{ $cterm->Current_Session }}</td>
                                     <td>{{ $cterm->Current_Term }}</td>
-                                    <td>{{ $cterm->branch }}</td>
+                                    <td>{{ $cterm->Branch }}</td>
                                     <td>{{ $cterm->Current_Status }}</td>
                                     <td>
                                         <summary>{{ $cterm->announcement }}</summary>

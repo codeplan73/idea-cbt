@@ -1,7 +1,7 @@
 @extends('layouts.app_student')
 
 @section('content')
-    <script>
+    {{-- <script>
         // Disable going back and forward using browser navigation
         history.pushState(null, null, document.URL);
 
@@ -12,7 +12,30 @@
         window.onbeforeunload = function() {
             return;
         };
+    </script> --}}
+
+    <script>
+        (function(window, history) {
+            function disableBackAndForward() {
+                // Replace the current state.
+                history.pushState(null, null, window.location.href);
+
+                // When the user attempts to navigate back or forward, replace the state again.
+                window.addEventListener('popstate', function() {
+                    history.pushState(null, null, window.location.href);
+                });
+            }
+
+            window.addEventListener('load', disableBackAndForward);
+
+            // Optionally, prevent the user from leaving the page with a warning.
+            // window.onbeforeunload = function() {
+            // You can return a custom message that browsers may or may not display.
+            // return 'Are you sure you want to leave this page.';
+            // };
+        })(window, history);
     </script>
+
 
     @if ($question->question_type == 'Objective')
         <div class="content">
@@ -268,6 +291,7 @@
                     }
                     sessionStorage.clear();
                     submitForm();
+                    sessionStorage.clear();
                 } else {
                     timeLeft--;
                     sessionStorage.setItem('timerValue', timeLeft); // Store the updated timer value
@@ -320,6 +344,8 @@
                 event.preventDefault();
                 clearInterval(timerInterval); // Stop the timer when the user manually submits the form
                 submitForm(); // Submit the form manually
+
+                sessionStorage.clear();
             });
 
             function submitWithTime() {
@@ -353,6 +379,8 @@
                         });
 
                         submitForm();
+
+                        sessionStorage.clear();
                     }
                 }
             }

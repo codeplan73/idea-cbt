@@ -207,22 +207,22 @@
                         <h6>Scholarship Fees:</h6>
                         <h6>{{ number_format(auth()->guard('student')->user()->Scholarship_Fee,2) }}</h6>
                     </div>
-                    <div class="d-flex flex-row justify-content-between border px-2 py-1 my-1 bg-white rounded">
+                    <div class="d-flex flex-row justify-content-between border px-2 py-1 bg-white rounded">
                         <h6>General Discount:</h6>
                         <h6>{{ number_format(auth()->guard('student')->user()->Gen_Discount,2) }}</h6>
                     </div>
                     <div style="background: #003049;"
-                        class="d-flex flex-row justify-content-between border px-2 py-1 my-1 rounded">
+                        class="d-flex flex-row justify-content-between border px-2 py-1 rounded">
                         <h6 class="text-white fw-bold">AMOUNT PAYABLE:</h6>
                         <h6 class="text-white fw-bold">
                             {{ number_format(auth()->guard('student')->user()->Amount_Payable,2) }}</h6>
                     </div>
-                    <div class="d-flex flex-row justify-content-between border px-2 py-1 my-1 bg-white rounded">
+                    <div class="d-flex flex-row justify-content-between border px-2 py-1 bg-white rounded">
                         <h6>Amount Paid:</h6>
                         <h6>{{ number_format(auth()->guard('student')->user()->Amount_Paid,2) }}</h6>
                     </div>
                     <div style="background: #0353a4;"
-                        class="d-flex flex-row justify-content-between border px-2 py-1 my-1 rounded">
+                        class="d-flex flex-row justify-content-between border px-2 py-1 rounded">
                         <h6 class="text-white fw-bold">TOTAL BALANCE:</h6>
                         <h6 class="text-white fw-bold">
                             {{ number_format(auth()->guard('student')->user()->Current_Balance,2) }}</h6>
@@ -237,7 +237,7 @@
                         </h6>
                     </div>
                     <div style="background: #fff;" class="d-flex flex-row justify-content-between px-2 py-1 my-1 rounded">
-                        <textarea class="form-control" id="" readonly cols="30" rows="2">{{ $genInfo->GenInfo }}</textarea>
+                        <textarea class="form-control" id="" readonly cols="30" rows="3">{{ $genInfo->GenInfo }}</textarea>
                     </div>
                 </div>
             </div>

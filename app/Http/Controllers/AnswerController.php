@@ -34,71 +34,6 @@ class AnswerController extends Controller
         }
     } 
 
-   
- 
-    public function create()
-    {
-        $currentTime = Carbon::now();
-
-        $examEndTime = $currentTime->format('H:i:s');
-
-        $student_class = Auth::guard('student')->user()->Student_Class;
-        $student_id = Auth::guard('student')->user()->Student_ID;
-    
-        $examCode = QuestionCode::where('class', $student_class)->first();
-        $questionCode = $examCode->question_code;
-
-        $question = Question::where('question_id', $questionCode)->where('class', $student_class)->first();
-
-        $answer = Answer::where('student_id', $student_id)->first();
-
-        if(!$answer){
-             return redirect('/student');
-        }else{
-            // if($examEndTime >= $question->end_time)
-            // {
-            //     if($question){
-            //         return view('exam.create', ['question' => $question]);
-            //     }else {
-            //         return redirect('/student')->with('noexam', 'Sorry no question set for your class currently');
-            //     }
-            // }else{
-            //     // return redirect('/student')->with('noexam', 'Sorry you are late for this Exam/Test');
-            //     return redirect('/student')->with('timeup', 'Sorry you are late for this Exam/Test');
-            // }
-
-
-            if($question){
-                return view('exam.create', ['question' => $question]);
-                // if($examEndTime >= $question->end_time){
-                //     return view('exam.create', ['question' => $question]);
-                // }elseif($question->end_time == null){
-                //     return view('exam.create', ['question' => $question]);
-                // }else{
-                //     return redirect('/student')->with('timeup', 'Sorry you are late for this Exam/Test');
-                // }
-            }else {
-                return redirect('/student')->with('noexam', 'Sorry no question set for your class currently');
-            }
-        }       
-    }
-
-    public function answersList()
-    {
-        $answers = Answer::latest()->filter(request(['examId', 'class']))->get();
-        return view('answers.index', ['answers' => $answers]);
-    }
-
-    public function search(Request $request)
-    {
-        $answers = Answer::where('class', $request['class'])->where('exam_id', $request['examId'])->get();
-        
-        if($answers){
-            return view('answers.index', ['answers' => $answers]);
-        }else{
-            return back()->with('message', 'Answer not found');
-        }
-    }
 
     public function store(Request $request)
     {
@@ -147,7 +82,107 @@ class AnswerController extends Controller
 
             return redirect('/exam')->with('message', 'Welcome, Continue with your exam, your time has started');
         }else if($data['question_type'] == 'Theory'){
+
+             $student = Auth::guard('student')->user();
+            $answer = Answer::where('student_id', $student->Student_ID)
+                        ->where('exam_id', $data['question_id'])
+                        ->first();
+
+            // Check if student has already taken the specified test or exam
+            if ($answer && $answer->exam_type == $data['exam_type']) {
+                // Student has already taken this test/exam, redirect back
+                return redirect()->back()->with('message', 'You have already taken this test/exam.');
+            }
+
+            // Student is submitting for the first time or taking a new test/exam, update the respective field
+            if (!$answer) {
+                // Student is submitting for the first time, create a new record
+                $answer = new Answer;
+                $answer->student_id = $data['Student_ID'];
+                $answer->name = $data['Fullnames'];
+                $answer->class = $data['Student_Class'];
+                $answer->branch = $data['Branch'];
+                $answer->exam_id = $data['question_id'];
+                $answer->term = $data['term'];
+                $answer->session = $data['session'];
+                $answer->subject = $data['subject'];
+                $answer->question_type = $data['question_type'];
+                $answer->exam_type = $data['exam_type'];
+            }
+            // Save the updated or new record
+            $answer->save();
+
             return redirect('/exam')->with('message', 'Welcome, Continue with your exam, your time has started');
+
+
+            // return redirect('/exam')->with('message', 'Welcome, Continue with your exam, your time has started');
+        }
+    }
+
+   
+    public function create(Request $request)
+    {
+        $currentTime = Carbon::now();
+
+        $examEndTime = $currentTime->format('H:i:s');
+
+        $student_class = Auth::guard('student')->user()->Student_Class;
+        $student_id = Auth::guard('student')->user()->Student_ID;
+    
+        $examCode = QuestionCode::where('class', $student_class)->first();
+        $questionCode = $examCode->question_code;
+
+        $question = Question::where('question_id', $questionCode)->where('class', $student_class)->first();
+
+        $answer = Answer::where('student_id', $student_id)->first();
+
+        // dd('show exam take exam');
+
+        if(!$answer){
+            return redirect('/student');
+        }else{
+            // if($examEndTime >= $question->end_time)
+            // {
+            //     if($question){
+            //         return view('exam.create', ['question' => $question]);
+            //     }else {
+            //         return redirect('/student')->with('noexam', 'Sorry no question set for your class currently');
+            //     }
+            // }else{
+            //     // return redirect('/student')->with('noexam', 'Sorry you are late for this Exam/Test');
+            //     return redirect('/student')->with('timeup', 'Sorry you are late for this Exam/Test');
+            // }
+
+
+            if($question){
+                return view('exam.create', ['question' => $question]);
+                // if($examEndTime >= $question->end_time){
+                //     return view('exam.create', ['question' => $question]);
+                // }elseif($question->end_time == null){
+                //     return view('exam.create', ['question' => $question]);
+                // }else{
+                //     return redirect('/student')->with('timeup', 'Sorry you are late for this Exam/Test');
+                // }
+            }else {
+                return redirect('/student')->with('noexam', 'Sorry no question set for your class currently');
+            }
+        }       
+    }
+
+    public function answersList()
+    {
+        $answers = Answer::latest()->filter(request(['examId', 'class']))->get();
+        return view('answers.index', ['answers' => $answers]);
+    }
+
+    public function search(Request $request)
+    {
+        $answers = Answer::where('class', $request['class'])->where('exam_id', $request['examId'])->get();
+        
+        if($answers){
+            return view('answers.index', ['answers' => $answers]);
+        }else{
+            return back()->with('message', 'Answer not found');
         }
     }
 

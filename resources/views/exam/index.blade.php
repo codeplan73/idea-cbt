@@ -2,17 +2,27 @@
 
 @section('content')
     <script>
-        // Disable going back and forward using browser navigation
-        history.pushState(null, null, document.URL);
+        (function(window, history) {
+            function disableBackAndForward() {
+                // Replace the current state.
+                history.pushState(null, null, window.location.href);
 
-        window.addEventListener('popstate', function() {
-            history.pushState(null, null, document.URL);
-        });
+                // When the user attempts to navigate back or forward, replace the state again.
+                window.addEventListener('popstate', function() {
+                    history.pushState(null, null, window.location.href);
+                });
+            }
 
-        window.onbeforeunload = function() {
-            return;
-        };
+            window.addEventListener('load', disableBackAndForward);
+
+            // Optionally, prevent the user from leaving the page with a warning.
+            window.onbeforeunload = function() {
+                // You can return a custom message that browsers may or may not display.
+                // return 'Are you sure you want to leave? Your unsaved changes will be lost.';
+            };
+        })(window, history);
     </script>
+
     <div class="content">
         @if (session('message'))
             <script>
@@ -29,7 +39,7 @@
         <div class="card mt-5">
             <div class="card-header bg-secondary" style="display: flex; justify-content:space-between; align-items:center;">
                 <h4 class="mb-0 text-warning text-light">
-                    <strong>CBT STUDENT LOGIN DETAILS</strong>
+                    <strong>LOGIN DETAILS</strong>
                 </h4>
                 <img class="circle" style="border-radius: 50%;"
                     src="{{ 'data:image/jpeg;base64,' . base64_encode(Auth::guard('student')->user()->Student_Image) }}"
