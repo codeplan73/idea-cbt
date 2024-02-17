@@ -23,8 +23,6 @@
     @endif
 
 
-
-
     <div class="card-body">
         <form action="{{ route('videos.store') }}" method="post" enctype="multipart/form-data">
             @csrf
@@ -115,12 +113,9 @@
                             </span>
                         @enderror
                     </div>
-
                 </div>
 
-
-
-                <div class="mb-2 col-sm-6 mb-sm-0">
+                {{-- <div class="mb-2 col-sm-6 mb-sm-0">
                     <div class="tom-select-custom">
                         <label for="start_date" class="form-label">Start Date</label>
                         <input type="date" class="form-control @error('start_date') is-invalid @enderror"
@@ -144,7 +139,7 @@
                             </span>
                         @enderror
                     </div>
-                </div>
+                </div> --}}
 
                 @include('components.video-upload-preview')
 

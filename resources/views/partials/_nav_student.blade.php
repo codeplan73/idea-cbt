@@ -55,6 +55,12 @@
                          </div>
 
                          <div class="nav-item">
+                             <a class="nav-link " href="/video-lesson" data-placement="left">
+                                 <i class="fa-solid fa-video nav-icon"></i>
+                                 <span class="nav-link-title">Video Lesson</span>
+                             </a>
+                         </div>
+                         <div class="nav-item">
                              <a class="nav-link " href="/student-exam" data-placement="left">
                                  <i class="fa-solid fa-restroom nav-icon"></i>
                                  <span class="nav-link-title">Take Exam</span>

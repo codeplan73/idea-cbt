@@ -1,18 +1,7 @@
 @extends('layouts.app_student')
 
 @section('content')
-    {{-- <script>
-        // Disable going back and forward using browser navigation
-        history.pushState(null, null, document.URL);
 
-        window.addEventListener('popstate', function() {
-            history.pushState(null, null, document.URL);
-        });
-
-        window.onbeforeunload = function() {
-            return;
-        };
-    </script> --}}
 
     <script>
         (function(window, history) {
@@ -28,11 +17,6 @@
 
             window.addEventListener('load', disableBackAndForward);
 
-            // Optionally, prevent the user from leaving the page with a warning.
-            // window.onbeforeunload = function() {
-            // You can return a custom message that browsers may or may not display.
-            // return 'Are you sure you want to leave this page.';
-            // };
         })(window, history);
     </script>
 
@@ -45,10 +29,14 @@
                         <div class="card-header bg-body-tertiary d-flex flex-between-center py-2">
                             <h6 class="mb-0">Objective</h6>
                             <div class="d-flex flex-between-center gap-1">
-                                <h6>Stop-Time: </h6>
-                                <h6 id="timerB" class="text-center fw-bold">
-                                    {{ ' ' . $question->end_time }}
-                                </h6>
+                                @if ($question->end_time)
+                                    <h6>Stop-Time: </h6>
+                                    <h6 id="timerB" class="text-center fw-bold">
+                                        {{ ' ' . $question->end_time }}
+                                    </h6>
+                                @else
+                                    <h6 class="fw-bold">Stop Time Not Set</h6>
+                                @endif
                             </div>
                         </div>
                         <div class="card-body">
@@ -109,17 +97,17 @@
                                             <button type="submit" class="btn btn-info" id="submitButton">
                                                 Submit
                                             </button>
-                                            @if (!empty($question->end_time))
-                                                <div class="d-flex flex-between-center gap-1">
-                                                    {{-- <h5>Stop-Time: </h5>
+                                            {{-- @if (!empty($question->end_time)) --}}
+                                            <div class="d-flex flex-between-center gap-1">
+                                                {{-- <h5>Stop-Time: </h5>
                                                     <h5 id="timerB" class="text-center fw-bold">
                                                         {{ $question->end_time }}
                                                     </h5> --}}
 
-                                                    <h5>Time Left: </h5>
-                                                    <h5 id="timer" class="text-center fw-bold "></h5>
-                                                </div>
-                                            @endif
+                                                <h5>Time Left: </h5>
+                                                <h5 id="timer" class="text-center fw-bold "></h5>
+                                            </div>
+                                            {{-- @endif --}}
                                         </div>
                                         <div id="answerContainer">
                                             <input type="hidden" value="{{ $question->alloted_mark }}" id="mark">
@@ -193,10 +181,14 @@
                         <div class="card-header bg-body-tertiary d-flex flex-between-center py-2">
                             <h6 class="mb-0">Theory</h6>
                             <div class="d-flex flex-between-center gap-1">
-                                <h6>Stop-Time: </h5>
+                                @if ($question->end_time)
+                                    <h6>Stop-Time: </h6>
                                     <h6 id="timerB" class="text-center fw-bold">
                                         {{ $question->end_time }}
                                     </h6>
+                                @else
+                                    <h6 class="fw-bold">Stop Time Not Set</h6>
+                                @endif
                             </div>
                         </div>
                         <div class="card-body">

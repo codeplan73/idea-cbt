@@ -20,6 +20,7 @@ use App\Http\Controllers\DeleteAnswersController;
 use App\Http\Controllers\SMSController;
 use App\Http\Controllers\BackDoorLogin;
 use App\Http\Controllers\VideoPlayBackController;
+use App\Http\Controllers\VideoLessonController;
 
 /*
 |--------------------------------------------------------------------------
@@ -162,8 +163,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/videos/{video}/show', [VideoPlayBackController::class, 'show'])->name('videos.show');
     Route::get('/videos/{video}/edit', [VideoPlayBackController::class, 'edit'])->name('videos.edit');
     Route::put('/videos/{video}', [VideoPlayBackController::class, 'update'])->name('videos.update');
+    Route::delete('/videos/{video}', [VideoPlayBackController::class, 'destroy'])->name('videos.destroy');
 });
- 
+  
 
 
 // Student Registration Routes
@@ -197,6 +199,11 @@ Route::middleware(['auth:student'])->group(function () {
     // book section
     Route::get('/notes-list', [StudentNoteController::class, 'index']);
     Route::get('/classnote/{note}/show', [StudentNoteController::class, 'show'])->name('classnote.show');
+   
+   
+   
+    Route::get('/video-lesson', [VideoLessonController::class, 'index'])->name('videoLesson.index');
+    Route::get('/video-lesson/{video}/show', [VideoLessonController::class, 'show'])->name('videoLesson.show');
 });
 
 

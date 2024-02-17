@@ -139,7 +139,7 @@ class QuestionController extends Controller
             'subject' => 'required',
             'alloted_mark' => 'required',
             'total_mark' => 'required',
-            'time_minutes' => 'required',
+            'time_minutes' => 'required', 
         ]);
 
         $data['end_time'] = $request->end_time;

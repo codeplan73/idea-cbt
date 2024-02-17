@@ -40,29 +40,27 @@ class VideoPlayBackController extends Controller
             'week' => 'required',
             'class' => 'required',
             'term' => 'required',
-            'start_date' => 'required',
-            'start_time' => 'required',
+            // 'start_date' => 'required|date',
+            // 'start_time' => 'required|date_format:H:i',
             'video_file' => ['required', new VideoValidationRule],
         ]); 
 
         $videoPlayBack = new VideoPlayBack;
 
-        if ($request->hasFile('video_file')) {
-            $fileName = Str::slug($data['topic']) .'-'. $data['subject'] .'-'. $data['class']. '.' . $request->file('video_file')->getClientOriginalExtension();
+        $fileName = Str::slug($data['topic']) .'-'. $data['subject'] .'-'. $data['class']. '.' . $request->file('video_file')->getClientOriginalExtension();
 
-            $fileType = $request->file('video_file')->getClientOriginalExtension();
-
-            $video_file = $request->file('video_file');
-            $video_file_Path = $video_file->storeAs('video_file', $fileName, 'public');
-        }
+        $fileType = $request->file('video_file')->getClientOriginalExtension();
+        $video_file = $request->file('video_file');
+        $video_file_Path = $video_file->storeAs('videos', $fileName, 'public');
+    
 
         $videoPlayBack->topic = $data['topic'];
         $videoPlayBack->subject = $data['subject'];
         $videoPlayBack->week = $data['week'];
         $videoPlayBack->class = $data['class'];
         $videoPlayBack->term = $data['term'];
-        $videoPlayBack->start_date = $data['start_date'];
-        $videoPlayBack->start_time = $data['start_time'];
+        // $videoPlayBack->start_date = $data['start_date'];
+        // $videoPlayBack->start_time = $data['start_time'];
         $videoPlayBack->file_type = $fileType;
         $videoPlayBack->video = $video_file_Path;
 
@@ -88,22 +86,68 @@ class VideoPlayBackController extends Controller
         return view('videos.edit', [
             'systems' => $systems,
             'video' => $video,
-        ]);
+        ]); 
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, VideoPlayBack $videoPlayBack)
+    public function update(Request $request, VideoPlayBack $video)
     {
-        dd($request->all());
+        $data = $request->validate([
+            'topic' => 'required',
+            'subject' => 'required',
+            'week' => 'required',
+            'class' => 'required',
+            'term' => 'required',
+            // 'start_date' => 'required|date',
+            // 'start_time' => 'required',
+        ]);
+
+        if ($request->hasFile('video_file')) {
+            if ($video->video && Storage::disk('public')->exists($video->video)) {
+                Storage::disk('public')->delete($video->video);
+            }
+
+            $fileName = Str::slug($data['topic']) . '-' . $data['subject'] . '-' . $data['class'] . '.' . $request->file('video_file')->getClientOriginalExtension();
+            $video_file_Path = $request->file('video_file')->storeAs('videos', $fileName, 'public');
+            $fileType = $request->file('video_file')->getClientOriginalExtension(); // Assuming you want to store the file extension as the file type
+        } else {
+            $fileType = $video->file_type;
+            $video_file_Path = $video->video;
+        }
+
+        // Instead of setting each property individually, you can use the fill method if you prefer
+        $video->fill([
+            'topic' => $data['topic'],
+            'subject' => $data['subject'],
+            'week' => $data['week'],
+            'class' => $data['class'],
+            'term' => $data['term'],
+            // 'start_date' => $data['start_date'],
+            // 'start_time' => $data['start_time'],
+            'file_type' => $fileType,
+            'video' => $video_file_Path,
+        ]);
+
+        // Save the changes to the existing record
+        $video->save();
+
+        return redirect('/videos')->with('message', 'Video Lesson Updated Successfully');
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(VideoPlayBack $videoPlayBack)
+    public function destroy(VideoPlayBack $video)
     {
-        //
+        if ($video->video && Storage::disk('public')->exists($video->video)) {
+            Storage::disk('public')->delete($video->video);
+        }
+
+        $video->delete();
+
+        return back()->with('message', 'Video deleted successfully');
     }
 }

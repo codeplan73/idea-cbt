@@ -131,7 +131,6 @@ class NoteController extends Controller
             $note_pdf = $request->file('note_pdf');
             $note_Pdf_Path = $note_pdf->storeAs('note_pdf', $fileName, 'public');
         }else {
-            // If no new PDF is uploaded, keep the existing file path
             $note_Pdf_Path = $note->note_pdf;
         }
 

@@ -27,7 +27,7 @@
                                                     <a class="text-decoration-none" href="/classbook/{{ $book->id }}/show"
                                                         data-gallery="attachment-bg">
                                                         <img class="w-100 h-100 object-fit-cover"
-                                                            src="assets/img/notes/book.png" alt="" />
+                                                            src="assets/cover/book-cover.jpeg" alt="" />
                                                     </a>
                                                 </div>
                                                 <div class="p-1">

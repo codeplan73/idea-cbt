@@ -7,7 +7,7 @@
                 <div class="col-mg-12 col-lg-12">
                     <div class="card mb-3">
                         <div class="card-header position-relative">
-                            <h3 class="mb-0 mt-1">Lesson Notes For {{ Auth::guard('student')->user()->Student_Class }}</h3>
+                            <h3 class="mb-0 mt-1">Video Lessons For {{ Auth::guard('student')->user()->Student_Class }}</h3>
                             <div class="bg-holder d-none d-md-block bg-card"
                                 style="
                       background-image: url({{ asset('assets/img/illustrations/corner-6.png') }});
@@ -17,27 +17,30 @@
                         </div>
                     </div>
                     <div class="row mb-3 g-3">
-                        @unless ($notes->isEmpty())
-                            @foreach ($notes as $note)
+                        @unless ($videos->isEmpty())
+                            @foreach ($videos as $video)
                                 <article class="col-md-3">
                                     <div class="card h-100 overflow-hidden">
                                         <div class="card-body p-0 d-flex flex-column justify-content-between">
                                             <div>
                                                 <div class="hoverbox text-center">
-                                                    <a class="text-decoration-none" href="/classnote/{{ $note->id }}/show"
+                                                    <a class="text-decoration-none"
+                                                        href="/video-lesson/{{ $video->id }}/show"
                                                         data-gallery="attachment-bg">
-                                                        <img class="w-100 h-60 object-fit-cover"
-                                                            src="assets/cover/note-cover.jpeg" alt="" />
+                                                        <img class="w-100 h-100 object-fit-cover"
+                                                            src="assets/cover/video-cover.png" alt="" />
                                                     </a>
                                                 </div>
-                                                <div class="p-3">
-                                                    <h2 class="fs-0 fw-bold mb-2">
-
-                                                        {{ $note->subject }}
-                                                    </h2>
-                                                    <h5 class="fs-0">
-                                                        Week: {{ $note->week }}
-                                                    </h5>
+                                                <div style="padding-left:10px; display: flex; flex-direction: column;">
+                                                    <p class="fw-bold">
+                                                        {{ $video->topic }}
+                                                    </p>
+                                                    <p>
+                                                        {{ $video->subject }}
+                                                    </p>
+                                                    <p>
+                                                        {{ $video->term }}
+                                                    </p>
                                                 </div>
                                             </div>
 
@@ -46,7 +49,7 @@
                                 </article>
                             @endforeach
                         @else
-                            <h4>No Note Yet</h4>
+                            <h4>No Video Yet</h4>
                         @endunless
                     </div>
 

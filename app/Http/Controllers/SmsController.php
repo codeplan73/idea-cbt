@@ -47,11 +47,11 @@ class SMSController extends Controller
    
     public function sendBulkSMS(Request $request)
     {
-        $username   = "hiracollege";
-        $apiKey     = "4b8ef4a5a94788a3c88721c41222ee8abefe2365754cf6e19c6fec0040704c7d";
+        $username   = "Hirainfo";
+        $apiKey     = "4b4fdbb3bbee46f9db380949b20128a7721bfee27741c9207f3b43e61e158959";
         $AT         = new AfricasTalking($username, $apiKey);
         $sms        = $AT->sms();
-        $from = "hiracollege";
+        $from = "Hirainfo";
 
         $data = $request->validate([
             'class' => 'required',
@@ -66,7 +66,7 @@ class SMSController extends Controller
             ->where('Branch', $data['branch'])
             ->pluck('Phone_Number')
             ->toArray();
-
+ 
 
         // Check DND status before sending messages
         $dndFilteredRecipients = [];
@@ -116,11 +116,11 @@ class SMSController extends Controller
 
     public function sendSingleSms(Request $request)
     {
-        $username   = "hiracollege";
-        $apiKey     = "4b8ef4a5a94788a3c88721c41222ee8abefe2365754cf6e19c6fec0040704c7d";
+        $username   = "Hirainfo";
+        $apiKey     = "4b4fdbb3bbee46f9db380949b20128a7721bfee27741c9207f3b43e61e158959";
         $AT         = new AfricasTalking($username, $apiKey);
         $sms        = $AT->sms();
-        $from = "hiracollege";
+        $from = "Hirainfo";
 
         $data = $request->validate([
             'phone_number' => 'required',
@@ -156,11 +156,11 @@ class SMSController extends Controller
 
     public function sendOwningForm(Request $request)
     {
-        $username   = "hiracollege";
-        $apiKey     = "4b8ef4a5a94788a3c88721c41222ee8abefe2365754cf6e19c6fec0040704c7d";
+        $username   = "Hirainfo";
+        $apiKey     = "4b4fdbb3bbee46f9db380949b20128a7721bfee27741c9207f3b43e61e158959";
         $AT         = new AfricasTalking($username, $apiKey);
         $sms        = $AT->sms();
-        $from = "hiracollege";
+        $from = "Hirainfo";
 
         $data = $request->validate([
             'class' => 'required',

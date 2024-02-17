@@ -66,7 +66,7 @@
                                     <td>{{ $book->class }}</td>
                                     <td>{{ $book->term }}</td>
                                     <td>{{ $book->session }}</td>
-                                    <td>
+                                    <td class="text-end d-flex gap-1 items-center">
                                         <a href="/books/{{ $book->id }}/show" class="btn btn-link p-0"
                                             data-bs-toggle="tooltip" data-bs-placement="top" title="Read"><i
                                                 class="fa-brands fa-readme"></i>
