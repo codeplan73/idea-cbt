@@ -10,8 +10,31 @@ use App\Models\System;
 class StaffController extends Controller
 {
     /**
-     * Display the specified resource.
+     * Display the list of staff.
      */
+    public function staffList()
+    {
+        $staffList = User::
+            whereIn('Staff_Status', ['Active', 'Inactive', 'Sacked', 'Resigned'])
+            ->select('ID', 'Staff_ID', 'Fullname', 'Phone_No', 'role', 'Staff_Status', 'Email')
+            ->get();
+
+        return view('staff.staff-list', ['staffList' => $staffList]);
+    }
+
+    /**
+     * Display list of students.
+     */
+    public function studentList()
+    {
+        $students = Student::
+            whereIn('Current_Status', ['Active', 'Inactive', 'Graduated', 'Left'])
+            ->select('ID', 'Student_ID', 'Fullnames', 'Plain_Password', 'Current_Status', 'Student_Pin', 'Current_Balance', 'Student_Class', 'Phone_Number')
+            ->get();
+
+        return view('student.student-list', ['students' => $students]);
+    }
+
     public function create()
     {
         $systems = System::all();
@@ -77,8 +100,6 @@ class StaffController extends Controller
             
     }
 
-
-
     public function createStaffPassword()
     {
         $systems = System::all();
@@ -93,7 +114,6 @@ class StaffController extends Controller
         $systems = System::all();
         return view('staff.edit', ['staff' => $staff, 'systems' => $systems]);
     }
-
 
     public function updateStaffPassword(Request $request)
     {     

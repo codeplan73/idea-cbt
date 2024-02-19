@@ -51,11 +51,11 @@
                                     <td class="text-end">
                                         @if (auth()->user()->role == 'staff' || auth()->user()->role == 'admin')
                                             <div style="display: flex; align-items:center;">
-                                                <a href="/manage-student/{{ $student->id }}/edit" class="btn btn-link p-0"
+                                                <a href="/manage-student/{{ $student->ID }}/edit" class="btn btn-link p-0"
                                                     data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
                                                     <span class="text-500 fas fa-edit"></span>
                                                 </a>
-                                                <form action="/manage-student/{{ $student->id }}" method="post">
+                                                <form action="/manage-student/{{ $student->ID }}" method="post">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button class="btn btn-link p-0 ms-2" data-bs-toggle="tooltip"

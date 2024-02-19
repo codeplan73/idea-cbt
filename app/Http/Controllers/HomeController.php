@@ -36,12 +36,12 @@ class HomeController extends Controller
         
         $staffs = User::
             where('Staff_Status', 'Active')
-            ->select('id', 'Staff_ID', 'Fullname', 'Phone_No', 'role', 'Email')
+            ->select('ID', 'Staff_ID', 'Fullname', 'Phone_No', 'role', 'Email')
             ->get();
 
         $students = Student::
             whereIn('Current_Status', ['Active', 'Inactive'])
-            ->select('id', 'Student_ID', 'Fullnames', 'Plain_Password', 'Current_Status', 'Student_Pin', 'Current_Balance', 'Student_Class', 'Phone_Number')
+            ->select('ID', 'Student_ID', 'Fullnames', 'Plain_Password', 'Current_Status', 'Student_Pin', 'Current_Balance', 'Student_Class', 'Phone_Number')
             ->get();
         
         return view('home', [

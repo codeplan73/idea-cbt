@@ -11,7 +11,8 @@ class Student extends Authenticatable
 {
     use HasFactory;
 
-    protected $table = 'students';
+    protected $table = 'student_records';
+    protected $primaryKey = 'ID';
 
     protected $guarded = [];
 

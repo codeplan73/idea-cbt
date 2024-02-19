@@ -131,6 +131,9 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/setup/{setup}', [SetupController::class, 'destroy'])->name('setup.destroy');
 
     // manage staff and student
+    Route::get('/staff-list', [StaffController::class, 'staffList'])->name('staff.staffList');
+    Route::get('/student-list', [StaffController::class, 'studentList'])->name('staff.studentList');
+
     Route::get('/status', [StaffController::class, 'create'])->name('staff.create');
     Route::post('/status', [StaffController::class, 'updateStatus'])->name('staff.updateStatus');
 

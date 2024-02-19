@@ -9,7 +9,7 @@
                         <h5 class="mb-0">Update Student Settings</h5>
                     </div>
                     <div class="card-body bg-body-tertiary">
-                        <form action="/manage-student/{{ $student->id }}" method="post">
+                        <form action="/manage-student/{{ $student->ID }}" method="post">
                             @csrf
                             @method('PUT')
                             <div class="row my-4 gy-3">

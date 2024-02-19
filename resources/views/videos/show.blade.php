@@ -31,8 +31,16 @@
                         </div>
 
                         <div class="col-12">
-                            <video width="100%" height="500px" controls>
+                            {{-- <video width="100%" height="500px" controls>
                                 <source src="{{ url('storage/' . $video->video) }}" type="video/{{ $video->file_type }}">
+                                Your browser does not support the video tag.
+                            </video> --}}
+
+
+                            <video width="100%" height="500px" controls>
+                                <source src="{{ url('storage/' . $video->video) }}" type="video/mp4">
+                                <source src="{{ url('storage/' . $video->video) }}" type="video/webm">
+                                <source src="{{ url('storage/' . $video->video) }}" type="video/ogg">
                                 Your browser does not support the video tag.
                             </video>
                         </div>

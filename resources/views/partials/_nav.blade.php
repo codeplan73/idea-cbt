@@ -45,6 +45,20 @@
 
                      {{-- Staff Section --}}
                      <div class="nav-item">
+                         <a class="nav-link " href="/staff-list" data-placement="left">
+                             <i class="fa-solid fa-users nav-icon"></i>
+                             <span class="nav-link-title">Staff List</span>
+                         </a>
+                     </div>
+                     <div class="nav-item">
+                         <a class="nav-link " href="/student-list" data-placement="left">
+                             <i class="fa-solid fa-users nav-icon"></i>
+                             <span class="nav-link-title">Student List</span>
+                         </a>
+                     </div>
+
+
+                     <div class="nav-item">
                          <a class="nav-link " href="/note" data-placement="left">
                              <i class="fa-solid fa-book-open nav-icon"></i>
                              <span class="nav-link-title">Set E-Note</span>

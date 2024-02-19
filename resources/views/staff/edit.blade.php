@@ -9,7 +9,7 @@
                         <h5 class="mb-0">Update Staff Settings</h5>
                     </div>
                     <div class="card-body bg-body-tertiary">
-                        <form action="/staff/{{ $staff->id }}" method="post">
+                        <form action="/staff/{{ $staff->ID }}" method="post">
                             @csrf
                             @method('PUT')
                             <div class="row my-4 gy-3">

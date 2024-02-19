@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Rules\VideoValidationRule;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 
 class VideoPlayBackController extends Controller
 {
@@ -40,8 +41,6 @@ class VideoPlayBackController extends Controller
             'week' => 'required',
             'class' => 'required',
             'term' => 'required',
-            // 'start_date' => 'required|date',
-            // 'start_time' => 'required|date_format:H:i',
             'video_file' => ['required', new VideoValidationRule],
         ]); 
 
@@ -52,15 +51,12 @@ class VideoPlayBackController extends Controller
         $fileType = $request->file('video_file')->getClientOriginalExtension();
         $video_file = $request->file('video_file');
         $video_file_Path = $video_file->storeAs('videos', $fileName, 'public');
-    
 
         $videoPlayBack->topic = $data['topic'];
         $videoPlayBack->subject = $data['subject'];
         $videoPlayBack->week = $data['week'];
         $videoPlayBack->class = $data['class'];
         $videoPlayBack->term = $data['term'];
-        // $videoPlayBack->start_date = $data['start_date'];
-        // $videoPlayBack->start_time = $data['start_time'];
         $videoPlayBack->file_type = $fileType;
         $videoPlayBack->video = $video_file_Path;
 

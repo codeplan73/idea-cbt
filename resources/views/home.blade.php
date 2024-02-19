@@ -199,7 +199,7 @@
     </div>
 
 
-    @if (auth()->user()->role == 'admin')
+    {{-- @if (auth()->user()->role == 'admin')
         <hr>
 
         <div class="row">
@@ -269,5 +269,5 @@
                 </div>
             </div>
         </div>
-    @endif
+    @endif --}}
 @endsection
