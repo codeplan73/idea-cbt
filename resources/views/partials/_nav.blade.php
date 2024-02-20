@@ -86,7 +86,7 @@
                          <div class="nav-item">
                              <a class="nav-link " href="/manage-student" data-placement="left">
                                  <i class="fa-solid fa-graduation-cap nav-icon"></i>
-                                 <span class="nav-link-title">Manage Student</span>
+                                 <span class="nav-link-title">Register Student</span>
                              </a>
                          </div>
                          <div class="nav-item">
