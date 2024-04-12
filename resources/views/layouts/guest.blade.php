@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Hira Colleges</title>
+    <title> {{ $systemSetup->school_name }}</title>
+
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -41,8 +42,9 @@
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
             <a href="index.html" class="logo d-flex align-items-center">
-                <img src="{{ asset('assets/logo/logo.png') }}" alt="">
-                <span class="text-success">Hira Colleges</span>
+                {{-- <img src="{{ asset('assets/logo/logo.png') }}" alt=""> --}}
+                <img src="/storage/{{ $systemSetup->school_logo }}" alt="">
+                <span class="text-success">{{ $systemSetup->school_name }}</span>
             </a>
 
             <nav id="navbar" class="navbar">
@@ -71,10 +73,10 @@
     <footer id="footer" class="footer">
         <div class="container">
             <div class="copyright">
-                &copy; Copyright <strong><span>Hira Colleges</span></strong>. All Rights Reserved
+                &copy; Copyright <strong><span>{{ $systemSetup->school_name }}</span></strong>. All Rights Reserved
             </div>
             <div class="credits">
-                Powered by <a href="#">Globe-Raven</a>
+                Powered by <a target="_blank" href="http://globeraven.vercel.app/">Globe-Raven</a>
             </div>
         </div>
     </footer><!-- End Footer -->

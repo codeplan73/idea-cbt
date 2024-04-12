@@ -20,8 +20,13 @@
                  data-bs-placement="left" title="Toggle Navigation"><span class="navbar-toggle-icon"><span
                          class="toggle-line"></span></span></button>
          </div><a class="navbar-brand" href="/home">
-             <div class="py-3 d-flex align-items-center"><img class="me-2" src="{{ asset('assets/logo/logo.png') }}"
-                     alt="" width="40" /><span class="font-sans-serif text-primary">Hira CBT</span></div>
+             <div class="py-3 d-flex align-items-center">
+                 {{-- <img class="me-2" src="{{ asset('assets/logo/logo.png') }}" alt="" width="40" />
+                 <span class="font-sans-serif text-primary">Hira CBT</span> --}}
+
+                 <img class="me-2" src="/storage/{{ $systemSetup->school_logo }}" width="40" alt="">
+                 <span class="font-sans-serif text-primary">{{ $systemSetup->school_name }}</span>
+             </div>
          </a>
      </div>
 
@@ -143,6 +148,7 @@
                                  <span class="nav-link-text ps-1">Manage Result</span>
                              </div>
                          </a>
+
                          <ul class="nav collapse" id="result">
                              <li class="nav-item">
                                  <a class="nav-link" href="/results">
@@ -160,6 +166,12 @@
                              </li>
                          </ul>
 
+                         <div class="nav-item">
+                             <a class="nav-link " href="/fees" data-placement="left">
+                                 <i class="fa-solid fa-file-circle-question nav-icon"></i>
+                                 <span class="nav-link-title">Print Fees</span>
+                             </a>
+                         </div>
 
                          <a class="nav-link dropdown-indicator" href="#sms" role="button"
                              data-bs-toggle="collapse" aria-expanded="false" aria-controls="sms">
@@ -230,7 +242,7 @@
                              data-bs-toggle="collapse" aria-expanded="false" aria-controls="system">
                              <div class="d-flex align-items-center">
                                  <span class="nav-link-icon"><i class="fa-brands fa-ubuntu"></i></span><span
-                                     class="nav-link-text ps-1">System Settings</span>
+                                     class="nav-link-text ps-1">Settings</span>
                              </div>
                          </a>
                          <ul class="nav collapse" id="system">
@@ -252,6 +264,13 @@
                                  <a class="nav-link" href="/set-result">
                                      <div class="d-flex align-items-center">
                                          <span class="nav-link-text ps-1">Result Settings</span>
+                                     </div>
+                                 </a><!-- more inner pages-->
+                             </li>
+                             <li class="nav-item">
+                                 <a class="nav-link" href="/cms">
+                                     <div class="d-flex align-items-center">
+                                         <span class="nav-link-text ps-1">System Settings</span>
                                      </div>
                                  </a><!-- more inner pages-->
                              </li>

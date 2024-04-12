@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\System;
 use Illuminate\Http\Request;
+use App\Models\SystemSetup;
 
 class SystemController extends Controller
 {
@@ -12,8 +13,9 @@ class SystemController extends Controller
      */
     public function index()
     {
+         $systemSetup = SystemSetup::first();
         $systems = System::all();
-        return view('system.index', ['systems' => $systems ]);
+        return view('system.index', ['systems' => $systems, 'systemSetup' => $systemSetup]);
     }
 
     /**
@@ -21,7 +23,8 @@ class SystemController extends Controller
      */
     public function create()
     {
-        return view('system.create');
+         $systemSetup = SystemSetup::first();
+        return view('system.create', ['systemSetup' => $systemSetup]);
     }
 
     /**
@@ -30,7 +33,6 @@ class SystemController extends Controller
     public function store(Request $request)
     {
         $system = new System;
-        // dd($request->all());
 
          // Get the last mem_id from the user table
         $lastId = System::latest('system_id')->first();
@@ -59,19 +61,12 @@ class SystemController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(System $system)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(System $system)
     {
-        return view('system.edit', ['system' => $system]);
+         $systemSetup = SystemSetup::first();
+        return view('system.edit', ['system' => $system, 'systemSetup' => $systemSetup]);
     }
 
     /**

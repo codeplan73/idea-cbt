@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\System;
+use App\Models\SystemSetup;
 use Illuminate\Http\Request;
 use App\Rules\PdfDocValidationRule;
 use Illuminate\Support\Facades\Storage;
@@ -17,7 +18,8 @@ class BookController extends Controller
     public function index()
     {
         $books = Book::all();
-        return view('books.index', ['books' => $books]);
+        $systemSetup = SystemSetup::first();
+        return view('books.index', ['books' => $books, 'systemSetup' => $systemSetup]);
     }
 
     /**
@@ -25,8 +27,9 @@ class BookController extends Controller
      */
     public function create()
     {
+         $systemSetup = SystemSetup::first();
         $systems = System::all();
-        return view('books.create', ['systems' => $systems]);
+        return view('books.create', ['systems' => $systems, 'systemSetup' => $systemSetup]);
     }
 
     /**
@@ -77,7 +80,8 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        return view('books.show', ['book' => $book]);
+         $systemSetup = SystemSetup::first();
+        return view('books.show', ['book' => $book, 'systemSetup' => $systemSetup]);
     }
 
     /**
@@ -86,9 +90,11 @@ class BookController extends Controller
     public function edit(Book $book)
     {
         $systems = System::all();
+         $systemSetup = SystemSetup::first();
         return view('books.edit', [
             'book' => $book,
             'systems' => $systems,
+            'systemSetup' => $systemSetup
         ]);
     }
 

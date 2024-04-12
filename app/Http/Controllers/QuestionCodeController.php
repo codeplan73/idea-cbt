@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\QuestionCode;
 use App\Models\System;
 use Illuminate\Http\Request;
+use App\Models\SystemSetup;
 
 class QuestionCodeController extends Controller
 {
@@ -12,10 +13,12 @@ class QuestionCodeController extends Controller
     {
         $questionCodes = QuestionCode::all();
         $systems = System::all();
+         $systemSetup = SystemSetup::first();
         
         return view('question-code.index', [
             'questionCodes' => $questionCodes,
-            'systems' => $systems
+            'systems' => $systems,
+            'systemSetup' => $systemSetup
         ]);
     }
 
@@ -45,9 +48,12 @@ class QuestionCodeController extends Controller
     public function edit(QuestionCode $questionCode)
     {
         $systems = System::all();
+         $systemSetup = SystemSetup::first();
+
         return view('question-code.edit', [
             'questionCode' => $questionCode,
-            'systems' => $systems
+            'systems' => $systems,
+            'systemSetup' => $systemSetup
         ]);
     }
 

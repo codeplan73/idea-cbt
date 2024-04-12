@@ -6,6 +6,7 @@ use App\Models\System;
 use App\Models\Answer;
 use App\Models\Question;
 use App\Models\QuestionCode;
+use App\Models\SystemSetup;
 use App\Models\Result; 
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
@@ -20,6 +21,7 @@ class AnswerController extends Controller
     {
         // dd('show exam take exam');
 
+         $systemSetup = SystemSetup::first();
         $student_class = Auth::guard('student')->user()->Student_Class;
     
         $examCode = QuestionCode::where('class', $student_class)->first();
@@ -28,7 +30,7 @@ class AnswerController extends Controller
         $question = Question::where('question_id', $questionCode)->where('class', $student_class)->first();
 
         if($question){
-            return view('exam.index', ['question' => $question]);
+            return view('exam.index', ['question' => $question, 'systemSetup' => $systemSetup]);
         }else {
             return redirect('/student')->with('noexam', 'Sorry no question set for your class currently');
         }
@@ -83,7 +85,7 @@ class AnswerController extends Controller
             return redirect('/exam')->with('message', 'Welcome, Continue with your exam, your time has started');
         }else if($data['question_type'] == 'Theory'){
 
-             $student = Auth::guard('student')->user();
+            $student = Auth::guard('student')->user();
             $answer = Answer::where('student_id', $student->Student_ID)
                         ->where('exam_id', $data['question_id'])
                         ->first();
@@ -113,9 +115,6 @@ class AnswerController extends Controller
             $answer->save();
 
             return redirect('/exam')->with('message', 'Welcome, Continue with your exam, your time has started');
-
-
-            // return redirect('/exam')->with('message', 'Welcome, Continue with your exam, your time has started');
         }
     }
 
@@ -123,7 +122,7 @@ class AnswerController extends Controller
     public function create(Request $request)
     {
         $currentTime = Carbon::now();
-
+        $systemSetup = SystemSetup::first();
         $examEndTime = $currentTime->format('H:i:s');
 
         $student_class = Auth::guard('student')->user()->Student_Class;
@@ -141,46 +140,33 @@ class AnswerController extends Controller
         if(!$answer){
             return redirect('/student');
         }else{
-            // if($examEndTime >= $question->end_time)
-            // {
-            //     if($question){
-            //         return view('exam.create', ['question' => $question]);
-            //     }else {
-            //         return redirect('/student')->with('noexam', 'Sorry no question set for your class currently');
-            //     }
-            // }else{
-            //     // return redirect('/student')->with('noexam', 'Sorry you are late for this Exam/Test');
-            //     return redirect('/student')->with('timeup', 'Sorry you are late for this Exam/Test');
-            // }
-
 
             if($question){
-                return view('exam.create', ['question' => $question]);
-                // if($examEndTime >= $question->end_time){
-                //     return view('exam.create', ['question' => $question]);
-                // }elseif($question->end_time == null){
-                //     return view('exam.create', ['question' => $question]);
-                // }else{
-                //     return redirect('/student')->with('timeup', 'Sorry you are late for this Exam/Test');
-                // }
+                return view('exam.create', [
+                    'question' => $question,
+                    'answer' => $answer,
+                    'systemSetup' => $systemSetup,
+                    ]);
             }else {
-                return redirect('/student')->with('noexam', 'Sorry no question set for your class currently');
+                return redirect('/student')->with(['noexam', 'Sorry no question set for your class currently']);
             }
         }       
     }
 
     public function answersList()
     {
+        $systemSetup = SystemSetup::first();
         $answers = Answer::latest()->filter(request(['examId', 'class']))->get();
-        return view('answers.index', ['answers' => $answers]);
+        return view('answers.index', ['answers' => $answers, 'systemSetup' => $systemSetup]);
     }
 
     public function search(Request $request)
     {
+        $systemSetup = SystemSetup::first();
         $answers = Answer::where('class', $request['class'])->where('exam_id', $request['examId'])->get();
         
         if($answers){
-            return view('answers.index', ['answers' => $answers]);
+            return view('answers.index', ['answers' => $answers, 'systemSetup' => $systemSetup]);
         }else{
             return back()->with('message', 'Answer not found');
         }
@@ -195,7 +181,8 @@ class AnswerController extends Controller
      */
     public function edit(Answer $answer)
     {
-        return view('answers.edit', ['answer' => $answer]);
+        $systemSetup = SystemSetup::first();
+        return view('answers.edit', ['answer' => $answer, 'systemSetup' => $systemSetup]);
     }
 
     public function adminUpdateAnswer(Request $request, Answer $answer)

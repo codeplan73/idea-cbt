@@ -10,17 +10,20 @@ use App\Models\SecondTermResult;
 use App\Models\ThirdTermResult;
 use App\Models\Subject;
 use App\Models\Branch;
+use App\Models\SystemSetup;
 
 class CheckResultController extends Controller
 {
     public function index()
     {
         $systems = System::all();
-        return view('student.checkresult', ['systems' => $systems,]);
+        $systemSetup = SystemSetup::first();
+        return view('student.checkresult', ['systems' => $systems, 'systemSetup' => $systemSetup]);
     }
 
     public function checkAndShow(Request $request)
     {
+        $systemSetup = SystemSetup::first();
         $pin = $request->resultPin;
         $class = $request->class;
         $branch = $request->branch;
@@ -40,12 +43,9 @@ class CheckResultController extends Controller
         $term = $latestTerm->Current_Term; 
         $session = $latestTerm->Current_Session;
         
-
         $result = null;
         $subjects = Subject::where('C_Session', $session)->where('Branch', $branch)->first();
         $branches = Branch::where('Branch_Name', $branch)->first();
-
-        // dd($subjects, $branches);
 
         if ($term == '1st Term') {
             $result = FirstTermResult::where('Student_ID', $user_id)
@@ -99,6 +99,7 @@ class CheckResultController extends Controller
                 'subjects' => $subjects,
                 'branches' => $branches,
                 'totalStudent' => $totalStudent,
+                'systemSetup' => $systemSetup
             ]);
         }
 
@@ -108,6 +109,7 @@ class CheckResultController extends Controller
 
     public function showResult()
     {
+         $systemSetup = SystemSetup::first();
         $result = request()->session()->get('result');
 
         // You can also check if the result is present in the session
@@ -118,19 +120,21 @@ class CheckResultController extends Controller
         }
 
         // return view('student.result', compact('result'));
-        return view('student.result', ['result' => $result]);
+        return view('student.result', ['result' => $result, 'systemSetup' => $systemSetup]);
     }
 
     public function showSetResult()
     {
+         $systemSetup = SystemSetup::first();
         $currentTerms = CurrentTerm::all();
-        return view('set-result.index', ['currentTerms' => $currentTerms]);
+        return view('set-result.index', ['currentTerms' => $currentTerms, 'systemSetup' => $systemSetup]);
     }
 
     public function edit(CurrentTerm $cterm, Request $request)
     {
          $systems = System::all();
-         return view('set-result.edit', ['cterm' => $cterm, 'systems' => $systems]);
+          $systemSetup = SystemSetup::first();
+         return view('set-result.edit', ['cterm' => $cterm, 'systems' => $systems, 'systemSetup' => $systemSetup]);
     }
 
     public function update(Request $request)

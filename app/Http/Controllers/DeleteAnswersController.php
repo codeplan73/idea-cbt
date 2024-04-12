@@ -9,6 +9,7 @@ use App\Models\Result;
 use App\Models\System;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\SystemSetup;
 
 class DeleteAnswersController extends Controller
 {
@@ -18,7 +19,8 @@ class DeleteAnswersController extends Controller
     public function answerByClass()
     {
         $systems = System::all();
-        return view('answers.delete-by-class', ['systems' => $systems]);
+        $systemSetup = SystemSetup::first();
+        return view('answers.delete-by-class', ['systems' => $systems, 'systemSetup' => $systemSetup]);
     }
 
     /**
@@ -26,6 +28,7 @@ class DeleteAnswersController extends Controller
     */
     public function deleteByClass(Request $request)
     {
+         $systemSetup = SystemSetup::first();
         $class = $request->input('class');
         $subject = $request->input('subject');
 
@@ -70,7 +73,8 @@ class DeleteAnswersController extends Controller
     public function answerByTestType()
     {
         $systems = System::all();
-        return view('answers.delete-by-test-type', ['systems' => $systems]);
+         $systemSetup = SystemSetup::first();
+        return view('answers.delete-by-test-type', ['systems' => $systems, 'systemSetup' => $systemSetup]);
     }
 
     /**
@@ -124,7 +128,8 @@ class DeleteAnswersController extends Controller
     */
     public function answerAll()
     {
-        return view('answers.delete-answers');
+         $systemSetup = SystemSetup::first();
+        return view('answers.delete-answers', ['systemSetup' => $systemSetup]);
     }
 
     /**

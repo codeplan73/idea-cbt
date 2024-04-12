@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Student;
 use App\Models\System;
+use App\Models\SystemSetup;
 
 class StaffController extends Controller
 {
@@ -14,12 +15,13 @@ class StaffController extends Controller
      */
     public function staffList()
     {
+         $systemSetup = SystemSetup::first();
         $staffList = User::
             whereIn('Staff_Status', ['Active', 'Inactive', 'Sacked', 'Resigned'])
             ->select('ID', 'Staff_ID', 'Fullname', 'Phone_No', 'role', 'Staff_Status', 'Email')
             ->get();
 
-        return view('staff.staff-list', ['staffList' => $staffList]);
+        return view('staff.staff-list', ['staffList' => $staffList, 'systemSetup' => $systemSetup]);
     }
 
     /**
@@ -27,18 +29,20 @@ class StaffController extends Controller
      */
     public function studentList()
     {
+         $systemSetup = SystemSetup::first();
         $students = Student::
             whereIn('Current_Status', ['Active', 'Inactive', 'Graduated', 'Left'])
             ->select('ID', 'Student_ID', 'Fullnames', 'Plain_Password', 'Current_Status', 'Student_Pin', 'Current_Balance', 'Student_Class', 'Phone_Number')
             ->get();
 
-        return view('student.student-list', ['students' => $students]);
+        return view('student.student-list', ['students' => $students, 'systemSetup' => $systemSetup]);
     }
 
     public function create()
     {
+         $systemSetup = SystemSetup::first();
         $systems = System::all();
-        return view('password.create', ['systems' => $systems]);
+        return view('password.create', ['systems' => $systems, 'systemSetup' => $systemSetup]);
     }
 
     public function updateStatus(Request $request)
@@ -67,7 +71,8 @@ class StaffController extends Controller
     public function password()
     {
         $systems = System::all();
-        return view('password.password', ['systems' => $systems]);
+         $systemSetup = SystemSetup::first();
+        return view('password.password', ['systems' => $systems, 'systemSetup' => $systemSetup]);
     }
     
     public function updateStudentPassword(Request $request)
@@ -102,8 +107,9 @@ class StaffController extends Controller
 
     public function createStaffPassword()
     {
+         $systemSetup = SystemSetup::first();
         $systems = System::all();
-        return view('staff.create');
+        return view('staff.create', ['systems' => $systems, 'systemSetup' => $systemSetup]);
     }
 
     /** 
@@ -111,8 +117,9 @@ class StaffController extends Controller
      */
     public function edit(User $staff)
     {
+         $systemSetup = SystemSetup::first();
         $systems = System::all();
-        return view('staff.edit', ['staff' => $staff, 'systems' => $systems]);
+        return view('staff.edit', ['staff' => $staff, 'systems' => $systems, 'systemSetup' => $systemSetup]);
     }
 
     public function updateStaffPassword(Request $request)

@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\System;
 use App\Models\Messages;
+use App\Models\SystemSetup;
 use Africastalking\SDK\AfricasTalking;
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
@@ -13,16 +14,19 @@ class SMSController extends Controller
 {
     public function index()
     {
+        $systemSetup = SystemSetup::first();
         $messages = Messages::where('type', 'bulk')->latest()->limit(10)->get();
         $systems = System::all();
         return view('sms.create', [
             'systems' => $systems, 
-            'messages' => $messages
+            'messages' => $messages,
+            'systemSetup' => $systemSetup
         ]);
     }
 
     public function create()
     {
+         $systemSetup = SystemSetup::first();
         $messages = Messages::where('type', 'individual')->latest()->limit(10)->get();
         $students = Student::
             where('Current_Status', 'Active')
@@ -31,7 +35,8 @@ class SMSController extends Controller
     
         return view('sms.create-individual', [
             'students' => $students,
-            'messages' => $messages
+            'messages' => $messages,
+            'systemSetup' => $systemSetup
         ]);
     }
 
@@ -39,9 +44,11 @@ class SMSController extends Controller
     {
         $messages = Messages::where('type', 'fees')->latest()->limit(10)->get();
         $systems = System::all();
+         $systemSetup = SystemSetup::first();
         return view('sms.create-owning', [
             'systems' => $systems,
-            'messages' => $messages
+            'messages' => $messages,
+            'systemSetup' => $systemSetup
         ]);
     }
    

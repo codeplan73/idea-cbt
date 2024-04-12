@@ -8,17 +8,20 @@ use App\Models\Branch;
 use App\Models\QuestionCode;
 use App\Models\Question;
 use App\Models\System;
+use App\Models\SystemSetup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 
 class StudentController extends Controller
 {
     public function index(){
+        $systemSetup = SystemSetup::first();
         $branch = CurrentTerm::pluck('Branch');
         $genInfo = Branch::where('Branch_Name', $branch)->first();
 
         // dd($genInfo->GenInfo);
-        return view('student.dashboard', ['genInfo' => $genInfo]);
+        return view('student.dashboard', ['genInfo' => $genInfo, 'systemSetup' => $systemSetup]);
     }
     
     /**
@@ -26,7 +29,8 @@ class StudentController extends Controller
      */
     public function showLoginForm()
     {
-        return view('auth-student.login');
+        $systemSetup = SystemSetup::first();
+        return view('auth-student.login', ['systemSetup' => $systemSetup]);
     }
 
     /**
@@ -34,14 +38,16 @@ class StudentController extends Controller
      */
     public function showRegistrationForm()
     {
-        return view('auth-student.register');
+         $systemSetup = SystemSetup::first();
+        return view('auth-student.register', ['systemSetup' => $systemSetup]);
     }
 
 
     public function create()
     {
         $systems = System::all();
-        return view('manage-student.create', ['systems' => $systems]);
+         $systemSetup = SystemSetup::first();
+        return view('manage-student.create', ['systems' => $systems, 'systemSetup' => $systemSetup]);
     }
 
     /**
@@ -121,19 +127,22 @@ class StudentController extends Controller
 
     public function profile()
     {
-        return view('student.profile');
+         $systemSetup = SystemSetup::first();
+        return view('student.profile', ['systemSetup' => $systemSetup]);
     }
  
     public function manage()
     {
+         $systemSetup = SystemSetup::first();
         $students = Student::where('Current_Status', 'Active')->get();
-        return view('manage-student.index', ['students' => $students]);
+        return view('manage-student.index', ['students' => $students, 'systemSetup' => $systemSetup]);
     }
 
     public function edit(Student $student)
     {
         $systems = System::all();
-        return view('manage-student.edit', ['student' => $student, 'systems' => $systems]);
+         $systemSetup = SystemSetup::first();
+        return view('manage-student.edit', ['student' => $student, 'systems' => $systems, 'systemSetup' => $systemSetup]);
     }
 
     public function update(Student $student, Request $request)

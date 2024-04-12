@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Result;
 use App\Models\System;
+use App\Models\SystemSetup;
 use Illuminate\Http\Request;
 
 class ResultController extends Controller
@@ -13,8 +14,9 @@ class ResultController extends Controller
      */
     public function index()
     {
+        $systemSetup = SystemSetup::first();
         $results = Result::all();
-        return view('results.index', ['results' => $results]);
+        return view('results.index', ['results' => $results, 'systemSetup' => $systemSetup]);
     }
  
     /**
@@ -22,14 +24,16 @@ class ResultController extends Controller
      */
     public function create()
     {
-        return view('student.pin');
+        $systemSetup = SystemSetup::first();
+        return view('student.pin', ['systemSetup' => $systemSetup]);
     }
 
 
     public function createClassResult(Request $request)
     {
+         $systemSetup = SystemSetup::first();
         $systems = System::all();
-        return view('results.printForm', ['systems' => $systems]);
+        return view('results.printForm', ['systems' => $systems, 'systemSetup' => $systemSetup]);
     }
 
     public function storeClassResult(Request $request)
@@ -54,7 +58,8 @@ class ResultController extends Controller
      */
     public function edit(Result $result)
     {
-        return view('results.edit', ['result' => $result]);
+         $systemSetup = SystemSetup::first();
+        return view('results.edit', ['result' => $result, 'systemSetup' => $systemSetup]);
     }
 
     /**

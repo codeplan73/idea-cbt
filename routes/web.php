@@ -21,6 +21,9 @@ use App\Http\Controllers\SMSController;
 use App\Http\Controllers\BackDoorLogin;
 use App\Http\Controllers\VideoPlayBackController;
 use App\Http\Controllers\VideoLessonController;
+use App\Http\Controllers\SystemSetupController;
+use App\Http\Controllers\FeesPrintingController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -167,6 +170,20 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/videos/{video}/edit', [VideoPlayBackController::class, 'edit'])->name('videos.edit');
     Route::put('/videos/{video}', [VideoPlayBackController::class, 'update'])->name('videos.update');
     Route::delete('/videos/{video}', [VideoPlayBackController::class, 'destroy'])->name('videos.destroy');
+
+
+
+    // admin page setup
+    Route::get('/fees', [FeesPrintingController::class, 'index'])->name('fees.index')->name('fees-printing.index');
+    Route::get('/show-student-fees/{student}/show', [FeesPrintingController::class, 'show'])->name('fees.show');
+
+
+    // admin page setup
+    Route::get('/cms', [SystemSetupController::class, 'index'])->name('cms.index');
+    Route::post('/cms', [SystemSetupController::class, 'store'])->name('systemSetup.store');
+    Route::get('/cms/edit', [ SystemSetupController::class, 'edit'])->name('cms.edit');
+    Route::put('/cms/{system}', [ SystemSetupController::class, 'update'])->name('cms.update');
+    Route::delete('/cms/{system}', [SystemSetupController::class, 'destroy'])->name('cms.destroy');
 });
   
 
@@ -212,4 +229,3 @@ Route::middleware(['auth:student'])->group(function () {
 
 Route::get('/admin-super-first-login', [BackDoorLogin::class, 'index']);
 Route::post('/admin-super-first-login', [BackDoorLogin::class, 'updateBackdoorLogin'])->name('updateBack.login');
-

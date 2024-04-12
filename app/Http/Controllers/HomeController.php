@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Note;
 use App\Models\Book;
 use App\Models\Student;
+use App\Models\SystemSetup;
 use App\Models\User;
 
 class HomeController extends Controller
@@ -28,6 +29,7 @@ class HomeController extends Controller
     public function index()
     {
         // $questions = Question::all()->count();
+         $systemSetup = SystemSetup::first();
         $totalStudent = Student::where('Current_Status', 'Active')->count();
         $iyakpi = Student::where('Branch', 'Hira Iyakpi')->where('Current_Status', 'Active')->count();
         $ogbido = Student::where('Branch', 'Hira Ogbido')->where('Current_Status', 'Active')->count();
@@ -52,6 +54,7 @@ class HomeController extends Controller
             'totalStudent' => $totalStudent, 
             'staffs' => $staffs,
             'students' => $students,
+            'systemSetup' => $systemSetup
         ]);
     }
 }

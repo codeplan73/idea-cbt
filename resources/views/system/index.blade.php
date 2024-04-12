@@ -1,19 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    {{-- <div class="card mb-3">
-        <div class="card-body">
-            <div class="row flex-between-center">
-                <div class="col-md">
-                    <h5 class="mb-2 mb-md-0">System Management</h5>
-                </div>
-                <div class="col-auto">
-                    <a href="/system-create" class="btn btn-primary" role="button">Add Item
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div> --}}
     @if (session('message'))
         <script>
             document.addEventListener('DOMContentLoaded', function() {

@@ -19,13 +19,11 @@
         <div class="container">
             <div class="row" style="">
                 <div class="col-lg-6 d-flex flex-column justify-content-center">
-                    <h1 data-aos="fade-up">We provide advanced solutions for enhancing your knowledge</h1>
-                    <h2 data-aos="fade-up" data-aos-delay="400">We are a skilled team of developers creating user-friendly
-                        platforms for Computer Based Test (CBT)</h2>
-
+                    <h1 data-aos="fade-up">{{ $systemSetup->school_hero_title }}</h1>
+                    <h2 data-aos="fade-up" data-aos-delay="400">{{ $systemSetup->school_hero_text }}</h2>
                 </div>
                 <div style="padding: 12px 10px;" class="col-lg-6" data-aos="zoom-out" data-aos-delay="200">
-                    <img src="{{ asset('assets/landing/img/studimg.jpg') }}" class="img-fluid" alt="">
+                    <img src="/storage/{{ $systemSetup->school_about_images }}" class="img-fluid" alt="">
                 </div>
             </div>
         </div>
@@ -36,6 +34,7 @@
             {{ $latestTerm->announcement }}
         </marquee>
     </section>
+
 
     <!-- ======= About Section ======= -->
     <section id="about" class="about" style="padding: 20px 0px;">
@@ -131,28 +130,31 @@
                             <div class="info-box">
                                 <i class="bi bi-geo-alt"></i>
                                 <h3>Address</h3>
-                                <p>Hira Comprehensive College,<br /> Iyakpi, South Ibie, Edo State</p>
+                                {{ $systemSetup->school_address }}
+                                {{-- <p>Hira Comprehensive College,<br /> Iyakpi, South Ibie, Edo State</p> --}}
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="info-box">
                                 <i class="bi bi-telephone"></i>
                                 <h3>Call Us</h3>
-                                <p>+234-813 1231 252<br>+234-803 6398 734</p>
+                                {{ $systemSetup->school_phone }}
+                                {{-- <p>+234-813 1231 252<br>+234-803 6398 734</p> --}}
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="info-box">
                                 <i class="bi bi-envelope"></i>
                                 <h3>Email Us</h3>
-                                <p>aamin.hira@gmail.com<br>hiracollege2007@gmail.com</p>
+                                {{ $systemSetup->school_email }}
+                                {{-- <p>aamin.hira@gmail.com<br>hiracollege2007@gmail.com</p> --}}
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="info-box">
                                 <i class="bi bi-clock"></i>
                                 <h3>Open Hours</h3>
-                                <p>Monday - Friday<br>07:30 AM - 03:30 PM</p>
+                                <p>{{ $systemSetup->school_open_hours }} <br> {{ $systemSetup->school_close_hours }}</p>
                             </div>
                         </div>
                     </div>

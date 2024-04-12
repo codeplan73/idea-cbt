@@ -6,6 +6,7 @@ use App\Models\Question;
 use App\Models\System;
 use App\Models\QuestionCode;
 use Illuminate\Http\Request;
+use App\Models\SystemSetup;
 use App\Rules\PdfDocValidationRule;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -17,12 +18,14 @@ class QuestionController extends Controller
      */
     public function index()
     {
+         $systemSetup = SystemSetup::first();
         $systems = System::all();
         $questions = Question::latest()->get();
         $questions = Question::latest()->get();
         return view('questions.index', [
             'systems' => $systems,
-            'questions' => $questions
+            'questions' => $questions,
+            'systemSetup' => $systemSetup
         ]);
     }
 
@@ -32,7 +35,9 @@ class QuestionController extends Controller
     public function create()
     {
         $systems = System::all();
-        return view('questions.create', ['systems' => $systems]);
+         $systemSetup = SystemSetup::first();
+
+        return view('questions.create', ['systems' => $systems, 'systemSetup' => $systemSetup]);
     }
 
     /**
@@ -105,9 +110,12 @@ class QuestionController extends Controller
         // $examCode = ExamCode::latest()->get()->first();
         $QuestionCode = QuestionCode::latest()->get();
         $questions = Question::latest()->get();
+         $systemSetup = SystemSetup::first();
+
         return view('questions.list', [
             'questions' => $questions,
-            'QuestionCode' => $QuestionCode
+            'QuestionCode' => $QuestionCode,
+            'systemSetup' => $systemSetup
         ]);
     }
 
@@ -116,8 +124,9 @@ class QuestionController extends Controller
      */
     public function edit(Question $question)
     {
+         $systemSetup = SystemSetup::first();
         $systems = System::all();
-        return view('questions.edit', compact('systems', 'question'));
+        return view('questions.edit', compact('systems', 'question', 'systemSetup'));
     }
 
     /**

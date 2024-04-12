@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Rules\PdfDocValidationRule;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use App\Models\SystemSetup;
 
 class NoteController extends Controller
 {
@@ -19,7 +20,8 @@ class NoteController extends Controller
     public function index()
     {
         $notes = Note::all();
-        return view('notes.index', ['notes' => $notes]);
+         $systemSetup = SystemSetup::first();
+        return view('notes.index', ['notes' => $notes, 'systemSetup' => $systemSetup]);
     }
 
     /**
@@ -28,7 +30,8 @@ class NoteController extends Controller
     public function create()
     {
         $systems = System::all();
-        return view('notes.create', ['systems' => $systems]);
+         $systemSetup = SystemSetup::first();
+        return view('notes.create', ['systems' => $systems, 'systemSetup' => $systemSetup]);
     }
 
     /**
@@ -87,7 +90,8 @@ class NoteController extends Controller
 
     public function show(Note $note)
     {
-        return view('notes.show', ['note' => $note]);
+         $systemSetup = SystemSetup::first();
+        return view('notes.show', ['note' => $note, 'systemSetup' => $systemSetup]);
     }
 
     /**
@@ -96,9 +100,11 @@ class NoteController extends Controller
     public function edit(Note $note)
     {
         $systems = System::all();
+         $systemSetup = SystemSetup::first();
         return view('notes.edit', [
             'note' => $note,
-            'systems' => $systems
+            'systems' => $systems,
+            'systemSetup' => $systemSetup,
         ]);
     }
 

@@ -9,6 +9,7 @@ use App\Rules\VideoValidationRule;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
+use App\Models\SystemSetup;
 
 class VideoPlayBackController extends Controller
 {
@@ -17,8 +18,9 @@ class VideoPlayBackController extends Controller
      */
     public function index()
     {
+         $systemSetup = SystemSetup::first();
         $videos = VideoPlayBack::all();
-        return view('videos.index', ['videos' => $videos]);
+        return view('videos.index', ['videos' => $videos, 'systemSetup' => $systemSetup]);
     }
 
     /**
@@ -27,7 +29,8 @@ class VideoPlayBackController extends Controller
     public function create()
     {
         $systems = System::all();
-        return view('videos.create', ['systems' => $systems]);
+         $systemSetup = SystemSetup::first();
+        return view('videos.create', ['systems' => $systems, 'systemSetup' => $systemSetup]);
     }
 
     /**
@@ -70,7 +73,8 @@ class VideoPlayBackController extends Controller
      */
     public function show(VideoPlayBack $video)
     {
-        return view('videos.show', ['video' => $video]);
+         $systemSetup = SystemSetup::first();
+        return view('videos.show', ['video' => $video, 'systemSetup' => $systemSetup]);
     }
 
     /**
@@ -78,10 +82,12 @@ class VideoPlayBackController extends Controller
      */
     public function edit(VideoPlayBack $video)
     {
+         $systemSetup = SystemSetup::first();
         $systems = System::all();
         return view('videos.edit', [
             'systems' => $systems,
             'video' => $video,
+            'systemSetup' => $systemSetup
         ]); 
     }
 

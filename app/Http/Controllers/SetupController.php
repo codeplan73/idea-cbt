@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Setup;
 use Illuminate\Http\Request;
+use App\Models\SystemSetup;
 use App\Rules\PdfDocValidationRule;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -16,7 +17,8 @@ class SetupController extends Controller
     public function index()
     {
         $setups = Setup::all();
-        return view('setup.index', ['setups' => $setups]);
+         $systemSetup = SystemSetup::first();
+        return view('setup.index', ['setups' => $setups, 'systemSetup' => $systemSetup]);
     }
 
     /**
@@ -24,7 +26,8 @@ class SetupController extends Controller
      */
     public function create()
     {
-        return view('setup.create');
+         $systemSetup = SystemSetup::first();
+        return view('setup.create', ['systemSetup' => $systemSetup]);
     }
 
     /**
@@ -60,19 +63,12 @@ class SetupController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Setup $setup)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(Setup $setup)
     {
-        return view('setup.edit', ['setup' => $setup]);
+         $systemSetup = SystemSetup::first();
+        return view('setup.edit', ['setup' => $setup, 'systemSetup' => $systemSetup]);
     }
 
     /**

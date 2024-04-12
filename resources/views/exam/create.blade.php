@@ -2,7 +2,6 @@
 
 @section('content')
 
-
     <script>
         (function(window, history) {
             function disableBackAndForward() {
@@ -20,194 +19,195 @@
         })(window, history);
     </script>
 
-
-    @if ($question->question_type == 'Objective')
-        <div class="content">
-            <div class="row g-3 mb-3">
-                <div class="col-lg-12 col-md-12 order-md-first order-sm-last">
-                    <div class="card h-100">
-                        <div class="card-header bg-body-tertiary d-flex flex-between-center py-2">
-                            <h6 class="mb-0">Objective</h6>
-                            <div class="d-flex flex-between-center gap-1">
-                                @if ($question->end_time)
-                                    <h6>Stop-Time: </h6>
-                                    <h6 id="timerB" class="text-center fw-bold">
-                                        {{ ' ' . $question->end_time }}
-                                    </h6>
-                                @else
-                                    <h6 class="fw-bold">Stop Time Not Set</h6>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="row g-3 h-100">
-                                <div class="col-md-12 col-lg-12">
-                                    <div class="card position-relative rounded-4">
-                                        <iframe id="pdfViewer" src="{{ url('storage/' . $question->question_pdf) }}"
-                                            style="width: 100%; height: 350px;" frameborder="0"></iframe>
-                                    </div>
+    @if (auth()->guard('student')->user()->Student_ID == $answer->student_id)
+        @if ($question->question_type == 'Objective')
+            <div class="content">
+                <div class="row g-3 mb-3">
+                    <div class="col-lg-12 col-md-12 order-md-first order-sm-last">
+                        <div class="card h-100">
+                            <div class="card-header bg-body-tertiary d-flex flex-between-center py-2">
+                                <h6 class="mb-0">Objective</h6>
+                                <div class="d-flex flex-between-center gap-1">
+                                    @if ($question->end_time)
+                                        <h6>Stop-Time: </h6>
+                                        <h6 id="timerB" class="text-center fw-bold">
+                                            {{ ' ' . $question->end_time }}
+                                        </h6>
+                                    @else
+                                        <h6 class="fw-bold">Stop Time Not Set</h6>
+                                    @endif
                                 </div>
-
-                                <form id="quizForm" action="/exam/{{ $question->id }}" method="post">
-                                    @csrf
-                                    @method('PUT')
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-3 h-100">
                                     <div class="col-md-12 col-lg-12">
-                                        <div id="optionContainer" class="row">
-                                            <div class="col-md-12 px-5" id="optionsContainer"
-                                                data-total-questions="{{ $question->total_question }}">
-                                                <div class="d-flex justify-content-between align-items-center"
-                                                    id="options">
-                                                    <!-- Options will be dynamically populated here -->
-                                                </div>
-                                            </div>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div>
-                                                    <button class="btn btn-primary" style="width: 90px;"
-                                                        id="prevBtn">Prev</button>
-                                                </div>
-                                                <div>
-                                                    <input type="text" class="form-control text-center fw-bold"
-                                                        id="questionNumber" readonly>
-                                                </div>
-                                                <div>
-                                                    <button class="btn btn-primary" style="width: 90px;"
-                                                        id="nextBtn">Next</button>
-                                                </div>
-                                            </div>
+                                        <div class="card position-relative rounded-4">
+                                            <iframe id="pdfViewer" src="{{ url('storage/' . $question->question_pdf) }}"
+                                                style="width: 100%; height: 350px;" frameborder="0"></iframe>
                                         </div>
+                                    </div>
+
+                                    <form id="quizForm" action="/exam/{{ $question->id }}" method="post">
+                                        @csrf
+                                        @method('PUT')
+                                        <div class="col-md-12 col-lg-12">
+                                            <div id="optionContainer" class="row">
+                                                <div class="col-md-12 px-5" id="optionsContainer"
+                                                    data-total-questions="{{ $question->total_question }}">
+                                                    <div class="d-flex justify-content-between align-items-center"
+                                                        id="options">
+                                                        <!-- Options will be dynamically populated here -->
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div>
+                                                        <button class="btn btn-primary" style="width: 90px;"
+                                                            id="prevBtn">Prev</button>
+                                                    </div>
+                                                    <div>
+                                                        <input type="text" class="form-control text-center fw-bold"
+                                                            id="questionNumber" readonly>
+                                                    </div>
+                                                    <div>
+                                                        <button class="btn btn-primary" style="width: 90px;"
+                                                            id="nextBtn">Next</button>
+                                                    </div>
+                                                </div>
+                                            </div>
 
 
-                                        <input type="hidden" name="selectedOptions" id="selectedOptionsInput">
-                                        <input type="hidden" name="answersObj" id="answersInput">
+                                            <input type="hidden" name="selectedOptions" id="selectedOptionsInput">
+                                            <input type="hidden" name="answersObj" id="answersInput">
 
-                                        <input type="hidden" name="allottedMark" value="{{ $question->alloted_mark }}">
-                                        <input type="hidden" id="endTime" name="end_time"
-                                            value="{{ $question->end_time }}">
+                                            <input type="hidden" name="allottedMark" value="{{ $question->alloted_mark }}">
+                                            <input type="hidden" id="endTime" name="end_time"
+                                                value="{{ $question->end_time }}">
 
-                                        <input type="hidden" name="exam_type" value="{{ $question->exam_type }}">
+                                            <input type="hidden" name="exam_type" value="{{ $question->exam_type }}">
 
-                                        <input type="hidden" name="subject" value="{{ $question->subject }}">
-                                        <input type="hidden" name="session" value="{{ $question->session }}">
-                                        <input type="hidden" name="term" value="{{ $question->term }}">
-                                        <input type="hidden" name="class"
-                                            value="{{ auth()->guard('student')->user()->Student_Class }}">
+                                            <input type="hidden" name="subject" value="{{ $question->subject }}">
+                                            <input type="hidden" name="session" value="{{ $question->session }}">
+                                            <input type="hidden" name="term" value="{{ $question->term }}">
+                                            <input type="hidden" name="class"
+                                                value="{{ auth()->guard('student')->user()->Student_Class }}">
 
 
-                                        <div class="d-flex flex-between-center pt-3">
-                                            <button type="submit" class="btn btn-info" id="submitButton">
-                                                Submit
-                                            </button>
-                                            {{-- @if (!empty($question->end_time)) --}}
-                                            <div class="d-flex flex-between-center gap-1">
-                                                {{-- <h5>Stop-Time: </h5>
+                                            <div class="d-flex flex-between-center pt-3">
+                                                <button type="submit" class="btn btn-info" id="submitButton">
+                                                    Submit
+                                                </button>
+                                                {{-- @if (!empty($question->end_time)) --}}
+                                                <div class="d-flex flex-between-center gap-1">
+                                                    {{-- <h5>Stop-Time: </h5>
                                                     <h5 id="timerB" class="text-center fw-bold">
                                                         {{ $question->end_time }}
                                                     </h5> --}}
 
-                                                <h5>Time Left: </h5>
-                                                <h5 id="timer" class="text-center fw-bold "></h5>
+                                                    <h5>Time Left: </h5>
+                                                    <h5 id="timer" class="text-center fw-bold "></h5>
+                                                </div>
+                                                {{-- @endif --}}
                                             </div>
-                                            {{-- @endif --}}
-                                        </div>
-                                        <div id="answerContainer">
-                                            <input type="hidden" value="{{ $question->alloted_mark }}" id="mark">
-                                            <input type="hidden" value="{{ $question->q1 }}" id="ans1">
-                                            <input type="hidden" value="{{ $question->q2 }}" id="ans2">
-                                            <input type="hidden" value="{{ $question->q3 }}" id="ans3">
-                                            <input type="hidden" value="{{ $question->q4 }}" id="ans4">
-                                            <input type="hidden" value="{{ $question->q5 }}" id="ans5">
-                                            <input type="hidden" value="{{ $question->q6 }}" id="ans6">
-                                            <input type="hidden" value="{{ $question->q7 }}" id="ans7">
-                                            <input type="hidden" value="{{ $question->q8 }}" id="ans8">
-                                            <input type="hidden" value="{{ $question->q9 }}" id="ans9">
-                                            <input type="hidden" value="{{ $question->q10 }}" id="ans10">
+                                            <div id="answerContainer">
+                                                <input type="hidden" value="{{ $question->alloted_mark }}" id="mark">
+                                                <input type="hidden" value="{{ $question->q1 }}" id="ans1">
+                                                <input type="hidden" value="{{ $question->q2 }}" id="ans2">
+                                                <input type="hidden" value="{{ $question->q3 }}" id="ans3">
+                                                <input type="hidden" value="{{ $question->q4 }}" id="ans4">
+                                                <input type="hidden" value="{{ $question->q5 }}" id="ans5">
+                                                <input type="hidden" value="{{ $question->q6 }}" id="ans6">
+                                                <input type="hidden" value="{{ $question->q7 }}" id="ans7">
+                                                <input type="hidden" value="{{ $question->q8 }}" id="ans8">
+                                                <input type="hidden" value="{{ $question->q9 }}" id="ans9">
+                                                <input type="hidden" value="{{ $question->q10 }}" id="ans10">
 
-                                            <input type="hidden" value="{{ $question->q11 }}" id="ans11">
-                                            <input type="hidden" value="{{ $question->q12 }}" id="ans12">
-                                            <input type="hidden" value="{{ $question->q13 }}" id="ans13">
-                                            <input type="hidden" value="{{ $question->q14 }}" id="ans14">
-                                            <input type="hidden" value="{{ $question->q15 }}" id="ans15">
-                                            <input type="hidden" value="{{ $question->q16 }}" id="ans16">
-                                            <input type="hidden" value="{{ $question->q17 }}" id="ans17">
-                                            <input type="hidden" value="{{ $question->q18 }}" id="ans18">
-                                            <input type="hidden" value="{{ $question->q19 }}" id="ans19">
-                                            <input type="hidden" value="{{ $question->q20 }}" id="ans20">
+                                                <input type="hidden" value="{{ $question->q11 }}" id="ans11">
+                                                <input type="hidden" value="{{ $question->q12 }}" id="ans12">
+                                                <input type="hidden" value="{{ $question->q13 }}" id="ans13">
+                                                <input type="hidden" value="{{ $question->q14 }}" id="ans14">
+                                                <input type="hidden" value="{{ $question->q15 }}" id="ans15">
+                                                <input type="hidden" value="{{ $question->q16 }}" id="ans16">
+                                                <input type="hidden" value="{{ $question->q17 }}" id="ans17">
+                                                <input type="hidden" value="{{ $question->q18 }}" id="ans18">
+                                                <input type="hidden" value="{{ $question->q19 }}" id="ans19">
+                                                <input type="hidden" value="{{ $question->q20 }}" id="ans20">
 
-                                            <input type="hidden" value="{{ $question->q21 }}" id="ans21">
-                                            <input type="hidden" value="{{ $question->q22 }}" id="ans22">
-                                            <input type="hidden" value="{{ $question->q23 }}" id="ans23">
-                                            <input type="hidden" value="{{ $question->q24 }}" id="ans24">
-                                            <input type="hidden" value="{{ $question->q25 }}" id="ans25">
-                                            <input type="hidden" value="{{ $question->q26 }}" id="ans26">
-                                            <input type="hidden" value="{{ $question->q27 }}" id="ans27">
-                                            <input type="hidden" value="{{ $question->q28 }}" id="ans28">
-                                            <input type="hidden" value="{{ $question->q29 }}" id="ans29">
-                                            <input type="hidden" value="{{ $question->q30 }}" id="ans30">
+                                                <input type="hidden" value="{{ $question->q21 }}" id="ans21">
+                                                <input type="hidden" value="{{ $question->q22 }}" id="ans22">
+                                                <input type="hidden" value="{{ $question->q23 }}" id="ans23">
+                                                <input type="hidden" value="{{ $question->q24 }}" id="ans24">
+                                                <input type="hidden" value="{{ $question->q25 }}" id="ans25">
+                                                <input type="hidden" value="{{ $question->q26 }}" id="ans26">
+                                                <input type="hidden" value="{{ $question->q27 }}" id="ans27">
+                                                <input type="hidden" value="{{ $question->q28 }}" id="ans28">
+                                                <input type="hidden" value="{{ $question->q29 }}" id="ans29">
+                                                <input type="hidden" value="{{ $question->q30 }}" id="ans30">
 
-                                            <input type="hidden" value="{{ $question->q31 }}" id="ans31">
-                                            <input type="hidden" value="{{ $question->q32 }}" id="ans32">
-                                            <input type="hidden" value="{{ $question->q33 }}" id="ans33">
-                                            <input type="hidden" value="{{ $question->q34 }}" id="ans34">
-                                            <input type="hidden" value="{{ $question->q35 }}" id="ans35">
-                                            <input type="hidden" value="{{ $question->q36 }}" id="ans36">
-                                            <input type="hidden" value="{{ $question->q37 }}" id="ans37">
-                                            <input type="hidden" value="{{ $question->q38 }}" id="ans38">
-                                            <input type="hidden" value="{{ $question->q39 }}" id="ans39">
-                                            <input type="hidden" value="{{ $question->q40 }}" id="ans40">
+                                                <input type="hidden" value="{{ $question->q31 }}" id="ans31">
+                                                <input type="hidden" value="{{ $question->q32 }}" id="ans32">
+                                                <input type="hidden" value="{{ $question->q33 }}" id="ans33">
+                                                <input type="hidden" value="{{ $question->q34 }}" id="ans34">
+                                                <input type="hidden" value="{{ $question->q35 }}" id="ans35">
+                                                <input type="hidden" value="{{ $question->q36 }}" id="ans36">
+                                                <input type="hidden" value="{{ $question->q37 }}" id="ans37">
+                                                <input type="hidden" value="{{ $question->q38 }}" id="ans38">
+                                                <input type="hidden" value="{{ $question->q39 }}" id="ans39">
+                                                <input type="hidden" value="{{ $question->q40 }}" id="ans40">
 
-                                            <input type="hidden" value="{{ $question->q41 }}" id="ans41">
-                                            <input type="hidden" value="{{ $question->q42 }}" id="ans42">
-                                            <input type="hidden" value="{{ $question->q43 }}" id="ans43">
-                                            <input type="hidden" value="{{ $question->q44 }}" id="ans44">
-                                            <input type="hidden" value="{{ $question->q45 }}" id="ans45">
-                                            <input type="hidden" value="{{ $question->q46 }}" id="ans46">
-                                            <input type="hidden" value="{{ $question->q47 }}" id="ans47">
-                                            <input type="hidden" value="{{ $question->q48 }}" id="ans48">
-                                            <input type="hidden" value="{{ $question->q49 }}" id="ans49">
-                                            <input type="hidden" value="{{ $question->q50 }}" id="ans50">
-                                        </div>
-                                </form>
+                                                <input type="hidden" value="{{ $question->q41 }}" id="ans41">
+                                                <input type="hidden" value="{{ $question->q42 }}" id="ans42">
+                                                <input type="hidden" value="{{ $question->q43 }}" id="ans43">
+                                                <input type="hidden" value="{{ $question->q44 }}" id="ans44">
+                                                <input type="hidden" value="{{ $question->q45 }}" id="ans45">
+                                                <input type="hidden" value="{{ $question->q46 }}" id="ans46">
+                                                <input type="hidden" value="{{ $question->q47 }}" id="ans47">
+                                                <input type="hidden" value="{{ $question->q48 }}" id="ans48">
+                                                <input type="hidden" value="{{ $question->q49 }}" id="ans49">
+                                                <input type="hidden" value="{{ $question->q50 }}" id="ans50">
+                                            </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    @else
-        <div class="content">
-            <div class="row g-3 mb-3">
-                <div class="col-lg-12 col-md-12 order-md-first order-sm-last">
-                    <div class="card h-100">
-                        <div class="card-header bg-body-tertiary d-flex flex-between-center py-2">
-                            <h6 class="mb-0">Theory</h6>
-                            <div class="d-flex flex-between-center gap-1">
-                                @if ($question->end_time)
-                                    <h6>Stop-Time: </h6>
-                                    <h6 id="timerB" class="text-center fw-bold">
-                                        {{ $question->end_time }}
-                                    </h6>
-                                @else
-                                    <h6 class="fw-bold">Stop Time Not Set</h6>
-                                @endif
+        @else
+            <div class="content">
+                <div class="row g-3 mb-3">
+                    <div class="col-lg-12 col-md-12 order-md-first order-sm-last">
+                        <div class="card h-100">
+                            <div class="card-header bg-body-tertiary d-flex flex-between-center py-2">
+                                <h6 class="mb-0">Theory</h6>
+                                <div class="d-flex flex-between-center gap-1">
+                                    @if ($question->end_time)
+                                        <h6>Stop-Time: </h6>
+                                        <h6 id="timerB" class="text-center fw-bold">
+                                            {{ $question->end_time }}
+                                        </h6>
+                                    @else
+                                        <h6 class="fw-bold">Stop Time Not Set</h6>
+                                    @endif
+                                </div>
                             </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="row g-3 h-100">
-                                <div class="col-md-12 col-lg-12">
-                                    <div class="card position-relative rounded-4">
-                                        <iframe id="pdfViewer" src="{{ url('storage/' . $question->question_pdf) }}"
-                                            style="width: 100%; height: 425px;" frameborder="0"></iframe>
-                                    </div>
-                                    <div class="d-flex flex-between-center pt-3 align-items-center">
-                                        <a class="btn btn-outline-warning mt-4" href="/student-logout">Close</a>
-                                        <div class="d-flex flex-between-center align-items-center mt-4"
-                                            style="border:1px solid orange; color:orange; padding: 5px; border-radius: 5px; margin-top: 20px;">
-                                            <h5 class="text-warning">Time: </h5>
-                                            <h5 id="timer-theory" class="text-center text-warning"></h5>
+                            <div class="card-body">
+                                <div class="row g-3 h-100">
+                                    <div class="col-md-12 col-lg-12">
+                                        <div class="card position-relative rounded-4">
+                                            <iframe id="pdfViewer" src="{{ url('storage/' . $question->question_pdf) }}"
+                                                style="width: 100%; height: 425px;" frameborder="0"></iframe>
+                                        </div>
+                                        <div class="d-flex flex-between-center pt-3 align-items-center">
+                                            <a class="btn btn-outline-warning mt-4" href="/student-logout">Close</a>
+                                            <div class="d-flex flex-between-center align-items-center mt-4"
+                                                style="border:1px solid orange; color:orange; padding: 5px; border-radius: 5px; margin-top: 20px;">
+                                                <h5 class="text-warning">Time: </h5>
+                                                <h5 id="timer-theory" class="text-center text-warning"></h5>
 
-                                            {{-- <h6>Time Left: </h6> --}}
-                                            {{-- <button type="button" id="timer-theory"
+                                                {{-- <h6>Time Left: </h6> --}}
+                                                {{-- <button type="button" id="timer-theory"
                                                 class="btn btn-outline-warning mt-4"></button> --}}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -216,8 +216,43 @@
                     </div>
                 </div>
             </div>
+        @endif
+    @else
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Your were not registered in the system for this exam. You will be logged out. Please login again to the system'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Log the user out
+                        window.location.href = '/student-logout'; // Replace with your logout URL
+                        window.history.forward();
+                    }
+                });
+
+                // Log out the student when clicking anywhere on the page
+                document.addEventListener('click', function() {
+                    window.location.href = '/student-logout'; // Replace with your logout URL
+                    window.history.forward();
+                });
+            });
+        </script>
+        <div class="container">
+            <div class="row">
+                <div class="card card-body">
+                    <h4 class="text-center"></h4>
+                </div>
+            </div>
         </div>
     @endif
+
+
+
+
+
+
 
 
     <script>
