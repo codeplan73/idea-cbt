@@ -22,6 +22,7 @@ use App\Http\Controllers\BackDoorLogin;
 use App\Http\Controllers\VideoPlayBackController;
 use App\Http\Controllers\VideoLessonController;
 use App\Http\Controllers\SystemSetupController;
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\FeesPrintingController;
 use Illuminate\Support\Facades\Auth;
 
@@ -184,6 +185,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/cms/edit', [ SystemSetupController::class, 'edit'])->name('cms.edit');
     Route::put('/cms/{system}', [ SystemSetupController::class, 'update'])->name('cms.update');
     Route::delete('/cms/{system}', [SystemSetupController::class, 'destroy'])->name('cms.destroy');
+
+  
+    Route::post('/cms-about', [SystemSetupController::class, 'storeAbout'])->name('cms-about-upload');
+    Route::get('/cms/edit', [SystemSetupController::class, 'editAbout'])->name('cms.editAbout');
+    Route::delete('/cms-about/{about}', [SystemSetupController::class, 'destroyAbout'])->name('cms.destroyAbout');
 });
   
 

@@ -9,18 +9,16 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 
-class SystemSetupController extends Controller
+class AboutController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $about = About::all();
-        $system = SystemSetup::first()->get();
-        $systemSetup = SystemSetup::first();
+        $about = About::first();
          
-        return view("cms.index", [ 'systemSetup' => $systemSetup, 'system' => $system, 'about' => $about]);
+        return view("cms-about.index", [ 'about' => $about]);
     }
     
     /**
@@ -70,21 +68,38 @@ class SystemSetupController extends Controller
     }
 
     public function storeAbout(Request $request)
-    {   
+    {
         $about = new About;
+
+        if ($request->hasFile('school_logo')) {
+            if ($about->school_logo && Storage::disk('public')->exists($about->school_logo)) {
+                Storage::disk('public')->delete($about->school_logo);
+            }
+            $school_logo = $request->file('school_logo');
+            $logoFileName = 'logo-' . time() . '.' . $school_logo->getClientOriginalExtension();
+            $logo_path = $school_logo->storeAs('logo', $logoFileName, 'public');
+            $about->school_logo = $logo_path;
+        }
+
 
         if ( $request->hasFile('school_about_images')) {
             if ($about->school_about_images && Storage::disk('public')->exists($about->school_about_images)) {
                 Storage::disk('public')->delete($about->school_about_images);
             }
-            $about_images = $request->file('school_about_images');
-            $aboutFileName = 'about-' . time() . '.' . $about_images->getClientOriginalExtension();
-            $about_path = $about_images->storeAs('about', $aboutFileName, 'public');
-            $about->about_images = $about_path;
+            $school_about_images = $request->file('school_about_images');
+            $aboutFileName = 'about-' . time() . '.' . $school_about_images->getClientOriginalExtension();
+            $about_path = $school_about_images->storeAs('about', $aboutFileName, 'public');
+            $about->school_about_images = $about_path;
         }
 
+
+        $about->school_name = $request->school_name;
+        $about->school_motto = $request->school_motto;
+        $about->school_address = $request->school_address;
+        $about->school_email = $request->school_email;
+
         $about->save();
-        return back()->with('message', 'about Images added successfully');
+        return back()->with('message', 'about Item added successfully');
     }
 
     /**
@@ -116,15 +131,13 @@ class SystemSetupController extends Controller
                 Storage::disk('public')->delete($system->school_about_images);
             }
             $school_about_images = $request->file('school_about_images');
-            $aboutFileName = 'hero-' . time() . '.' . $school_about_images->getClientOriginalExtension();
-            $about_path = $school_about_images->storeAs('hero', $aboutFileName, 'public');
+            $aboutFileName = 'about-' . time() . '.' . $school_about_images->getClientOriginalExtension();
+            $about_path = $school_about_images->storeAs('about', $aboutFileName, 'public');
             $system->school_about_images = $about_path;
         }
 
 
         $system->school_name = $request->school_name;
-        $system->school_about_title = $request->school_about_title;
-        $system->school_about_text = $request->school_about_text;
         $system->school_motto = $request->school_motto;
         $system->school_address = $request->school_address;
         $system->school_email = $request->school_email;
@@ -155,20 +168,6 @@ class SystemSetupController extends Controller
         }
 
         $system->delete();
-
-        return back()->with('message', 'System Item deleted successfully');
-    }
-    public function destroyAbout(About $about)
-    {
-        if ($about->about_images && Storage::disk('public')->exists($about->about_images)) {
-            Storage::disk('public')->delete($about->about_images);
-        }
-
-        if ($about->about_images && Storage::disk('public')->exists($about->about_images)) {
-            Storage::disk('public')->delete($about->about_images);
-        }
-
-        $about->delete();
 
         return back()->with('message', 'System Item deleted successfully');
     }

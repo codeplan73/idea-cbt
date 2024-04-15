@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Setup;
 use App\Models\CurrentTerm;
 use App\Models\SystemSetup;
+use App\Models\About;
 use App\Mail\ContactUsMail;
 use Illuminate\Support\Facades\Mail;
 
@@ -15,12 +16,14 @@ class HomepageController extends Controller
     public function index()
     {
         $systemSetup = SystemSetup::first();
+        $about = About::all();
         $latestTerm = CurrentTerm::latest()->first();
         $generalInfo = Setup::where('status', 'Active')->first(); 
         return view('welcome', [
             'generalInfo' => $generalInfo,
             'latestTerm' => $latestTerm,
-            'systemSetup' => $systemSetup
+            'systemSetup' => $systemSetup,
+            'about' => $about
         ]);
     }
 

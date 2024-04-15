@@ -2,6 +2,8 @@
 
 @section('content')
 
+
+
     <script>
         (function(window, history) {
             function disableBackAndForward() {
@@ -19,14 +21,17 @@
         })(window, history);
     </script>
 
-    @if (auth()->guard('student')->user()->Student_ID == $answer->student_id)
+    @if ($answer->student_id == auth()->guard('student')->user()->Student_ID)
         @if ($question->question_type == 'Objective')
             <div class="content">
                 <div class="row g-3 mb-3">
                     <div class="col-lg-12 col-md-12 order-md-first order-sm-last">
                         <div class="card h-100">
                             <div class="card-header bg-body-tertiary d-flex flex-between-center py-2">
-                                <h6 class="mb-0">Objective</h6>
+
+                                <h6 class="mb-0">Objective |
+                                    Exam-ID:<span class="fw-bold">{{ $answer->exam_id }} </span>
+                                </h6>
                                 <div class="d-flex flex-between-center gap-1">
                                     @if ($question->end_time)
                                         <h6>Stop-Time: </h6>

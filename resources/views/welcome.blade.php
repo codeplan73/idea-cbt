@@ -37,52 +37,46 @@
 
 
     <!-- ======= About Section ======= -->
-    <section id="about" class="about" style="padding: 20px 0px;">
+    <section id="about" class="about" style="padding: 20px 0px; margin:3rem 0px;">
 
         <div class="container" data-aos="fade-up">
+            <div class="text-center">
+                <h2>{{ $systemSetup->school_about_title }}</h2>
+                <div class="content" data-aos="fade-up" data-aos-delay="200">
+                    <h4 class="">{{ $systemSetup->school_about_text }}</h4>
+                </div>
+            </div>
             <div class="row gx-4 gy-4">
 
-                <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
-                    <div class="content">
-                        <h2>OUR INSTITUTIONS:</h2>
+                {{-- <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="content"> --}}
 
-                        <h2 data-aos="fade-up">* Hira Comprehensive College, Kogi.</h2>
+
+                {{-- <h2 data-aos="fade-up">* Hira Comprehensive College, Kogi.</h2>
                         <h2 data-aos="fade-up">* Hira Comprehensive College, Iyakpi.</h2>
                         <h2 data-aos="fade-up">* Hira Comprehensive College, Ogbido.</h2>
                         <h2 data-aos="fade-up">* Futac International Schools, Okpella.</h2>
-                        <h2 data-aos="fade-up">* El-Amin College of M. Sciences, Aviele.</h2>
+                        <h2 data-aos="fade-up">* El-Amin College of M. Sciences, Aviele.</h2> --}}
+                {{-- <h2 data-aos="fade-up">{{ $systemSetup->school_about_text }}.</h2> --}}
 
-                        <hr>
-                        <div class="text-center text-lg-start">
+                {{-- <hr> --}}
+                {{-- <div class="text-center text-lg-start">
                             <a href="#"
                                 class="btn-read-more d-inline-flex align-items-center justify-content-center align-self-center">
-                                {{-- <span>Read More</span> --}}
+
                                 <span>Who We Are</span>
                                 <i class="bi bi-arrow-right"></i>
                             </a>
-                        </div>
+                        </div> --}}
+                {{-- </div>
+                </div> --}}
+
+                @foreach ($about as $item)
+                    <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
+                        {{-- <img src="{{ asset('assets/landing/img/College2.jpeg') }}" class="img-fluid" alt=""> --}}
+                        <img src="{{ url('storage/' . $item->about_images) }}" class="img-fluid" alt="" />
                     </div>
-                </div>
-
-                <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
-                    <img src="{{ asset('assets/landing/img/College2.jpeg') }}" class="img-fluid" alt="">
-                </div>
-
-                <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
-                    <img src="{{ asset('assets/landing/img/Class1.png') }}" class="img-fluid" alt="">
-                </div>
-
-                <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
-                    <img src="{{ asset('assets/landing/img/sport3.jpg') }}" class="img-fluid" alt="">
-                </div>
-
-                <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
-                    <img src="{{ asset('assets/landing/img/stud5.jpg') }}" class="img-fluid" alt="">
-                </div>
-
-                <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
-                    <img src="{{ asset('assets/landing/img/stud7.jpg') }}" class="img-fluid" alt="">
-                </div>
+                @endforeach
 
             </div>
         </div>
@@ -166,18 +160,15 @@
                         @csrf
                         <div class="row gy-4">
                             <div class="col-md-6">
-                                <input type="text" name="name" class="form-control" placeholder="Your Name"
-                                    required>
+                                <input type="text" name="name" class="form-control" placeholder="Your Name" required>
                             </div>
 
                             <div class="col-md-6 ">
-                                <input type="email" class="form-control" name="email" placeholder="Your Email"
-                                    required>
+                                <input type="email" class="form-control" name="email" placeholder="Your Email" required>
                             </div>
 
                             <div class="col-md-12">
-                                <input type="text" class="form-control" name="subject" placeholder="Subject"
-                                    required>
+                                <input type="text" class="form-control" name="subject" placeholder="Subject" required>
                             </div>
 
                             <div class="col-md-12">
