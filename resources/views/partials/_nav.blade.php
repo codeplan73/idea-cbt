@@ -76,6 +76,12 @@
                          </a>
                      </div>
                      <div class="nav-item">
+                         <a class="nav-link " href="/library" data-placement="left">
+                             <i class="fa-solid fa-book nav-icon"></i>
+                             <span class="nav-link-title">Library</span>
+                         </a>
+                     </div>
+                     <div class="nav-item">
                          <a class="nav-link " href="/videos" data-placement="left">
                              <i class="fa-solid fa-video nav-icon"></i>
                              <span class="nav-link-title">Video Lesson</span>

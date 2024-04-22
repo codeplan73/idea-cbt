@@ -6,6 +6,7 @@ use App\Http\Controllers\StudentNoteController;
 use App\Http\Controllers\StudentBookController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\SystemController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuestionCodeController;
@@ -185,11 +186,20 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/cms/edit', [ SystemSetupController::class, 'edit'])->name('cms.edit');
     Route::put('/cms/{system}', [ SystemSetupController::class, 'update'])->name('cms.update');
     Route::delete('/cms/{system}', [SystemSetupController::class, 'destroy'])->name('cms.destroy');
-
-  
+    
+    
     Route::post('/cms-about', [SystemSetupController::class, 'storeAbout'])->name('cms-about-upload');
     Route::get('/cms/edit', [SystemSetupController::class, 'editAbout'])->name('cms.editAbout');
     Route::delete('/cms-about/{about}', [SystemSetupController::class, 'destroyAbout'])->name('cms.destroyAbout');
+    
+    
+    Route::get('/library', [LibraryController::class, 'index'])->name('library.index');
+    Route::get('/library-create', [LibraryController::class, 'create'])->name('library.create');
+    Route::post('/library', [LibraryController::class, 'store'])->name('library.store');
+    Route::get('/library/{library}/show', [LibraryController::class, 'show'])->name('library.show');
+    Route::get('/library/{library}/edit', [LibraryController::class, 'edit'])->name('library.edit');
+    Route::put('/library/{library}', [LibraryController::class, 'update'])->name('library.update');
+    Route::delete('/library/{library}', [LibraryController::class, 'destroy'])->name('library.destroy');
 });
   
 
@@ -226,10 +236,12 @@ Route::middleware(['auth:student'])->group(function () {
     Route::get('/notes-list', [StudentNoteController::class, 'index']);
     Route::get('/classnote/{note}/show', [StudentNoteController::class, 'show'])->name('classnote.show');
    
-   
-   
     Route::get('/video-lesson', [VideoLessonController::class, 'index'])->name('videoLesson.index');
     Route::get('/video-lesson/{video}/show', [VideoLessonController::class, 'show'])->name('videoLesson.show');
+
+    // library section
+    Route::get('/library-student', [LibraryController::class, 'studentIndex'])->name('library.studentIndex');
+    Route::get('/library-student/{library}/show', [LibraryController::class, 'studentShow'])->name('library.studentShow');
 });
 
 

@@ -53,6 +53,12 @@
                                  <span class="nav-link-title">E-Book</span>
                              </a>
                          </div>
+                         <div class="nav-item">
+                             <a class="nav-link " href="/library-student" data-placement="left">
+                                 <i class="fa-solid fa-book nav-icon"></i>
+                                 <span class="nav-link-title">Library</span>
+                             </a>
+                         </div>
 
                          <div class="nav-item">
                              <a class="nav-link " href="/video-lesson" data-placement="left">

@@ -80,7 +80,7 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-         $systemSetup = SystemSetup::first();
+        $systemSetup = SystemSetup::first();
         return view('books.show', ['book' => $book, 'systemSetup' => $systemSetup]);
     }
 
