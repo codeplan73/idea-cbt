@@ -7,7 +7,8 @@
                 <div class="col-mg-12 col-lg-12">
                     <div class="card mb-3">
                         <div class="card-header position-relative">
-                            <h3 class="mb-0 mt-1">Books For {{ Auth::guard('student')->user()->Student_Class }}</h3>
+                            <h3 class="mb-0 mt-1 text-center">Books For {{ Auth::guard('student')->user()->Student_Class }}
+                            </h3>
                             <div class="bg-holder d-none d-md-block bg-card"
                                 style="
                       background-image: url({{ asset('assets/img/illustrations/corner-6.png') }});
@@ -26,19 +27,20 @@
                                                 <div class="hoverbox text-center">
                                                     <a class="text-decoration-none" href="/classbook/{{ $book->id }}/show"
                                                         data-gallery="attachment-bg">
-                                                        <img class="w-100 h-100 object-fit-cover"
-                                                            src="assets/cover/book-cover.jpeg" alt="" />
+                                                        {{-- <img class="w-100 h-100 object-fit-cover"
+                                                            src="assets/cover/book-cover.jpeg" alt="" /> --}}
+                                                        <div class="p-1">
+                                                            <h2 class="fs-0 fw-bold mb-1">
+
+                                                                {{ $book->subject }}
+                                                            </h2>
+                                                            <h5 class="fs-0">
+                                                                Term: {{ $book->term }}
+                                                            </h5>
+                                                        </div>
                                                     </a>
                                                 </div>
-                                                <div class="p-1">
-                                                    <h2 class="fs-0 fw-bold mb-1">
 
-                                                        {{ $book->subject }}
-                                                    </h2>
-                                                    <h5 class="fs-0">
-                                                        Term: {{ $book->term }}
-                                                    </h5>
-                                                </div>
                                             </div>
 
                                         </div>

@@ -63,30 +63,45 @@
                      </div>
 
 
-                     <div class="nav-item">
-                         <a class="nav-link " href="/note" data-placement="left">
-                             <i class="fa-solid fa-book-open nav-icon"></i>
-                             <span class="nav-link-title">Set E-Note</span>
-                         </a>
-                     </div>
-                     <div class="nav-item">
-                         <a class="nav-link " href="/book" data-placement="left">
-                             <i class="fa-solid fa-book nav-icon"></i>
-                             <span class="nav-link-title">Set E-Book</span>
-                         </a>
-                     </div>
-                     <div class="nav-item">
-                         <a class="nav-link " href="/library" data-placement="left">
-                             <i class="fa-solid fa-book nav-icon"></i>
-                             <span class="nav-link-title">Library</span>
-                         </a>
-                     </div>
-                     <div class="nav-item">
-                         <a class="nav-link " href="/videos" data-placement="left">
-                             <i class="fa-solid fa-video nav-icon"></i>
-                             <span class="nav-link-title">Video Lesson</span>
-                         </a>
-                     </div>
+                     <a class="nav-link dropdown-indicator" href="#book" role="button" data-bs-toggle="collapse"
+                         aria-expanded="false" aria-controls="book">
+                         <div class="d-flex align-items-center">
+                             <span class="nav-link-icon"><i class="fa-brands fa-ubuntu"></i></span><span
+                                 class="nav-link-text ps-1">Accademic Tools</span>
+                         </div>
+                     </a>
+                     <ul class="nav collapse" id="book">
+                         <li class="nav-item">
+                             <a class="nav-link" href="/note">
+                                 <div class="d-flex align-items-center">
+                                     <span class="nav-link-text ps-1">Note</span>
+                                 </div>
+                             </a><!-- more inner pages-->
+                         </li>
+                         <li class="nav-item">
+                             <a class="nav-link" href="/book">
+                                 <div class="d-flex align-items-center">
+                                     <span class="nav-link-text ps-1">Books</span>
+                                 </div>
+                             </a><!-- more inner pages-->
+                         </li>
+                         <li class="nav-item">
+                             <a class="nav-link" href="/library">
+                                 <div class="d-flex align-items-center">
+                                     <span class="nav-link-text ps-1">Library</span>
+                                 </div>
+                             </a><!-- more inner pages-->
+                         </li>
+
+                         <li class="nav-item">
+                             <a class="nav-link" href="/videos">
+                                 <div class="d-flex align-items-center">
+                                     <span class="nav-link-text ps-1">Videos</span>
+                                 </div>
+                             </a><!-- more inner pages-->
+                         </li>
+                     </ul>
+
                      @if (auth()->user()->role === 'admin')
                          <div class="nav-item">
                              <a class="nav-link " href="/question" data-placement="left">
