@@ -30,7 +30,7 @@
                             <div class="card-header bg-body-tertiary d-flex flex-between-center py-2">
 
                                 <h6 class="mb-0">Objective |
-                                    Exam-ID:<span class="fw-bold">{{ $answer->exam_id }} </span>
+                                    ID:<span class="fw-bold">{{ $answer->exam_id }} </span>
                                 </h6>
                                 <div class="d-flex flex-between-center gap-1">
                                     @if ($question->end_time)
