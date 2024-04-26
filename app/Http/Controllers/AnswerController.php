@@ -19,9 +19,7 @@ class AnswerController extends Controller
      */
     public function index()
     {
-        // dd('show exam take exam');
-
-         $systemSetup = SystemSetup::first();
+        $systemSetup = SystemSetup::first();
         $student_class = Auth::guard('student')->user()->Student_Class;
     
         $examCode = QuestionCode::where('class', $student_class)->first();
@@ -37,11 +35,42 @@ class AnswerController extends Controller
     } 
 
 
+    public function create(Request $request)
+    {
+        // dd('show exam take exam create verify the student has taken the exam');
+        $currentTime = Carbon::now();
+        $systemSetup = SystemSetup::first();
+        $examEndTime = $currentTime->format('H:i:s');
+
+        $student_class = Auth::guard('student')->user()->Student_Class;
+        $student_id = Auth::guard('student')->user()->Student_ID;
+
+        $examCode = QuestionCode::where('class', $student_class)->first();
+        $questionCode = $examCode->question_code;
+        $question = Question::where('question_id', $questionCode)->where('class', $student_class)->first();
+        $answer = Answer::where('student_id', $student_id)->where('exam_id', $questionCode)->first();
+
+        if(!$answer){
+            return redirect('/student');
+        }else{
+
+            if($question && $answer){
+                return view('exam.create', [
+                    'question' => $question,
+                    'answer' => $answer,
+                    'systemSetup' => $systemSetup,
+                    ]);
+            }else {
+                return redirect('/student')->with(['noexam', 'Sorry no question set for your class currently']);
+            }
+        }       
+    }
+
     public function store(Request $request)
     {
         $data = $request->validate([
             "Student_ID" => "required",
-            "Fullnames" => "required",
+            "Fullnames" => "required", 
             "Student_Class" => "required",
             "Branch" => "required",
             "question_id" => "required",
@@ -118,40 +147,6 @@ class AnswerController extends Controller
         }
     }
 
-   
-    public function create(Request $request)
-    {
-        $currentTime = Carbon::now();
-        $systemSetup = SystemSetup::first();
-        $examEndTime = $currentTime->format('H:i:s');
-
-        $student_class = Auth::guard('student')->user()->Student_Class;
-        $student_id = Auth::guard('student')->user()->Student_ID;
-    
-        $examCode = QuestionCode::where('class', $student_class)->first();
-        $questionCode = $examCode->question_code;
-
-        $question = Question::where('question_id', $questionCode)->where('class', $student_class)->first();
-
-        $answer = Answer::where('student_id', $student_id)->first();
-
-        // dd('show exam take exam');
-
-        if(!$answer){
-            return redirect('/student');
-        }else{
-
-            if($question){
-                return view('exam.create', [
-                    'question' => $question,
-                    'answer' => $answer,
-                    'systemSetup' => $systemSetup,
-                    ]);
-            }else {
-                return redirect('/student')->with(['noexam', 'Sorry no question set for your class currently']);
-            }
-        }       
-    }
 
     public function answersList()
     {

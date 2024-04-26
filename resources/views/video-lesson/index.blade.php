@@ -7,7 +7,8 @@
                 <div class="col-mg-12 col-lg-12">
                     <div class="card mb-3">
                         <div class="card-header position-relative">
-                            <h3 class="mb-0 mt-1">Video Lessons For {{ Auth::guard('student')->user()->Student_Class }}</h3>
+                            <h3 class="mb-0 mt-1 text-center">Video Lessons For
+                                {{ Auth::guard('student')->user()->Student_Class }}</h3>
                             <div class="bg-holder d-none d-md-block bg-card"
                                 style="
                       background-image: url({{ asset('assets/img/illustrations/corner-6.png') }});
@@ -27,21 +28,21 @@
                                                     <a class="text-decoration-none"
                                                         href="/video-lesson/{{ $video->id }}/show"
                                                         data-gallery="attachment-bg">
-                                                        <img class="w-100 h-100 object-fit-cover"
-                                                            src="assets/cover/video-cover.png" alt="" />
+
+                                                        <div style="padding-left:10px; display: flex; flex-direction: column;">
+                                                            <h2 class="fs-0 fw-bold mt-2 ">
+                                                                {{ $video->topic }}
+                                                            </h2>
+                                                            <h5 class="fs-0">
+                                                                {{ $video->subject }}
+                                                            </h5>
+                                                            <h5 class="fs-0">
+                                                                {{ $video->term }}
+                                                            </h5>
+                                                        </div>
                                                     </a>
                                                 </div>
-                                                <div style="padding-left:10px; display: flex; flex-direction: column;">
-                                                    <p class="fw-bold">
-                                                        {{ $video->topic }}
-                                                    </p>
-                                                    <p>
-                                                        {{ $video->subject }}
-                                                    </p>
-                                                    <p>
-                                                        {{ $video->term }}
-                                                    </p>
-                                                </div>
+
                                             </div>
 
                                         </div>

@@ -1,9 +1,6 @@
 @extends('layouts.app_student')
 
 @section('content')
-
-
-
     <script>
         (function(window, history) {
             function disableBackAndForward() {
@@ -21,7 +18,7 @@
         })(window, history);
     </script>
 
-    @if ($answer->student_id == auth()->guard('student')->user()->Student_ID)
+    @if (optional($answer)->student_id == auth()->guard('student')->user()->Student_ID)
         @if ($question->question_type == 'Objective')
             <div class="content">
                 <div class="row g-3 mb-3">
@@ -228,36 +225,21 @@
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
-                    text: 'Your were not registered in the system for this exam. You will be logged out. Please login again to the system'
+                    text: 'Your were not registered in the system for this exam. You will be redirected to the previous page.'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        // Log the user out
-                        window.location.href = '/student-logout'; // Replace with your logout URL
-                        window.history.forward();
+                        // Redirect the user to the previous page
+                        window.history.back();
                     }
                 });
 
-                // Log out the student when clicking anywhere on the page
+                // Redirect the student when clicking anywhere on the page
                 document.addEventListener('click', function() {
-                    window.location.href = '/student-logout'; // Replace with your logout URL
-                    window.history.forward();
+                    window.history.back();
                 });
             });
         </script>
-        <div class="container">
-            <div class="row">
-                <div class="card card-body">
-                    <h4 class="text-center"></h4>
-                </div>
-            </div>
-        </div>
     @endif
-
-
-
-
-
-
 
 
     <script>
